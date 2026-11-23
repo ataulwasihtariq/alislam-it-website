@@ -5,7 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with: {path: alislam-it-website}
+      - uses: actions/checkout@v4
+        with: {repository: ataulwasihtariq/waqfe-nau, path: waqfe-nau}
+      - uses: actions/checkout@v4
+        with: {repository: ataulwasihtariq/rishta-nata, path: rishta-nata}
       - run: pip install jinja2
-      - run: python3 src/build.py --sources .
+      - run: python3 alislam-it-website/src/build.py --sources .
       - uses: actions/upload-artifact@v4
-        with: {name: site, path: site}
+        with: {name: site, path: alislam-it-website/site}

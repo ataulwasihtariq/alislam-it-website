@@ -128,6 +128,8 @@ def main():
                 embed = re.sub(r"(<style>\s*)@import url\([^)]*\);", r"\1", embed, count=1)
             else:
                 print("ATTENZIONE: manca", ep, file=sys.stderr)
+        if d.get("embed") and not embed and d["slug"] not in cfg.DEPT_TEXT:
+            embed = "<section class='amj-s'><div class='amj-w'><p>Contenuti in arrivo.</p></div></section>"
         rel = f"dipartimenti/{d['slug']}/index.html"
         meta = {"title": d["name"], "layout": "raw", "description": d["summary"]}
         html, inner = render(meta, tpl_dept, rel, d=d, accent=d["color"], embed=embed, theme_css=theme_css, auxiliary=cfg.AUXILIARY, DEPT_TEXT=cfg.DEPT_TEXT)
