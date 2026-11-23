@@ -1,0 +1,29 @@
+<section class="amj-page"><div class="amj-w">
+<p class="amj-crumbs"><a href="{{ root }}index.html">Home</a> › <a href="{{ root }}dipartimenti/">Dipartimenti</a> › {{ d.name }}</p>
+<p class="amj-eyebrow">Dipartimento</p><div class="amj-rule" style="background:var(--amj-dept)"></div>
+<h1>{{ d.name }} <span lang="ur" dir="rtl" style="font-family:var(--amj-urdu);font-size:.5em;color:var(--amj-dept);margin-inline-start:12px">{{ d.ur }}</span></h1>
+<p class="amj-lead">{{ d.summary }}</p>
+</div></section>
+
+{% if embed %}
+<section class="amj-embed">
+<style>{{ theme_css }}
+.wn,.rn{margin-bottom:0}</style>
+{{ embed }}
+</section>
+{% else %}
+{% set t = DEPT_TEXT[d.slug] %}
+<section class="amj-s"><div class="amj-w amj-two">
+<div class="amj-prose">
+<p class="amj-note"><b>{{ t.meaning }}</b></p>
+{% for p in t.about %}<p>{{ p }}</p>{% endfor %}
+<h2>Che cosa farà questa pagina</h2>
+<ul>{% for x in t.do %}<li>{{ x }}</li>{% endfor %}</ul>
+<p class="amj-note">Questa pagina è in preparazione: i contenuti, i moduli e i contatti del dipartimento verranno aggiunti dopo la revisione.</p>
+</div>
+<aside class="amj-aside"><h4>Contatti</h4>
+<p>Per ora scrivete alla segreteria:</p>
+<ul><li>WhatsApp {{ site.whatsapp }}</li><li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li></ul>
+<p style="margin-top:18px"><a class="amj-btn" href="{{ root }}area-riservata/">Area riservata</a></p></aside>
+</div></section>
+{% endif %}

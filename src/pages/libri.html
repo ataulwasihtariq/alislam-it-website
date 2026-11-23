@@ -1,0 +1,17 @@
+---
+title: Libri
+h1: Libri da leggere
+eyebrow: Per approfondire
+lead: Tre testi per cominciare, in italiano.
+description: Libri della Comunità Musulmana Ahmadiyya disponibili in italiano.
+path: libri/index.html
+crumbs: <a href="{{ root }}index.html">Home</a> › Libri
+---
+<section class="amj-s"><div class="amj-w"><div class="amj-prose" style="max-width:820px">
+<ul class="amj-list">
+{% for t,a,c in books %}<li><b>{{ t }}</b> · {{ a }}</li>
+{% endfor %}
+</ul>
+<p>Per richiedere una copia scriveteci dalla pagina <a href="{{ root }}contatti/">Contatti</a>.</p>
+<p class="amj-note">Da completare con le schede dei libri (copertina, descrizione, modalità di richiesta) dopo conferma dell’elenco.</p>
+</div></div></section>

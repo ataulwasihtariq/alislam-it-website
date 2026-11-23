@@ -1,0 +1,25 @@
+<section class="amj-s"><div class="amj-w">
+<div class="amj-center"><p class="amj-eyebrow">Dipartimenti</p><h2>Uno stile, tanti compiti</h2></div>
+<div class="amj-cards">
+{% for d in departments %}
+<a class="amj-card amj-d" href="{{ root }}dipartimenti/{{ d.slug }}/" style="--amj-dept:{{ d.color }}"><div class="amj-b">
+<span class="amj-badge" aria-hidden="true">{{ d.initial }}</span>
+<h3>{{ d.name }}</h3><span class="amj-ur" lang="ur" dir="rtl">{{ d.ur }}</span>
+<p>{{ d.summary }}</p>
+<span class="amj-tag{% if d.status == 'attivo' %} live{% endif %}">{{ 'Pagina attiva' if d.status == 'attivo' else 'In preparazione' }}</span>
+<span class="amj-go">Apri →</span></div></a>
+{% endfor %}
+</div></div></section>
+
+<section class="amj-pat"><div class="amj-w" style="padding-top:72px;padding-bottom:72px">
+<p class="amj-eyebrow">Organizzazioni ausiliarie</p><h2 style="margin-bottom:28px">Ogni età ha la sua organizzazione</h2>
+<div class="amj-cards">
+{% for n, who in auxiliary %}<div class="amj-box"><h3>{{ n }}</h3><p>{{ who }}</p></div>{% endfor %}
+</div></div></section>
+
+<section class="amj-s"><div class="amj-w amj-two">
+<div class="amj-prose"><h2>Area riservata ai membri</h2>
+<p>Moduli, circolari e informazioni interne sono accessibili con il proprio <b>codice socio</b>. Ci sono due livelli: uno per i membri della Comunità e uno per i membri dell’Amila nazionale e i Presidenti locali.</p>
+<p><a class="amj-btn" href="{{ root }}area-riservata/">Vai all’area riservata</a></p></div>
+<aside class="amj-aside"><h4>Serve aiuto?</h4><p>Scrivete su WhatsApp al {{ site.whatsapp }} o a <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p></aside>
+</div></section>
