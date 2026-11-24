@@ -22,6 +22,8 @@ START, END = D(C['start']), D(C['end'])
 ZUHR_ASR, JUMUAH, MAGHRIB_ISHA = C['zuhr_asr'], C['jumuah'], C['maghrib_isha']
 BLOCKS = [(D(b['from']), D(b['to']), b['time']) for b in C['fajr_blocks']]
 OVR = {o['date']: o for o in C.get('overrides', [])}
+MBLOCKS = [(D(b['from']), D(b['to']), b['time']) for b in C.get('maghrib_blocks', [])] or [(D('2000-01-01'), D('2099-12-31'), MAGHRIB_ISHA)]
+WEB_START = D(C.get('web_start', C['start']))
 IT_WD = ['lun', 'mar', 'mer', 'gio', 'ven', 'sab', 'dom']
 IT_MS = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic']
 IT_ML = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre']
@@ -33,13 +35,17 @@ def fajr(d):
     for a, b, t in BLOCKS:
         if a <= d <= b: return t
     raise SystemExit(f'Fajr non definito per {d}')
+def maghrib(d):
+    for a, b, t in MBLOCKS:
+        if a <= d <= b: return t
+    raise SystemExit(f'Maghrib+Isha non definito per {d}')
 def val(d, key, default):
     o = OVR.get(d.isoformat()); return (o or {}).get(key, default)
 
 rows = []; d = START
 while d <= END:
     t = day_times(d); sr, no, ss = mm(t['sunrise']), mm(t['noon']), mm(t['sunset'])
-    f = val(d, 'fajr', fajr(d)); mi = val(d, 'maghrib_isha', MAGHRIB_ISHA); za = val(d, 'zuhr_asr', ZUHR_ASR); ju = val(d, 'jumuah', JUMUAH)
+    f = val(d, 'fajr', fajr(d)); mi = val(d, 'maghrib_isha', maghrib(d)); za = val(d, 'zuhr_asr', ZUHR_ASR); ju = val(d, 'jumuah', JUMUAH)
     assert tmin(f) - 5 >= sr - 90, (d, 'Fajr: adhan prima dell\'inizio vero')
     assert tmin(f) <= sr - 60, (d, 'Fajr troppo vicino all\'alba')
     assert tmin(mi) >= ss + 90, (d, 'Isha non ancora entrata')
@@ -55,19 +61,25 @@ def period(lang):
     a = f'{s.day} {UR_M[s.month - 1]}' + (f' {s.year}' if s.year != e.year else '')
     return f'{a} تا {e.day} {UR_M[e.month - 1]} {e.year}'
 def short(d): return f'{d.day} {IT_MS[d.month - 1]}'
-def fajr_rows():
+def range_label(a, b):
+    if a == b: return short(a), f'{a.day} {UR_M[a.month - 1]}'
+    if a.month == b.month: return f'{a.day} – {b.day} {IT_MS[b.month - 1]}', f'{a.day} تا {b.day} {UR_M[b.month - 1]}'
+    return f'{short(a)} – {short(b)}', f'{a.day} {UR_M[a.month - 1]} تا {b.day} {UR_M[b.month - 1]}'
+def block_rows(blocks):
     out = []
-    for a, b, t in BLOCKS:
+    for a, b, t in blocks:
         a = max(a, START); b = min(b, END)
         if a > b: continue
-        if a == b:
-            il, ul = short(a), f'{a.day} {UR_M[a.month - 1]}'
-        elif a.month == b.month:
-            il, ul = f'{a.day} – {b.day} {IT_MS[b.month - 1]}', f'{a.day} تا {b.day} {UR_M[b.month - 1]}'
-        else:
-            il, ul = f'{short(a)} – {short(b)}', f'{a.day} {UR_M[a.month - 1]} تا {b.day} {UR_M[b.month - 1]}'
+        il, ul = range_label(a, b)
         out.append(f'   <div class="row"><div class="l">{il}</div><div class="t">{t}</div><div class="r"><span class="ur">{ul}</span></div></div>')
     return '\n'.join(out)
+def fajr_rows(): return block_rows(BLOCKS)
+def maghrib_card():
+    inside = [x for x in MBLOCKS if max(x[0], START) <= min(x[1], END)]
+    card = open(HERE / 'maghrib_card.html', encoding='utf-8').read()
+    if len(inside) == 1: return card.replace('{{MI}}', inside[0][2])
+    return ('  <div class="sub3"><div class="title"><div class="l">Maghrib + Isha · unite</div><div class="r"><span class="ur">مغرب و عشاء (اکٹھی)</span></div></div>\n'
+            + block_rows(MBLOCKS) + '\n  </div>')
 def fridays():
     groups = {}
     for r in rows:
@@ -99,7 +111,7 @@ def page3():
 pub = D(C['published_on'])
 T = (HERE / 'template.html').read_text(encoding='utf-8')
 subs = {'FONTS': 'file://' + str(Path(A.fonts).resolve()), 'PERIOD_SHORT': f'{short(START)}–{short(END)} {END.year}', 'PERIOD_IT': period('it'), 'PERIOD_UR': period('ur'),
-        'FAJR_ROWS': fajr_rows(), 'FRIDAYS': fridays(), 'ZUHR_ASR': ZUHR_ASR, 'JUMUAH': JUMUAH, 'MAGHRIB_ISHA': MAGHRIB_ISHA,
+        'FAJR_ROWS': fajr_rows(), 'FRIDAYS': fridays(), 'ZUHR_ASR': ZUHR_ASR, 'JUMUAH': JUMUAH, 'MAGHRIB_CARD': maghrib_card(),
         'TODAY_IT': f'{pub.day} {IT_ML[pub.month - 1]} {pub.year}', 'DAILY': daily_html(), 'PAGE3': page3()}
 for k, v in subs.items(): T = T.replace('{{' + k + '}}', v)
 if OVR:
@@ -113,8 +125,14 @@ subprocess.run(['pdftoppm', '-r', '150', '-png', '-f', '3', '-l', '3', '-singlef
 print('PDF:', pdf)
 
 if A.web:
-    periods = [{'from': a.isoformat(), 'to': b.isoformat(), 'fajr': t, 'zuhr_asr': ZUHR_ASR, 'jumuah': JUMUAH, 'maghrib_isha': MAGHRIB_ISHA} for a, b, t in BLOCKS]
-    web = {'place': 'Baitut Tauhid · San Pietro in Casale', 'updated': C['published_on'], 'start': START.isoformat(), 'end': END.isoformat(),
+    periods = []; d = WEB_START
+    while d <= END:
+        v = (fajr(d), ZUHR_ASR, JUMUAH, maghrib(d))
+        if periods and periods[-1]['_v'] == v and D(periods[-1]['to']) == d - dt.timedelta(1): periods[-1]['to'] = d.isoformat()
+        else: periods.append({'from': d.isoformat(), 'to': d.isoformat(), 'fajr': v[0], 'zuhr_asr': v[1], 'jumuah': v[2], 'maghrib_isha': v[3], '_v': v})
+        d += dt.timedelta(1)
+    for p in periods: p.pop('_v')
+    web = {'place': 'Baitut Tauhid · San Pietro in Casale', 'updated': C['published_on'], 'start': WEB_START.isoformat(), 'end': END.isoformat(),
            'periods': periods, 'overrides': C.get('overrides', []),
            'pdf': 'orari/orari-baitut-tauhid.pdf', 'image': 'orari/orari-baitut-tauhid.png', 'quote_image': 'orari/pensiero-del-mese.png', 'quote': quote()}
     Path(A.web).write_text(json.dumps(web, ensure_ascii=False, indent=1), encoding='utf-8'); print('JSON:', A.web)

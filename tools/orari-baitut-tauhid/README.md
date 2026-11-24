@@ -15,7 +15,7 @@ Il sito (`assets/js/amj.js`) legge `assets/data/baitut-tauhid.json` e mostra da 
 - Solo gli orari della Jama'at, senza colonna dell'Adhan.
 - Fajr: Adhan all'inizio vero (alba meno 90 minuti), Jama'at = Adhan + 5 minuti, arrotondata ai 5 minuti e tenuta in blocchi; i cambi partono dal sabato, dopo il Jumu'ah.
 - Jumu'ah: un solo orario tutto l'anno (13:25), dopo il mezzogiorno solare più tardivo (13:20,9). L'Asr segue il Jumu'ah (da confermare).
-- Inverno: Zuhr + Asr unite alle 13:30. Maghrib + Isha unite alle 20:15, valide fino a sabato 27 marzo 2027 (poi ora legale).
+- Inverno: Zuhr + Asr unite alle 13:30. Maghrib + Isha unite: 20:15 fino a venerdì 27 novembre 2026, 20:00 da sabato 28 novembre (valido fino a sabato 27 marzo 2027, poi ora legale: nuovo orario). Il campo `maghrib_blocks` della config gestisce i cambi; `web_start` fa partire il JSON del sito prima dell'inizio del PDF.
 - `build.py` controlla ogni giorno con l'astronomia (NOAA/Meeus, ±1 minuto) e si ferma se un orario non è valido.
 - `quotes.json`: hadith e riferimento del mese (testi urdu copiati dalla biblioteca Hawala; traduzione italiana da rivedere).
 

@@ -1,7 +1,7 @@
 {
  "place": "Baitut Tauhid · San Pietro in Casale",
  "updated": "2026-11-24",
- "start": "2026-11-25",
+ "start": "2026-11-24",
  "end": "2026-12-31",
  "periods": [
   {
@@ -14,11 +14,19 @@
   },
   {
    "from": "2026-11-26",
-   "to": "2026-12-04",
+   "to": "2026-11-27",
    "fajr": "06:15",
    "zuhr_asr": "13:30",
    "jumuah": "13:25",
    "maghrib_isha": "20:15"
+  },
+  {
+   "from": "2026-11-28",
+   "to": "2026-12-04",
+   "fajr": "06:15",
+   "zuhr_asr": "13:30",
+   "jumuah": "13:25",
+   "maghrib_isha": "20:00"
   },
   {
    "from": "2026-12-05",
@@ -26,7 +34,7 @@
    "fajr": "06:25",
    "zuhr_asr": "13:30",
    "jumuah": "13:25",
-   "maghrib_isha": "20:15"
+   "maghrib_isha": "20:00"
   },
   {
    "from": "2026-12-19",
@@ -34,7 +42,7 @@
    "fajr": "06:30",
    "zuhr_asr": "13:30",
    "jumuah": "13:25",
-   "maghrib_isha": "20:15"
+   "maghrib_isha": "20:00"
   }
  ],
  "overrides": [],
