@@ -84,7 +84,7 @@ DEPT_TEXT = {
     "tabligh": {
         "meaning": "Tabligh significa «trasmettere, far arrivare un messaggio».",
         "about": ["Il dipartimento presenta l’Islam a chi vuole conoscerlo: a scuole, parrocchie, associazioni, istituzioni e a chiunque faccia domande.",
-                  "Lo fa con incontri pubblici, stand, mostre del Corano, conferenze e dialogo interreligioso, partendo sempre dalle fonti e senza forzare nessuno: «non c’è costrizione nella religione» (Corano 2:257 [2:256])."],
+                  "Lo fa con incontri pubblici, stand, mostre del Corano, conferenze e dialogo interreligioso, partendo sempre dalle fonti e senza forzare nessuno: «non c’è costrizione nella religione» (Corano <a class='amj-q' href='https://tilaw.at/2:257' target='_blank' rel='noopener'>2:257</a>)."],
         "do": ["Incontri e conferenze aperte al pubblico", "Stand e mostre del Corano", "Dialogo con scuole, parrocchie e istituzioni"]},
     "talim": {
         "meaning": "Talim significa «istruzione, insegnamento».",

@@ -203,3 +203,5 @@ a.amj-card:hover{box-shadow:0 12px 28px rgba(30,43,38,.12);transform:translateY(
 .amj-embed{padding:0 0 40px}
 @media(max-width:700px){.amj-w{padding:0 20px}section.amj-s{padding:60px 0}.amj-list span{font-size:25px}.amj-fig blockquote{font-size:27px}}
 @media print{.amj-top,.amj-header,.amj-footer,.amj-draft{display:none}}
+a.amj-q{color:inherit;text-decoration:underline;text-decoration-color:var(--amj-gold-d);text-underline-offset:3px;white-space:nowrap}
+a.amj-q:hover{color:var(--amj-gold-d)}

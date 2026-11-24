@@ -10,3 +10,7 @@ Fonti usate nei testi: Corano (numerazione standard e, tra parentesi quadre, que
 
 ## Storia in Italia (pagina chi-siamo/storia-in-italia)
 Fonte unica: Al Hakam, 31.10.2024, Ata-ul-Haye Nasir (alhakam.org/islam-ahmadiyya-italy). Da confermare: date della ripresa dopo il 2010 e nascita delle 17 comunità locali; sostituire «in Italia dal 1937» solo se emergono fonti diverse.
+
+
+## Convenzione dei riferimenti coranici (aggiornata)
+Tutti i riferimenti usano solo la numerazione della Jama'at (la basmala conta come versetto 1) e sono link a `https://tilaw.at/<sura>:<versetto>`. Non si indica più la numerazione standard tra parentesi. In caso di intervallo il link porta al primo versetto. L'app dell'Al Islam mostra le traduzioni scelte nelle impostazioni del browser del lettore (localStorage), non nell'URL: non è possibile forzare «solo arabo + italiano» dal link.
