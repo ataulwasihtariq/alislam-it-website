@@ -6,13 +6,11 @@ lead: Tre testi per cominciare, in italiano.
 description: Libri della Comunità Islamica Ahmadiyya disponibili in italiano.
 path: libri/index.html
 crumbs: <a href="{{ root }}index.html">Home</a> › Libri
-art: libri
 ---
-<section class="amj-s"><div class="amj-w"><div class="amj-prose" style="max-width:820px">
-<ul class="amj-list">
-{% for t,a,c in books %}<li><b>{{ t }}</b> · {{ a }}</li>
+<section class="amj-s"><div class="amj-w">
+<div class="amj-books">
+{% for t,a,c in books %}<div class="amj-bk"><div class="cv" style="background:{{ c }}"><small>Libro</small><b>{{ t }}</b></div><p class="body-2">{{ a }}</p></div>
 {% endfor %}
-</ul>
-<p>Per richiedere una copia scriveteci dalla pagina <a href="{{ root }}contatti/">Contatti</a>.</p>
-<p class="amj-note">Da completare con le schede dei libri (copertina, descrizione, modalità di richiesta) dopo conferma dell’elenco.</p>
-</div></div></section>
+</div>
+<p style="margin-top:var(--s-500)"><a class="amj-btn" href="{{ site.whatsapp_link }}"><i class="ph ph-whatsapp-logo"></i> Richiedi una copia su WhatsApp</a></p>
+</div></section>

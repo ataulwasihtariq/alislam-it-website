@@ -7,14 +7,13 @@ description: Contatti della Comunità Islamica Ahmadiyya in Italia.
 path: contatti/index.html
 crumbs: <a href="{{ root }}index.html">Home</a> › Contatti
 ---
-<section class="amj-s"><div class="amj-w"><div class="amj-prose" style="max-width:820px">
-<ul class="amj-list">
-<li><b>Email:</b> <a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-<li><b>WhatsApp:</b> <a href="{{ site.whatsapp_link }}">{{ site.whatsapp }}</a></li>
-<li><b>Numero verde:</b> {{ site.toll_free }}</li>
-<li><b>Sede:</b> {{ site.address }}</li>
-</ul>
-<h2>Comunità locali</h2>
-<p>{{ cities|join(", ") }}.</p>
-
-</div></div></section>
+<section class="amj-s"><div class="amj-w">
+<div class="amj-ct">
+<a href="{{ site.whatsapp_link }}"><i class="ph ph-whatsapp-logo"></i><small>WhatsApp</small><b>{{ site.whatsapp }}</b></a>
+<a href="mailto:{{ site.email }}"><i class="ph ph-envelope-simple"></i><small>Email</small><b>{{ site.email }}</b></a>
+<a href="tel:{{ site.toll_free|replace(' ','') }}"><i class="ph ph-phone"></i><small>Numero verde</small><b>{{ site.toll_free }}</b></a>
+<div><i class="ph ph-map-pin"></i><small>Sede</small><b>{{ site.address }}</b></div>
+</div>
+<h2 class="heading-5" style="margin-top:var(--s-700)">Comunità locali</h2>
+<ul class="amj-chips">{% for c in cities %}<li>{{ c }}</li>{% endfor %}</ul>
+</div></section>

@@ -6,13 +6,11 @@ lead: Ogni venerdì Hazrat Mirza Masroor Ahmad (aba) tiene un sermone trasmesso 
 description: Riassunti in italiano dei sermoni del Venerdì del Califfo della Comunità Islamica Ahmadiyya.
 path: sermoni/index.html
 crumbs: <a href="{{ root }}index.html">Home</a> › Sermoni del Venerdì
-art: sermoni
 ---
-<section class="amj-s"><div class="amj-w"><div class="amj-prose" style="max-width:820px">
-<p>Il sermone del venerdì (<i>khutba</i>) è un momento centrale della vita della Comunità. I riassunti sono preparati in italiano; il testo integrale e i video sono disponibili sui canali ufficiali della Comunità.</p>
-<ul class="amj-list">
-{% for d,t in sermons %}<li><b>{{ d }}</b> · {{ t }}</li>
+<section class="amj-s"><div class="amj-w">
+<p class="amj-lead" style="max-width:680px;margin:0 0 var(--s-500)">Il sermone del venerdì (khutba) è un momento centrale della vita della Comunità. I riassunti sono in italiano; il testo integrale e i video sono sui canali ufficiali della Comunità.</p>
+<div class="amj-sl">
+{% for d,t in sermons %}<article><time>{{ d }}</time><h3>{{ t }}</h3></article>
 {% endfor %}
-</ul>
-<p class="amj-note">Archivio completo: in preparazione. Nella versione WordPress i sermoni diventeranno articoli, uno per settimana.</p>
-</div></div></section>
+</div>
+</div></section>

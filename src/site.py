@@ -33,7 +33,7 @@ NAV = [
 
 # status: "attivo" = pagina con contenuti reali; "bozza" = scheda introduttiva, contenuti da completare
 DEPARTMENTS = [
-    {"slug": "waqf-e-nau", "name": "Waqf-e-Nau", "ur": "وقفِ نو", "color": "#2f5d4a", "initial": "W", "status": "attivo",
+    {"slug": "waqf-e-nau", "name": "Waqf-e-Nau", "ur": "وقفِ نو", "color": "#1f4a3a", "initial": "W", "status": "attivo",
      "summary": "I bambini dedicati al servizio della fede: programma 2026, Nisab per età, Jaiza, quiz per i genitori.",
      "embed": "waqfe-nau/wordpress/waqfe-nau-embed.html"},
     {"slug": "rishta-nata", "name": "Rishta Nata", "ur": "رشتہ ناطہ", "color": "#8a3b4a", "initial": "R", "status": "attivo",
@@ -70,9 +70,9 @@ SERMONS = [
 ]
 
 BOOKS = [
-    ("La Filosofia degli Insegnamenti dell’Islam", "Hazrat Mirza Ghulam Ahmad (as)", "#2f5d4a"),
-    ("La Crisi Mondiale e la Via per la Pace", "Hazrat Mirza Masroor Ahmad (aba)", "#1e2b26"),
-    ("Gesù in India", "Hazrat Mirza Ghulam Ahmad (as)", "#7a5f22"),
+    ("La Filosofia degli Insegnamenti dell’Islam", "Hazrat Mirza Ghulam Ahmad (as)", "#1f4a3a"),
+    ("La Crisi Mondiale e la Via per la Pace", "Hazrat Mirza Masroor Ahmad (aba)", "#16201c"),
+    ("Gesù in India", "Hazrat Mirza Ghulam Ahmad (as)", "#6c5524"),
 ]
 
 
