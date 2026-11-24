@@ -374,3 +374,12 @@ blockquote.amj-hadith cite{display:block;margin-top:var(--s-100);font-size:12px;
 div.amj-s{padding-top:var(--s-800);padding-bottom:var(--s-800)}
 @media(max-width:700px){div.amj-s{padding-top:var(--s-700);padding-bottom:var(--s-700)}}
 @media(min-width:1280px){.amj-nav a{white-space:nowrap}.amj-nav{gap:var(--s-100)}}
+
+/* illustrazioni di testata per pagina */
+.amj-page.art-ramadan:after{background-image:url(../img/art-ramadan.svg)}
+.amj-page.art-libri:after{background-image:url(../img/art-libri.svg)}
+.amj-page.art-sermoni:after{background-image:url(../img/art-sermoni.svg)}
+.amj-page.art-eventi:after{background-image:url(../img/art-eventi.svg)}
+.amj-page.art-chi-siamo:after{background-image:url(../img/art-chi-siamo.svg)}
+.amj-page.art-domande:after{background-image:url(../img/art-domande.svg)}
+.amj-page.art-dicono:after{background-image:url(../img/art-dicono.svg)}

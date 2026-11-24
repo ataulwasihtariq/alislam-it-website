@@ -64,7 +64,7 @@ def render(meta, body, rel, wp=False, **extra):
     layout = meta.get("layout", "page")
     if layout == "page" and not wp:
         crumbs = env.from_string(meta.get("crumbs", "")).render(root=root)
-        head = (f'<section class="amj-page"><div class="amj-w">'
+        head = (f'<section class="amj-page{(" art-" + meta["art"]) if meta.get("art") else ""}"><div class="amj-w">'
                 f'{("<p class=amj-crumbs>" + crumbs + "</p>") if crumbs else ""}'
                 f'<p class="amj-eyebrow">{meta.get("eyebrow","")}</p><div class="amj-rule"></div>'
                 f'<h1>{meta.get("h1", meta.get("title",""))}</h1>'
