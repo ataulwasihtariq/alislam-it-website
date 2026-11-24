@@ -10,7 +10,7 @@ SITE = {
     "whatsapp_link": "https://wa.me/390511990451",
     "toll_free": "800 598 005",
     "email": "contatti@alislam.it",
-    "address": "[indirizzo della sede: da confermare]",
+    "address": "Bait-ul-Tauhid (sede nazionale e moschea), Via Morgobbo 1035/A, Gavaseto, 40018 San Pietro in Casale (BO)",
     # Dopo la verifica con l'amministratore: mettere True per togliere "noindex" e la fascia "bozza".
     "published": False,
 }
