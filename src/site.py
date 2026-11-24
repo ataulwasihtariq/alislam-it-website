@@ -3,7 +3,7 @@ Per cambiare un numero, un colore o aggiungere un dipartimento si modifica solo 
 
 SITE = {
     "name": "Comunità Musulmana Ahmadiyya",
-    "tagline": "in Italia · prima missione nel 1937",
+    "tagline": "in Italia · prima missione 1937",
     "legal": "Associazione The Ahmadiyya Muslim Jama’at Italia",
     "base_url": "https://alislam.it",
     "whatsapp": "+39 051 199 00 451",
