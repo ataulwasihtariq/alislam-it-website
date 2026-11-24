@@ -2,16 +2,14 @@
 title: Eventi
 h1: Eventi della Comunità
 eyebrow: Incontri, iftar e conferenze
-lead: Qui trovi i prossimi appuntamenti, aperti a tutti salvo diversa indicazione. Puoi aggiungere ogni evento al calendario del telefono, oppure abbonarti al calendario della Comunità e riceverli tutti.
+lead: Il calendario della Comunità: festività, incontri nelle comunità locali e corsi di formazione. Aggiungi ogni evento al calendario del telefono, oppure abbonati e li ricevi tutti.
 description: Prossimi eventi della Comunità Islamica Ahmadiyya in Italia: incontri, conferenze, iftar di Ramadan. Con calendario da aggiungere al telefono.
 path: eventi/index.html
 crumbs: <a href="{{ root }}index.html">Home</a> › Eventi
 ---
-<section class="amj-w amj-s"><div class="amj-two" style="grid-template-columns:minmax(0,1fr) minmax(260px,360px);gap:var(--s-500)">
-<div><div data-events data-src="{{ assets }}data/eventi.json"><p class="amj-tnote">Carico gli eventi…</p></div></div>
-<aside class="amj-aside"><h4>Segui tutti gli eventi</h4>
-<p>Abbonati al calendario e ogni nuovo evento compare da solo nel tuo telefono.</p>
-<p><a class="amj-btn" href="{{ assets }}data/eventi.ics"><i class="ph ph-calendar-plus"></i> Calendario .ics</a></p>
-<h4 style="margin-top:var(--s-300)">Hai un evento da proporre?</h4>
-<p>Scrivici su <a href="{{ site.whatsapp_link }}">WhatsApp</a> con titolo, data, luogo e una riga di descrizione. Lo pubblichiamo dopo la verifica.</p>
-</aside></div></section>
+<section class="amj-w amj-s" style="padding-bottom:var(--s-400)"><div data-ev-app data-src="{{ assets }}data/eventi.json"><p class="amj-tnote">Carico gli eventi…</p></div></section>
+<section class="amj-w" style="padding-bottom:var(--s-800)"><div class="amj-ct">
+<a href="{{ assets }}data/eventi.ics"><i class="ph ph-calendar-plus"></i><small>Abbonati</small><b>Calendario .ics per iPhone, Android, Google e Outlook</b></a>
+<a href="{{ site.whatsapp_link }}"><i class="ph ph-whatsapp-logo"></i><small>Proponi un evento</small><b>Scrivici su WhatsApp con titolo, data e luogo</b></a>
+<div><i class="ph ph-info"></i><small>Date da confermare</small><b>Le date islamiche dipendono dalla luna e sono confermate dalla Jama'at.</b></div>
+</div></section>

@@ -125,24 +125,85 @@
   }
 
   /* ---------- Eventi ---------- */
-  var evBox = $('[data-events]');
-  if (evBox) {
-    fetch(evBox.getAttribute('data-src'), { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (D) {
-      var now = rome(new Date()), list = D.events.slice().sort(function (a, b) { return a.start < b.start ? -1 : 1; });
-      var up = list.filter(function (e) { return Date.UTC.apply(null, e.start.slice(0, 10).split('-').map(function (x, i) { return i === 1 ? x - 1 : +x; })) >= now; });
-      if (!up.length) { evBox.innerHTML = '<div class="amj-empty"><p class="body-2" style="margin:0 0 8px">Nessun evento in programma per ora.</p><p style="margin:0">Scrivici su WhatsApp per sapere che cosa si organizza nella tua città.</p></div>'; return; }
-      evBox.innerHTML = up.map(function (e, i) {
-        var p = e.start.slice(0, 10).split('-').map(Number), d = new Date(Date.UTC(p[0], p[1] - 1, p[2]));
-        return '<article class="amj-ev"><div class="d"><b>' + p[2] + '</b><small>' + MONTHS[p[1] - 1] + ' ' + p[0] + '</small></div><div><span class="amj-pill">' + (e.tentative ? 'Data da confermare' : e.kind) + '</span><h3 style="margin-top:8px">' + e.title + '</h3><p>' + [FULLD[d.getUTCDay()] + (e.time ? ' alle ' + e.time : ''), e.place, e.city].filter(Boolean).join(' · ') + '</p>' + (e.desc ? '<p style="margin-top:4px">' + e.desc + '</p>' : '') + '</div><div class="act">' + (e.url ? '<a class="amj-btn2" href="' + e.url + '">Dettagli</a> ' : '') + '<button class="amj-btn2" type="button" data-ics="' + i + '"><i class="ph ph-calendar-plus"></i> Calendario</button></div></article>';
-      }).join('');
-      $$('[data-ics]', evBox).forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          var e = up[+btn.getAttribute('data-ics')], s = e.start.slice(0, 10).replace(/-/g, ''), nx = new Date(Date.UTC(+s.slice(0, 4), +s.slice(4, 6) - 1, +s.slice(6, 8) + 1));
-          var L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//alislam.it//Eventi//IT', 'BEGIN:VEVENT', 'UID:' + e.id + '@alislam.it', 'DTSTAMP:20261124T000000Z', 'DTSTART;VALUE=DATE:' + s, 'DTEND;VALUE=DATE:' + nx.getUTCFullYear() + pad(nx.getUTCMonth() + 1) + pad(nx.getUTCDate()), 'SUMMARY:' + e.title, 'LOCATION:' + [e.place, e.city].filter(Boolean).join(', '), 'DESCRIPTION:' + (e.desc || '') + (e.tentative ? ' (data da confermare)' : ''), 'END:VEVENT', 'END:VCALENDAR'];
-          var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([L.join('\r\n')], { type: 'text/calendar;charset=utf-8' })); a.download = e.id + '.ics'; document.body.appendChild(a); a.click(); a.remove();
+  var FULLM = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
+  var DAY = 86400000;
+  function esc(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function pd(s) { var p = s.slice(0, 10).split('-'); return Date.UTC(+p[0], +p[1] - 1, +p[2]); }
+  function norm(D) {
+    return D.events.map(function (e) { e.s = pd(e.start); e.e = e.end ? pd(e.end) : e.s; return e; })
+      .sort(function (a, b) { return a.s - b.s || a.e - b.e; });
+  }
+  function range(e) {
+    var a = new Date(e.s), b = new Date(e.e), A = a.getUTCDate() + ' ' + MONTHS[a.getUTCMonth()];
+    if (e.e === e.s) return FULLD[a.getUTCDay()] + ' ' + A;
+    return a.getUTCMonth() === b.getUTCMonth() ? a.getUTCDate() + '–' + b.getUTCDate() + ' ' + MONTHS[b.getUTCMonth()] : A + ' – ' + b.getUTCDate() + ' ' + MONTHS[b.getUTCMonth()];
+  }
+  function icsFor(e) {
+    var s = new Date(e.s).toISOString().slice(0, 10).replace(/-/g, ''), nx = new Date(e.e + DAY).toISOString().slice(0, 10).replace(/-/g, '');
+    var L = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//alislam.it//Eventi//IT', 'BEGIN:VEVENT', 'UID:' + e.id + '@alislam.it', 'DTSTAMP:20261124T000000Z', 'DTSTART;VALUE=DATE:' + s, 'DTEND;VALUE=DATE:' + nx, 'SUMMARY:' + e.title + (e.tentative ? ' (data da confermare)' : ''), 'STATUS:' + (e.tentative ? 'TENTATIVE' : 'CONFIRMED')];
+    if (e.place || e.city) L.push('LOCATION:' + [e.place, e.city].filter(Boolean).join(', '));
+    if (e.desc) L.push('DESCRIPTION:' + e.desc);
+    L.push('END:VEVENT', 'END:VCALENDAR');
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([L.join('\r\n')], { type: 'text/calendar;charset=utf-8' })); a.download = e.id + '.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+  function when(e, today) {
+    if (e.s <= today && today <= e.e) return 'In corso';
+    var n = Math.round((e.s - today) / DAY);
+    return n === 1 ? 'Domani' : 'Tra ' + n + ' giorni';
+  }
+  var evApp = $('[data-ev-app]'), evNext = $('[data-ev-next]');
+  if (evApp || evNext) {
+    var src = (evApp || evNext).getAttribute('data-src');
+    fetch(src, { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (D) {
+      var today = rome(new Date()), all = norm(D), up = all.filter(function (e) { return e.e >= today; });
+      if (evNext) {
+        var nx = up.slice(0, 3);
+        evNext.innerHTML = nx.length ? nx.map(function (e) {
+          var d = new Date(e.s);
+          return '<a class="amj-nx" href="' + evNext.getAttribute('data-href') + '"><span class="d"><b>' + d.getUTCDate() + '</b><small>' + MONTHS[d.getUTCMonth()] + '</small></span><span><small>' + esc(e.kind) + ' · ' + when(e, today) + '</small><b>' + esc(e.title) + '</b></span></a>';
+        }).join('') : '<p class="amj-tnote">Nessun evento in programma per ora.</p>';
+      }
+      if (!evApp) return;
+      if (!up.length) { evApp.innerHTML = '<div class="amj-empty"><p class="body-2" style="margin:0 0 8px">Nessun evento in programma per ora.</p><p style="margin:0">Scrivici su WhatsApp per sapere che cosa si organizza.</p></div>'; return; }
+      var kinds = []; up.forEach(function (e) { if (kinds.indexOf(e.kind) < 0) kinds.push(e.kind); });
+      var state = { kind: 'all', ym: new Date(up[0].s).getUTCFullYear() * 12 + new Date(up[0].s).getUTCMonth() };
+      var f = up.filter(function (e) { return !e.minor; })[0] || up[0];
+      var html = '<div class="amj-evf"><div><p class="amj-eyebrow">Prossimo appuntamento</p><h2 class="heading-4">' + esc(f.title) + '</h2><p class="amj-evf-m">' + range(f) + (f.tentative ? ' · data da confermare' : '') + '</p>' + (f.desc ? '<p>' + esc(f.desc) + '</p>' : '') + '<button class="amj-btn" type="button" data-ics-id="' + esc(f.id) + '"><i class="ph ph-calendar-plus"></i> Aggiungi al calendario</button></div><div class="amj-evf-c"><b>' + when(f, today) + '</b><small>' + esc(f.kind) + '</small></div></div>';
+      html += '<div class="amj-evgrid"><div><div class="amj-chips2" role="group" aria-label="Filtra gli eventi"><button class="amj-chip" type="button" data-k="all" aria-pressed="true">Tutti</button>' + kinds.map(function (k) { return '<button class="amj-chip" type="button" data-k="' + esc(k) + '" aria-pressed="false">' + esc(k) + '</button>'; }).join('') + '</div><div data-ev-list></div></div><aside class="amj-mcal"><div class="amj-mcal-h"><button type="button" data-m="-1" aria-label="Mese precedente">&#8249;</button><b data-mt></b><button type="button" data-m="1" aria-label="Mese successivo">&#8250;</button></div><div class="amj-mcal-g" data-mg></div><p class="amj-tnote">I giorni con un punto hanno un evento.</p></aside></div>';
+      evApp.innerHTML = html;
+      function list() {
+        var rows = up.filter(function (e) { return state.kind === 'all' || e.kind === state.kind; }), out = '', cur = '';
+        rows.forEach(function (e) {
+          var d = new Date(e.s), key = d.getUTCFullYear() + '-' + d.getUTCMonth();
+          if (key !== cur) { cur = key; out += '<h3 class="amj-evm">' + FULLM[d.getUTCMonth()] + ' ' + d.getUTCFullYear() + '</h3>'; }
+          var dd = e.e !== e.s ? '<b>' + d.getUTCDate() + '–' + new Date(e.e).getUTCDate() + '</b>' : '<b>' + d.getUTCDate() + '</b>';
+          out += '<article class="amj-ev"><div class="d">' + dd + '<small>' + MONTHS[d.getUTCMonth()] + '</small></div><div><span class="amj-pill">' + (e.tentative ? 'Data da confermare' : esc(e.kind)) + '</span><h3 style="margin-top:8px">' + esc(e.title) + '</h3><p>' + range(e) + (e.place ? ' · ' + esc(e.place) : '') + (e.city ? ' · ' + esc(e.city) : '') + '</p>' + (e.desc ? '<p style="margin-top:4px">' + esc(e.desc) + '</p>' : '') + '</div><div class="act">' + (e.url ? '<a class="amj-btn2" href="' + esc(e.url) + '">Dettagli</a> ' : '') + '<button class="amj-btn2" type="button" data-ics-id="' + esc(e.id) + '"><i class="ph ph-calendar-plus"></i> Calendario</button></div></article>';
         });
+        $('[data-ev-list]', evApp).innerHTML = out || '<p class="amj-tnote">Nessun evento in questa categoria.</p>';
+      }
+      function cal() {
+        var y = Math.floor(state.ym / 12), m = state.ym % 12, first = new Date(Date.UTC(y, m, 1)), lead = (first.getUTCDay() + 6) % 7, n = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+        $('[data-mt]', evApp).textContent = FULLM[m] + ' ' + y;
+        var g = ['L', 'M', 'M', 'G', 'V', 'S', 'D'].map(function (x) { return '<span class="h">' + x + '</span>'; }).join('');
+        for (var i = 0; i < lead; i++) g += '<span></span>';
+        for (var d = 1; d <= n; d++) {
+          var t = Date.UTC(y, m, d), has = up.some(function (e) { return e.s <= t && t <= e.e && (state.kind === 'all' || e.kind === state.kind); });
+          g += '<span class="' + (t === today ? 'td ' : '') + (has ? 'ev' : '') + '">' + d + '</span>';
+        }
+        $('[data-mg]', evApp).innerHTML = g;
+      }
+      list(); cal();
+      evApp.addEventListener('click', function (ev) {
+        var t = ev.target.closest('button'); if (!t) return;
+        if (t.hasAttribute('data-k')) { state.kind = t.getAttribute('data-k'); $$('[data-k]', evApp).forEach(function (c) { c.setAttribute('aria-pressed', c === t ? 'true' : 'false'); }); list(); cal(); }
+        else if (t.hasAttribute('data-m')) { state.ym += +t.getAttribute('data-m'); cal(); }
+        else if (t.hasAttribute('data-ics-id')) { var id = t.getAttribute('data-ics-id'); all.some(function (e) { if (e.id === id) { icsFor(e); return true; } return false; }); }
       });
-    }).catch(function () { evBox.innerHTML = '<div class="amj-empty">Gli eventi non si caricano. Riprova più tardi.</div>'; });
+    }).catch(function () {
+      var m = '<div class="amj-empty">Gli eventi non si caricano. Riprova più tardi.</div>';
+      if (evApp) evApp.innerHTML = m; if (evNext) evNext.innerHTML = '';
+    });
   }
 
   /* ---------- filtro del blog ---------- */

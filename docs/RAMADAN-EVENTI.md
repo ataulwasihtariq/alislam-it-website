@@ -11,3 +11,7 @@ I dati stanno in `data/preghiere-alislam-feb-mar.raw` (formato `Città;fajr0,del
 
 ## Dopo il Ramadan
 Aggiornare le date in `RAMADAN` (site.py) e togliere o sostituire il file dati.
+
+## Calendario della Jama'at (Google Calendar)
+La pagina Eventi è alimentata da `EVENTS` in `src/site.py`, copiato dal calendario annuale «Ahmadiyya Muslim Jamaat Italia» (24.11.2026). Non sono pubblicati: riunioni di Majlis-e-Amla, Shura in attesa di approvazione, fine settimana riservati, festività e vacanze scolastiche.
+Il calendario interno non va reso pubblico né incorporato: contiene note interne. Per un aggiornamento automatico: creare un calendario Google separato «Eventi pubblici», renderlo pubblico e lanciare `python3 tools/sync_eventi.py "<indirizzo iCal pubblico>"`.

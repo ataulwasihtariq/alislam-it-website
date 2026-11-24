@@ -113,14 +113,15 @@ def write_data():
     d.mkdir(parents=True, exist_ok=True)
     (d / "ramadan-2027.json").write_text(json.dumps(decode_ramadan(), ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     (d / "eventi.json").write_text(json.dumps({"events": cfg.EVENTS}, ensure_ascii=False, indent=1), encoding="utf-8")
+    import datetime as _dt
     ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//alislam.it//Eventi//IT", "X-WR-CALNAME:Comunità Ahmadiyya Italia · Eventi", "CALSCALE:GREGORIAN"]
     for e in cfg.EVENTS:
         s = e["start"].replace("-", "")
-        y, m, dd = int(s[:4]), int(s[4:6]), int(s[6:])
-        import datetime as _dt
-        nx = (_dt.date(y, m, dd) + _dt.timedelta(days=1)).strftime("%Y%m%d")
+        last = _dt.date.fromisoformat(e.get("end", e["start"]))
+        nx = (last + _dt.timedelta(days=1)).strftime("%Y%m%d")
         ics += ["BEGIN:VEVENT", f"UID:{e['id']}@alislam.it", "DTSTAMP:20261124T000000Z", f"DTSTART;VALUE=DATE:{s}", f"DTEND;VALUE=DATE:{nx}",
                 f"SUMMARY:{e['title']}" + (" (data da confermare)" if e.get("tentative") else ""),
+                "STATUS:" + ("TENTATIVE" if e.get("tentative") else "CONFIRMED"),
                 "LOCATION:" + ", ".join(x for x in (e.get("place"), e.get("city")) if x), "DESCRIPTION:" + e.get("desc", ""), "END:VEVENT"]
     ics.append("END:VCALENDAR")
     (d / "eventi.ics").write_text("\r\n".join(ics) + "\r\n", encoding="utf-8")

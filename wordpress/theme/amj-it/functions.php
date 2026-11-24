@@ -31,9 +31,9 @@ add_action('init', function () {
     register_post_type('evento', [
         'label' => 'Eventi', 'public' => true, 'has_archive' => false,
         'rewrite' => ['slug' => 'evento'], 'menu_icon' => 'dashicons-calendar-alt',
-        'supports' => ['title', 'editor', 'excerpt', 'custom-fields'], 'show_in_rest' => true,
+        'supports' => ['title', 'editor', 'excerpt', 'custom-fields'], 'show_in_rest' => true, 'taxonomies' => ['category'],
     ]);
-    foreach (['amj_data' => 'Data (AAAA-MM-GG)', 'amj_ora' => 'Ora (HH:MM)', 'amj_luogo' => 'Luogo', 'amj_citta' => 'Città', 'amj_da_confermare' => 'Data da confermare (1 o vuoto)'] as $k => $l) {
+    foreach (['amj_data' => 'Data (AAAA-MM-GG)', 'amj_fine' => 'Ultimo giorno (AAAA-MM-GG, se dura più giorni)', 'amj_ora' => 'Ora (HH:MM)', 'amj_luogo' => 'Luogo', 'amj_citta' => 'Città', 'amj_da_confermare' => 'Data da confermare (1 o vuoto)'] as $k => $l) {
         register_post_meta('evento', $k, ['single' => true, 'type' => 'string', 'show_in_rest' => true, 'description' => $l]);
     }
 });
@@ -50,7 +50,8 @@ add_action('template_redirect', function () {
         $out[] = [
             'id' => 'evento-' . $p->ID, 'title' => get_the_title($p),
             'start' => $d . (preg_match('/^\d{2}:\d{2}$/', $t) ? 'T' . $t : ''),
-            'kind' => 'Evento', 'city' => get_post_meta($p->ID, 'amj_citta', true), 'place' => get_post_meta($p->ID, 'amj_luogo', true),
+            'end' => preg_match('/^\\d{4}-\\d{2}-\\d{2}$/', (string) get_post_meta($p->ID, 'amj_fine', true)) ? get_post_meta($p->ID, 'amj_fine', true) : null,
+            'kind' => ($k = wp_get_post_terms($p->ID, 'category', ['fields' => 'names'])) ? $k[0] : 'Evento', 'city' => get_post_meta($p->ID, 'amj_citta', true), 'place' => get_post_meta($p->ID, 'amj_luogo', true),
             'tentative' => (bool) get_post_meta($p->ID, 'amj_da_confermare', true),
             'desc' => wp_strip_all_tags(get_the_excerpt($p)), 'url' => get_permalink($p),
         ];

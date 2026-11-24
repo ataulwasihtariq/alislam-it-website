@@ -50,6 +50,9 @@ path: index.html
 {% for a in [press[0], press[2], press[-1]] %}<a class="amj-post" href="{{ a.url }}" target="_blank" rel="noopener"><div class="meta"><span>{{ a.outlet }}</span><span>·</span><span>{{ a.date }}</span></div><h3>{{ a.title }}</h3><p>{{ a.summary }}</p><span class="amj-go">Leggi l’articolo <i class="ph ph-arrow-up-right"></i></span></a>{% endfor %}
 </div></section>
 
+<section class="amj-w amj-s amj-rv"><div class="amj-libhead"><div><p class="amj-eyebrow">Eventi</p><h2 class="heading-3">I prossimi appuntamenti</h2></div><a class="amj-link" href="{{ root }}eventi/index.html">Tutto il calendario <i class="ph ph-arrow-right"></i></a></div>
+<div class="amj-nxl" data-ev-next data-src="{{ assets }}data/eventi.json" data-href="{{ root }}eventi/index.html"><p class="amj-tnote">Carico gli eventi…</p></div></section>
+
 <section class="amj-serm amj-patdark"><div class="amj-w">
 <div style="flex:1 1 380px;min-width:0"><p class="amj-eyebrow">Ogni venerdì</p><h2>Il Sermone del Venerdì</h2>
 <p>Ogni settimana Hazrat Mirza Masroor Ahmad, Califfo della Comunità, tiene un sermone seguito in tutto il mondo. Lo pubblichiamo tradotto in italiano.</p><a href="{{ root }}sermoni/" class="amj-btn3">Tutti i sermoni</a></div>

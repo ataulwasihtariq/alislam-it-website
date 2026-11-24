@@ -154,9 +154,29 @@ ARTICLES = [
 # EVENTI. Per aggiungere un evento: una voce qui sotto (o un «Evento» in WordPress) e ricostruire.
 # start = AAAA-MM-GG; time facoltativo "HH:MM"; tentative=True mostra «Data da confermare».
 EVENTS = [
-    {"id": "ramadan-2027-inizio", "title": "Inizio previsto del Ramadan 2027", "start": "2027-02-08", "kind": "Ramadan",
-     "city": "", "place": "", "tentative": True,
-     "desc": "La data dipende dalla luna nuova e sarà confermata con l’annuncio della Comunità.", "url": "ramadan/index.html"},
+    # Fonte: calendario annuale della Jama'at (Google Calendar «Ahmadiyya Muslim Jamaat Italia»), letto il 24 novembre 2026.
+    # Esclusi dal sito pubblico: riunioni di Majlis-e-Amla, Shura in attesa di approvazione, fine settimana riservati, festività e vacanze scolastiche.
+    # start/end: date inclusive (AAAA-MM-GG). tentative = data da confermare.
+    {"id": "ijlas-dic-2026", "title": "Ijlas mensile nelle Jama'at locali", "start": "2026-12-19", "end": "2026-12-20", "kind": "Comunità", "tentative": False,
+     "desc": "Due giorni: ogni Jama'at sceglie sabato o domenica."},
+    {"id": "rajab-1448", "minor": True, "title": "1 Rajab 1448", "start": "2026-12-11", "kind": "Calendario islamico", "tentative": True,
+     "desc": "Data calcolata sulla visibilità prevista della luna a Bologna. Se la luna non viene avvistata, il mese inizia il giorno dopo."},
+    {"id": "tarbiyyati-nazionali-dic-2026", "title": "Classi Tarbiyyati nazionali", "start": "2026-12-24", "end": "2026-12-26", "kind": "Formazione", "tentative": True, "desc": ""},
+    {"id": "lajna-refresher-2027", "title": "Lajna: Refresher Course", "start": "2027-01-10", "kind": "Formazione", "tentative": False, "desc": "In presenza."},
+    {"id": "shaban-1448", "minor": True, "title": "1 Sha‘ban 1448", "start": "2027-01-10", "kind": "Calendario islamico", "tentative": True,
+     "desc": "Data calcolata sulla visibilità prevista della luna a Bologna. L’avvistamento effettivo prevale sul calcolo."},
+    {"id": "ijlas-fede-2027", "title": "Ijlas: La nostra fede e religione", "start": "2027-01-16", "end": "2027-01-17", "kind": "Comunità", "tentative": True, "desc": ""},
+    {"id": "gregoriana-2027", "title": "Conferenza alla Pontificia Università Gregoriana", "start": "2027-01-28", "kind": "Relazioni esterne", "tentative": True,
+     "desc": "Spostata dal 27 novembre 2026."},
+    {"id": "ansar-tarbiyyati-2027", "title": "Ansar: Classe Tarbiyyati", "start": "2027-01-30", "end": "2027-01-31", "kind": "Formazione", "tentative": False, "desc": ""},
+    {"id": "ramadan-1448", "title": "Ramadan 1448", "start": "2027-02-08", "end": "2027-03-09", "kind": "Calendario islamico", "tentative": True,
+     "desc": "Il digiuno comincia lunedì 8 febbraio 2027 secondo il calcolo della luna. La data sarà confermata dalla Jama'at.", "url": "ramadan/index.html"},
+    {"id": "musleh-maud-ijlas-2027", "title": "Ijlas: Giornata del Musleh Mau'ud", "start": "2027-02-20", "end": "2027-02-21", "kind": "Comunità", "tentative": True, "desc": ""},
+    {"id": "eid-fitr-2027", "title": "Eid al-Fitr (1 Shawwal 1448)", "start": "2027-03-10", "kind": "Calendario islamico", "tentative": True,
+     "desc": "Data calcolata sulla visibilità prevista della luna a Bologna. La data sarà confermata dalla Jama'at.", "url": "ramadan/index.html"},
+    {"id": "jalsa-masih-maud-2027", "title": "Ijlas: Jalsa Masih Mau'ud", "start": "2027-03-20", "end": "2027-03-21", "kind": "Comunità", "tentative": True, "desc": ""},
+    {"id": "messia-promesso-2027", "title": "Giornata del Messia Promesso", "start": "2027-03-23", "kind": "Comunità", "tentative": False, "desc": ""},
+    {"id": "lajna-ijtema-2027", "title": "Lajna: Ijtema Nazionale", "start": "2027-03-26", "end": "2027-03-28", "kind": "Formazione", "tentative": True, "desc": "In presenza."},
 ]
 
 RAMADAN = {"start": "2027-02-07", "first_fast": "2027-02-08", "days": 32, "default": "Bologna"}
