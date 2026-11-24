@@ -445,3 +445,17 @@ div.amj-s{padding-top:var(--s-800);padding-bottom:var(--s-800)}
 .amj-btq small{display:block;margin-top:var(--s-100);color:var(--amj-mute);font-size:13px;line-height:19px}
 .amj-btspecial ul{margin:0;padding-left:var(--s-200)}
 @media(max-width:700px){.amj-bt{padding:var(--s-200)}}
+
+/* Baitut Tauhid: pianificatore eventi */
+.amj-btp-ctl{display:flex;flex-wrap:wrap;gap:var(--s-100);align-items:center;margin:var(--s-150) 0}
+.amj-btp-ctl label{display:flex;gap:8px;align-items:center;font-weight:600;color:var(--amj-green-d)}
+.amj-btp-ctl input{font:inherit;padding:8px 10px;border:1px solid var(--amj-line);border-radius:var(--r-xl);background:var(--amj-white)}
+.amj-btp-day{margin:var(--s-100) 0;color:var(--amj-green-d)}
+.amj-btp-t td:first-child{white-space:normal}
+.amj-btp-t tr.bar td{padding-top:0;text-align:left;white-space:normal;font-size:13px;line-height:19px;color:var(--amj-mute)}
+.amj-btp-bar{position:relative;height:10px;background:#eef0ea;border-radius:999px;margin:2px 0 6px}
+.amj-btp-bar span{position:absolute;top:0;bottom:0;background:var(--amj-green);border-radius:999px;opacity:.55}
+.amj-btp-bar i.m{position:absolute;top:-3px;width:3px;height:16px;background:var(--amj-gold-d);border-radius:2px}
+.amj-rtable.amj-btp-t{min-width:0;table-layout:auto}
+.amj-btp-t th,.amj-btp-t td{white-space:normal;padding-left:var(--s-75);padding-right:var(--s-75)}
+.amj-btp-t td:first-child,.amj-btp-t th:first-child{padding-left:var(--s-100)}

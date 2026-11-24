@@ -251,6 +251,70 @@
     });
   }
 
+  /* ---------- Baitut Tauhid: pianificatore eventi (finestre di preghiera per data) ---------- */
+  var btp = $('[data-btp]');
+  if (btp) {
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    var hm = function (m) { m = Math.round(m); if (m >= 1440) m -= 1440; return pad(Math.floor(m / 60)) + ':' + pad(m % 60); };
+    var toMin = function (s) { var z = s.split(':'); return +z[0] * 60 + +z[1]; };
+    var todayIso = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+    var inp = $('[data-btp-date]', btp), out = $('[data-btp-out]', btp), chk = $('[data-btp-check]', btp), ttl = $('[data-btp-title]', btp);
+    var evFrom = $('[data-btp-from]', btp), evTo = $('[data-btp-to]', btp);
+    var W = null, B = null, cur = null;
+    var shift = function (iso, n) { var d = new Date(iso + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+    var rows = function (iso) {
+      var w = W.days[iso]; if (!w) return null;
+      var dow = new Date(iso + 'T12:00:00Z').getUTCDay(), fri = dow === 5;
+      var P = null; B.periods.forEach(function (x) { if (iso >= x.from && iso <= x.to) P = x; });
+      var O = null; (B.overrides || []).forEach(function (x) { if (x.date === iso) O = x; });
+      var t = null; if (P) { t = {}; ['fajr', 'zuhr_asr', 'jumuah', 'maghrib_isha'].forEach(function (k) { t[k] = (O && O[k]) || P[k]; }); }
+      var isha = w[7]; var ishaEnd = isha < 600 ? isha + 1440 : isha;
+      return [
+        { n: 'Fajr', s: w[0], e: w[1], j: t && t.fajr, jl: t ? t.fajr : 'da definire', note: 'Fine: alba. L’Adhan non prima dell’inizio.' },
+        { n: fri ? 'Jumu‘ah (al posto di Zuhr)' : 'Zuhr', s: w[2], e: w[3], j: t && (fri ? t.jumuah : t.zuhr_asr), jl: t ? (fri ? t.jumuah : t.zuhr_asr + (' (con l’Asr)')) : 'da definire', note: 'Inizio: mezzogiorno solare (zawal). Fine: quando l’ombra è uguale all’altezza (' + hm(w[3]) + '); con l’ombra doppia fino alle ' + hm(w[4]) + '.' + (fri ? ' Il Jumu‘ah va dopo lo zawal.' : '') },
+        { n: 'Asr', s: w[4], e: w[5], j: t && (fri ? null : t.zuhr_asr), jl: t ? (fri ? 'segue il Jumu‘ah' : t.zuhr_asr + ' (con lo Zuhr)') : 'da definire', note: 'Inizio: ' + hm(w[3]) + ' (ombra = altezza) oppure ' + hm(w[4]) + ' (ombra doppia, scelta prudente). Fine: tramonto; meglio prima che il sole ingiallisca.' },
+        { n: 'Maghrib', s: w[5], e: w[6], j: t && t.maghrib_isha, jl: t ? t.maghrib_isha + ' (con l’Isha)' : 'da definire', note: 'Inizio: tramonto. Fine: fine del crepuscolo (tramonto + 90 min).' },
+        { n: 'Isha', s: w[6], e: ishaEnd, j: t && t.maghrib_isha, jl: t ? t.maghrib_isha + ' (con il Maghrib)' : 'da definire', note: 'Fine: metà della notte' + (isha < 600 ? ' (dopo mezzanotte)' : '') + '.' }
+      ].map(function (r) { r.ws = r.s; return r; });
+    };
+    var render = function (iso) {
+      cur = iso; inp.value = iso;
+      var dow = new Date(iso + 'T12:00:00Z').getUTCDay(), d = iso.split('-').map(Number);
+      ttl.textContent = FULLD[dow] + ' ' + d[2] + ' ' + FULLM[d[1] - 1] + ' ' + d[0];
+      var R = rows(iso);
+      if (!R) { out.innerHTML = '<p class="amj-tnote">Data fuori dal periodo disponibile (2026–2027).</p>'; chk.textContent = ''; return; }
+      var w = W.days[iso];
+      out.innerHTML = '<div class="amj-twrap"><table class="amj-rtable amj-btp-t"><thead><tr><th>Preghiera</th><th>Inizia</th><th>Fine massima</th><th>Jama‘at</th></tr></thead><tbody>' + R.map(function (r) {
+        var l = Math.max(0, r.s / 1440 * 100), wd = Math.max(1.2, (Math.min(r.e, 1440) - r.s) / 1440 * 100);
+        var mk = r.j ? '<i class="m" style="left:' + (toMin(r.j) / 1440 * 100) + '%"></i>' : '';
+        return '<tr><td><b>' + r.n + '</b></td><td>' + hm(r.s) + '</td><td>' + hm(r.e) + '</td><td class="hot">' + r.jl + '</td></tr>' +
+          '<tr class="bar"><td colspan="4"><div class="amj-btp-bar"><span style="left:' + l + '%;width:' + wd + '%"></span>' + mk + '</div><small>' + r.note + '</small></td></tr>';
+      }).join('') + '</tbody></table></div><p class="amj-tnote">Alba ' + hm(w[1]) + ' · Mezzogiorno solare ' + hm(w[2]) + ' · Tramonto ' + hm(w[5]) + '. La linea verde è la finestra; il segno scuro è la Jama‘at.</p>';
+      check();
+    };
+    var check = function () {
+      if (!cur || !evFrom.value || !evTo.value) { chk.textContent = 'Inserisci l’orario di inizio e di fine.'; return; }
+      var a = toMin(evFrom.value), b = toMin(evTo.value), R = rows(cur), msg = [];
+      if (b <= a) { chk.textContent = 'L’orario di fine deve essere dopo l’inizio.'; return; }
+      R.forEach(function (r) {
+        if (r.j) { var j = toMin(r.j); if (j >= a && j < b) msg.push('<li>L’evento comprende la Jama‘at di <b>' + r.n + '</b> (' + r.j + ').</li>'); }
+        else if (r.jl === 'da definire' && r.s < b && r.e > a) msg.push('<li>L’evento cade nella finestra di <b>' + r.n + '</b> (' + hm(r.s) + '–' + hm(r.e) + '): orario della Jama‘at da definire.</li>');
+        if (a <= r.s && b >= r.e && r.e <= 1440) msg.push('<li>L’evento copre tutta la finestra di <b>' + r.n + '</b>: la preghiera va prevista durante l’evento.</li>');
+      });
+      chk.innerHTML = msg.length ? '<ul style="margin:0;padding-left:20px">' + msg.join('') + '</ul>' : 'Nessuna Jama‘at cade in questo orario.';
+    };
+    Promise.all([fetch(btp.getAttribute('data-wsrc')).then(function (r) { return r.json(); }), fetch(btp.getAttribute('data-src'), { cache: 'no-cache' }).then(function (r) { return r.json(); })]).then(function (x) {
+      W = x[0]; B = x[1];
+      var start = (todayIso >= inp.min && todayIso <= inp.max) ? todayIso : inp.min;
+      render(start);
+      inp.addEventListener('change', function () { if (inp.value) render(inp.value); });
+      $('[data-btp-prev]', btp).addEventListener('click', function () { if (cur > inp.min) render(shift(cur, -1)); });
+      $('[data-btp-next]', btp).addEventListener('click', function () { if (cur < inp.max) render(shift(cur, 1)); });
+      $('[data-btp-today]', btp).addEventListener('click', function () { render(start); });
+      evFrom.addEventListener('input', check); evTo.addEventListener('input', check);
+    }).catch(function () { out.innerHTML = '<p class="amj-tnote">Gli orari non si caricano. Riprova più tardi.</p>'; });
+  }
+
   /* ---------- filtro del blog ---------- */
   var chips = $$('.amj-chip[data-filter]');
   chips.forEach(function (c) {

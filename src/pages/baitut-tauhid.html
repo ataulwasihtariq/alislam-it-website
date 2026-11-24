@@ -28,6 +28,21 @@ crumbs: <a href="{{ root }}index.html">Home</a> › Baitut Tauhid
 <h3 style="margin-top:var(--s-300)">Giorni speciali</h3>
 <div class="amj-btspecial" data-bt-special></div></section>
 
+<section class="amj-w amj-s" id="pianifica" data-btp data-src="{{ assets }}data/baitut-tauhid.json" data-wsrc="{{ assets }}data/baitut-tauhid-windows.json" style="padding-top:var(--s-300)">
+<p class="amj-eyebrow">Per i dipartimenti</p><h2 class="heading-3">Pianifica un evento</h2>
+<p>Scegli una data: vedi quando inizia e quando finisce al massimo ogni preghiera, e l’orario della Jama'at in moschea. Così un dipartimento sa se può spostare la preghiera, e fin dove. Le date vanno dal 1 gennaio 2026 al 31 dicembre 2027.</p>
+<div class="amj-btp-ctl"><button class="amj-btn2" type="button" data-btp-prev aria-label="Giorno prima">‹</button><label>Data <input type="date" data-btp-date min="2026-01-01" max="2027-12-31"></label><button class="amj-btn2" type="button" data-btp-next aria-label="Giorno dopo">›</button><button class="amj-btn2" type="button" data-btp-today>Oggi</button></div>
+<h3 class="amj-btp-day" data-btp-title></h3>
+<div data-btp-out><p class="amj-tnote">Carico gli orari…</p></div>
+<div class="amj-note" style="margin-top:var(--s-200)"><b>Controlla il tuo evento.</b> Inserisci l’orario dell’evento e vedi se tocca una preghiera.
+<div class="amj-btp-ctl" style="margin-top:var(--s-100)"><label>Dalle <input type="time" data-btp-from></label><label>Alle <input type="time" data-btp-to></label></div>
+<div data-btp-check class="amj-tnote" style="margin-top:var(--s-100)"></div></div>
+<div class="amj-note" style="margin-top:var(--s-200)"><b>Come sono calcolati i limiti.</b> Gli orari sono calcolati per San Pietro in Casale con le equazioni astronomiche (precisione circa un minuto): gli inizi sono arrotondati per eccesso e le fini per difetto, quindi ogni finestra mostrata è dentro quella vera. Il Fajr inizia 90 minuti prima dell’alba, come da convenzione della Comunità; la fine del Maghrib e l’inizio dell’Isha sono fissati 90 minuti dopo il tramonto, con la stessa convenzione. La metà della notte è calcolata dal tramonto all’inizio del Fajr. L’Asr può iniziare quando l’ombra è uguale all’altezza o doppia: sono indicati entrambi e la scelta prudente è la seconda. La Jama'at pubblicata è sempre dentro la finestra; per le date senza orario pubblicato è indicato «da definire».</div>
+<div class="amj-note" style="margin-top:var(--s-200)"><b>Fonti.</b> Sahih Muslim (traduzione urdu), Kitab al-Masajid, «باب: پانچ نمازوں کے اوقات», hadith n. 957 dell’edizione urdu della biblioteca, narrato da Abdullah ibn Amr (Dio sia soddisfatto di lui):
+<p lang="ur" dir="rtl" class="ur" style="font-size:19px;line-height:34px;margin:8px 0">ظہر کا وقت عصر تک ہے اور عصر کا وقت سورج زرد ہونے تک ہے اور مغرب کا وقت شفق کی تیزی ختم ہونے تک ہے اور عشاء کا وقت آدھی رات تک ہے اور فجر کا وقت جب تک سورج طلوع نہ ہو۔</p>
+Nel n. 958 della stessa edizione l’inizio dell’Asr è legato all’ombra dell’uomo uguale alla sua statura. Per i cinque tempi nel Corano (17:79) si veda Khalifatul Masih II, Fatawa Musleh Mau'ood, vol. 1, sezione n. 68 (che cita il Tafsir-e-Kabir, commento alla sura Bani Israil). Nei libri a stampa il numero di pagina va controllato sull’edizione cartacea. Sintesi e traduzione italiana: di Claude, da rivedere. Le fonti fiqh della biblioteca non contengono un parere separato sull’Asr a ombra doppia: va deciso dall’Imam.</div>
+</section>
+
 <section class="amj-s amj-pat" style="border-top:1px solid var(--amj-line)" data-bt data-src="{{ assets }}data/baitut-tauhid.json"><div class="amj-w">
 <p class="amj-eyebrow">Il pensiero del mese</p><h2 class="heading-3">La preghiera in congregazione</h2>
 <div data-bt-quote></div>
