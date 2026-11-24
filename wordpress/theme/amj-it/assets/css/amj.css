@@ -205,3 +205,5 @@ a.amj-card:hover{box-shadow:0 12px 28px rgba(30,43,38,.12);transform:translateY(
 @media print{.amj-top,.amj-header,.amj-footer,.amj-draft{display:none}}
 a.amj-q{color:inherit;text-decoration:underline;text-decoration-color:var(--amj-gold-d);text-underline-offset:3px;white-space:nowrap}
 a.amj-q:hover{color:var(--amj-gold-d)}
+blockquote.amj-hadith{margin:22px 0;padding:6px 0 6px 22px;border-left:3px solid var(--amj-gold-d);font-family:var(--amj-serif);font-size:21px;line-height:1.4;font-style:italic;color:var(--amj-green-d)}
+blockquote.amj-hadith cite{display:block;margin-top:8px;font-family:var(--amj-sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-style:normal;color:var(--amj-gold-d)}
