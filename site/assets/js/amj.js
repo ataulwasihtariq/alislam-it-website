@@ -268,13 +268,13 @@
       var P = null; B.periods.forEach(function (x) { if (iso >= x.from && iso <= x.to) P = x; });
       var O = null; (B.overrides || []).forEach(function (x) { if (x.date === iso) O = x; });
       var t = null; if (P) { t = {}; ['fajr', 'zuhr_asr', 'jumuah', 'maghrib_isha'].forEach(function (k) { t[k] = (O && O[k]) || P[k]; }); }
-      var isha = w[7]; var ishaEnd = isha < 600 ? isha + 1440 : isha;
+      var mid = w[9]; var midEnd = mid < 600 ? mid + 1440 : mid;
       return [
         { n: 'Fajr', s: w[0], e: w[1], j: t && t.fajr, jl: t ? t.fajr : 'da definire', note: 'Fine: alba. L’Adhan non prima dell’inizio.' },
-        { n: fri ? 'Jumu‘ah (al posto di Zuhr)' : 'Zuhr', s: w[2], e: w[3], j: t && (fri ? t.jumuah : t.zuhr_asr), jl: t ? (fri ? t.jumuah : t.zuhr_asr + (' (con l’Asr)')) : 'da definire', note: 'Inizio: mezzogiorno solare (zawal). Fine: quando l’ombra è uguale all’altezza (' + hm(w[3]) + '); con l’ombra doppia fino alle ' + hm(w[4]) + '.' + (fri ? ' Il Jumu‘ah va dopo lo zawal.' : '') },
-        { n: 'Asr', s: w[4], e: w[5], j: t && (fri ? null : t.zuhr_asr), jl: t ? (fri ? 'segue il Jumu‘ah' : t.zuhr_asr + ' (con lo Zuhr)') : 'da definire', note: 'Inizio: ' + hm(w[3]) + ' (ombra = altezza) oppure ' + hm(w[4]) + ' (ombra doppia, scelta prudente). Fine: tramonto; meglio prima che il sole ingiallisca.' },
-        { n: 'Maghrib', s: w[5], e: w[6], j: t && t.maghrib_isha, jl: t ? t.maghrib_isha + ' (con l’Isha)' : 'da definire', note: 'Inizio: tramonto. Fine: fine del crepuscolo (tramonto + 90 min).' },
-        { n: 'Isha', s: w[6], e: ishaEnd, j: t && t.maghrib_isha, jl: t ? t.maghrib_isha + ' (con il Maghrib)' : 'da definire', note: 'Fine: metà della notte' + (isha < 600 ? ' (dopo mezzanotte)' : '') + '.' }
+        { n: fri ? 'Jumu‘ah (al posto di Zuhr)' : 'Zuhr', s: w[2], e: w[3], j: t && (fri ? t.jumuah : t.zuhr_asr), jl: t ? (fri ? t.jumuah : t.zuhr_asr + ' (con l’Asr)') : 'da definire', note: 'Inizio: mezzogiorno solare (zawal). Fine: quando l’ombra è uguale all’altezza (' + hm(w[3]) + '); secondo Abu Hanifa fino a ombra doppia (' + hm(w[4]) + ').' + (fri ? ' Il Jumu‘ah va dopo lo zawal.' : '') },
+        { n: 'Asr', s: w[3], e: w[5], j: t && (fri ? null : t.zuhr_asr), jl: t ? (fri ? 'segue il Jumu‘ah' : t.zuhr_asr + ' (con lo Zuhr)') : 'da definire', note: 'Inizio: ombra uguale all’altezza (' + hm(w[3]) + '); secondo Abu Hanifa ombra doppia (' + hm(w[4]) + '). Fine: tramonto; meglio prima che il sole ingiallisca.' },
+        { n: 'Maghrib', s: w[5], e: w[7], j: t && t.maghrib_isha, jl: t ? t.maghrib_isha + ' (con l’Isha)' : 'da definire', note: 'Inizio: tramonto. Fine: scomparsa del crepuscolo rosso (sole a 15° sotto l’orizzonte). Prudente: ' + hm(w[6]) + ' (12°). Se unita all’Isha, il Maghrib si prega nel tempo dell’Isha.' },
+        { n: 'Isha', s: w[7], e: midEnd, j: t && t.maghrib_isha, jl: t ? t.maghrib_isha + ' (con il Maghrib)' : 'da definire', note: 'Inizio: scomparsa del crepuscolo rosso (15°); secondo Abu Hanifa del crepuscolo bianco (18°): ' + hm(w[8]) + '. Fine: metà della notte' + (mid < 600 ? ' (dopo mezzanotte)' : '') + '.' }
       ].map(function (r) { r.ws = r.s; return r; });
     };
     var render = function (iso) {
@@ -289,7 +289,7 @@
         var mk = r.j ? '<i class="m" style="left:' + (toMin(r.j) / 1440 * 100) + '%"></i>' : '';
         return '<tr><td><b>' + r.n + '</b></td><td>' + hm(r.s) + '</td><td>' + hm(r.e) + '</td><td class="hot">' + r.jl + '</td></tr>' +
           '<tr class="bar"><td colspan="4"><div class="amj-btp-bar"><span style="left:' + l + '%;width:' + wd + '%"></span>' + mk + '</div><small>' + r.note + '</small></td></tr>';
-      }).join('') + '</tbody></table></div><p class="amj-tnote">Alba ' + hm(w[1]) + ' · Mezzogiorno solare ' + hm(w[2]) + ' · Tramonto ' + hm(w[5]) + '. La linea verde è la finestra; il segno scuro è la Jama‘at.</p>';
+      }).join('') + '</tbody></table></div><p class="amj-tnote">Alba ' + hm(w[1]) + ' · Mezzogiorno solare ' + hm(w[2]) + ' · Tramonto ' + hm(w[5]) + ' · Metà notte ' + hm(w[9]) + '. La linea verde è la finestra; il segno scuro è la Jama‘at.</p>';
       check();
     };
     var check = function () {
