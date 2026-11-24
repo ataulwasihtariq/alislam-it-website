@@ -23,7 +23,7 @@ NAV = [
     ("Conoscere l’Islam", "islam/"),
     ("Chi siamo", "chi-siamo/"),
     ("Ramadan", "ramadan/"),
-    ("Domande e risposte", "domande/"),
+    ("Domande", "domande/"),
     ("Dicono di noi", "dicono-di-noi/"),
     ("Sermoni", "sermoni/"),
     ("Libri", "libri/"),

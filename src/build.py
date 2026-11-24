@@ -133,7 +133,7 @@ def sync_theme_assets():
         if (dst / sub).exists():
             shutil.rmtree(dst / sub)
         shutil.copytree(ROOT / "assets" / sub, dst / sub)
-    for f in ("pattern.svg", "pattern-dark.svg", "favicon.png"):
+    for f in ("favicon.png",):
         shutil.copy2(ROOT / "assets" / f, dst / f)
 
 
