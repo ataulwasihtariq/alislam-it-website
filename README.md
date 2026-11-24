@@ -1,4 +1,4 @@
-# alislam.it · sito della Comunità Musulmana Ahmadiyya in Italia
+# alislam.it · sito della Comunità Islamica Ahmadiyya in Italia
 
 Un solo repository produce:
 - **anteprima statica** (`site/`), apribile in qualsiasi browser;

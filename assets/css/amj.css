@@ -38,6 +38,7 @@ body.amj{margin:0;background:var(--amj-cream);font-family:var(--amj-sans);color:
 .amj-header{border-bottom:1px solid var(--amj-line);background:var(--amj-cream);position:sticky;top:0;z-index:50}
 .amj-header .amj-w{padding-top:16px;padding-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .amj-brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--amj-green-d)!important}
+.amj-logo-full{display:block;height:58px;width:auto;max-width:100%}
 .amj-logo{display:block;width:50px;height:auto;flex:none}
 .amj-brand b{display:block;font-family:var(--amj-serif);font-size:24px;line-height:1.1}
 .amj-brand small{display:block;font-size:11px;letter-spacing:.12em;white-space:nowrap;text-transform:uppercase;color:var(--amj-gold-d)}
@@ -62,7 +63,7 @@ body.amj{margin:0;background:var(--amj-cream);font-family:var(--amj-sans);color:
   .amj-menu{display:block;position:static;border:0;box-shadow:none;background:transparent;padding:0 0 0 12px;min-width:0}
   .amj-dd>a:after{content:""}
   .amj-header .amj-w{position:relative}
-  .amj-brand b{font-size:20px}
+  .amj-logo-full{height:46px}
 }
 
 /* hero home e pagine interne */

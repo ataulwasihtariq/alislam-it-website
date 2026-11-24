@@ -113,7 +113,7 @@ def main():
     imeta = {"title": "Dipartimenti", "layout": "page", "h1": "I dipartimenti della Comunità",
                           "eyebrow": "Per i membri e per chi vuole conoscerci",
                           "lead": "Ogni dipartimento ha il suo compito e il suo colore, ma tutti seguono lo stesso stile e lo stesso spirito. Qui trovate informazioni, moduli e contatti.",
-                          "description": "I dipartimenti della Comunità Musulmana Ahmadiyya in Italia: Waqf-e-Nau, Rishta Nata, Tarbiyyat, Tabligh e altri.",
+                          "description": "I dipartimenti della Comunità Islamica Ahmadiyya in Italia: Waqf-e-Nau, Rishta Nata, Tarbiyyat, Tabligh e altri.",
                           "crumbs": '<a href="{{ root }}index.html">Home</a> › Dipartimenti'}
     html, inner = render(imeta, tpl_idx, "dipartimenti/index.html")
     write("dipartimenti/index.html", html); n += 1

@@ -2,7 +2,7 @@
 Per cambiare un numero, un colore o aggiungere un dipartimento si modifica solo questo file."""
 
 SITE = {
-    "name": "Comunità Musulmana Ahmadiyya",
+    "name": "Associazione The Ahmadiyya Muslim Jama’at Italia",
     "tagline": "in Italia · prima missione 1937",
     "legal": "Associazione The Ahmadiyya Muslim Jama’at Italia",
     "base_url": "https://alislam.it",
