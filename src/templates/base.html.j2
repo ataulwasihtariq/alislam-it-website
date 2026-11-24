@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}{% if not is_home %} – {{ site.name }}{% endif %}</title>
+<meta name="description" content="{{ description }}">
+{% if not site.published or noindex %}<meta name="robots" content="noindex, nofollow">{% endif %}
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:type" content="website">
+<link rel="icon" href="{{ root }}assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Nastaliq+Urdu:wght@400;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ root }}assets/css/amj.css">
+{% if accent %}<style>:root{--amj-dept:{{ accent }}}</style>{% endif %}
+{{ extra_head|safe }}
+</head>
+<body class="amj{% if accent %} amj-dept-page{% endif %}">
+<a class="amj-skip" href="#contenuto">Vai al contenuto</a>
+{% if not site.published %}<div class="amj-draft">Bozza per revisione – non è il sito pubblicato. Le immagini e alcuni dati vanno verificati prima della pubblicazione.</div>{% endif %}
+
+<div class="amj-top"><div class="amj-w"><span>Comunità Musulmana Ahmadiyya in Italia</span>
+<span><a href="tel:{{ site.toll_free|replace(' ','') }}">Numero verde {{ site.toll_free }}</a><a href="{{ site.whatsapp_link }}">WhatsApp {{ site.whatsapp }}</a><a href="mailto:{{ site.email }}">{{ site.email }}</a></span></div></div>
+
+<header class="amj-header"><div class="amj-w">
+<a href="{{ root }}index.html" class="amj-brand">
+<svg width="46" height="46" viewBox="0 0 80 80" aria-hidden="true"><g fill="none" stroke="#a8873a" stroke-width="3"><path d="M40 6 L50 30 L74 40 L50 50 L40 74 L30 50 L6 40 L30 30 Z"/><path d="M16 16 L40 25 L64 16 L55 40 L64 64 L40 55 L16 64 L25 40 Z"/></g><circle cx="40" cy="40" r="8" fill="#2f5d4a"/></svg>
+<span><b>{{ site.name }}</b><small>{{ site.tagline }}</small></span></a>
+<button class="amj-burger" aria-expanded="false" aria-controls="amj-nav">Menu</button>
+<nav class="amj-nav" id="amj-nav" aria-label="Menu principale">
+{% for label, href in nav %}
+{% if href == 'dipartimenti/' %}
+<span class="amj-dd"><a href="{{ root }}dipartimenti/"{% if section == href %} aria-current="page"{% endif %}>{{ label }}</a>
+<span class="amj-menu">{% for d in departments %}<a href="{{ root }}dipartimenti/{{ d.slug }}/" style="--amj-dept:{{ d.color }}"><i></i>{{ d.name }}</a>{% endfor %}<hr><a href="{{ root }}dipartimenti/" style="--amj-dept:#a8873a"><i></i>Tutti i dipartimenti</a><a href="{{ root }}area-riservata/" style="--amj-dept:#1e2b26"><i></i>Area riservata</a></span></span>
+{% else %}<a href="{{ root }}{{ href }}"{% if section == href %} aria-current="page"{% endif %}>{{ label }}</a>{% endif %}
+{% endfor %}
+<a href="{{ root }}contatti/" class="amj-cta">Parliamone</a>
+</nav></div></header>
+
+<main id="contenuto">
+{% block main %}{{ body|safe }}{% endblock %}
+</main>
+
+<footer class="amj-footer amj-patdark">
+<div class="amj-w g">
+<div><strong>{{ site.name }}</strong><span style="line-height:1.6;font-size:15px">{{ site.address|replace(', Gavaseto, ', '<br>Gavaseto, ')|safe }}</span></div>
+<div><small>Conoscere</small><a href="{{ root }}islam/">Che cos’è l’Islam</a><a href="{{ root }}chi-siamo/">Chi siamo</a><a href="{{ root }}chi-siamo/messia-promesso.html">Il Messia Promesso</a><a href="{{ root }}chi-siamo/khulafa.html">La Khilafat</a><a href="{{ root }}dicono-di-noi/">Dicono di noi</a></div>
+<div><small>Per la Comunità</small><a href="{{ root }}dipartimenti/">Dipartimenti</a><a href="{{ root }}dipartimenti/rishta-nata/">Rishta Nata</a><a href="{{ root }}dipartimenti/waqf-e-nau/">Waqf-e-Nau</a><a href="{{ root }}area-riservata/">Area riservata</a></div>
+<div><small>Contatti</small><a href="tel:{{ site.toll_free|replace(' ','') }}">Numero verde {{ site.toll_free }}</a><a href="{{ site.whatsapp_link }}">WhatsApp {{ site.whatsapp }}</a><a href="mailto:{{ site.email }}">{{ site.email }}</a></div>
+</div>
+<div class="amj-w bot"><span>© {{ site.legal }}</span><span><a href="{{ root }}privacy/">Privacy e cookie</a></span></div>
+</footer>
+<script src="{{ root }}assets/js/amj.js" defer></script>
+</body></html>
