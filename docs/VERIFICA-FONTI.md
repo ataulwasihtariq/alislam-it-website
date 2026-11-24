@@ -13,4 +13,4 @@ Fonte unica: Al Hakam, 31.10.2024, Ata-ul-Haye Nasir (alhakam.org/islam-ahmadiyy
 
 
 ## Convenzione dei riferimenti coranici (aggiornata)
-Tutti i riferimenti usano solo la numerazione della Jama'at (la basmala conta come versetto 1) e sono link a `https://tilaw.at/<sura>:<versetto>`. Non si indica più la numerazione standard tra parentesi. In caso di intervallo il link porta al primo versetto. L'app dell'Al Islam mostra le traduzioni scelte nelle impostazioni del browser del lettore (localStorage), non nell'URL: non è possibile forzare «solo arabo + italiano» dal link.
+Tutti i riferimenti usano solo la numerazione della Jama'at (la basmala conta come versetto 1) e sono link a `https://www.alislam.org/quran/app/<sura>:<versetto>?options=it`, che apre l'app del Corano con solo arabo e traduzione italiana (verificato). Il collegamento breve `tilaw.at/<sura>:<versetto>` porta alla stessa app ma perde il parametro `options=it`, quindi nel sito si usa l'indirizzo esteso. In caso di intervallo il link porta al primo versetto.
