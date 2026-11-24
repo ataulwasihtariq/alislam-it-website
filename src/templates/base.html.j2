@@ -9,13 +9,21 @@
 <meta property="og:title" content="{{ title }}">
 <meta property="og:description" content="{{ description }}">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:image" content="{{ site.base_url }}/assets/img/hero.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1e2b26">
 <link rel="icon" href="{{ assets }}favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Nastaliq+Urdu:wght@400;600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ root }}assets/css/amj.css">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="{{ assets }}css/amj.css">
 {% if accent %}<style>:root{--amj-dept:{{ accent }}}</style>{% endif %}
 {{ extra_head|safe }}
+<script>document.documentElement.className='js'</script>
+<noscript><style>.amj-rv{opacity:1!important;transform:none!important}.amj-reveal .w{opacity:1!important}</style></noscript>
 </head>
 <body class="amj{% if accent %} amj-dept-page{% endif %}">
 <a class="amj-skip" href="#contenuto">Vai al contenuto</a>
@@ -24,9 +32,9 @@
 <div class="amj-top"><div class="amj-w"><span>Comunità Islamica Ahmadiyya in Italia</span>
 <span><a href="tel:{{ site.toll_free|replace(' ','') }}">Numero verde {{ site.toll_free }}</a><a href="{{ site.whatsapp_link }}">WhatsApp {{ site.whatsapp }}</a><a href="mailto:{{ site.email }}">{{ site.email }}</a></span></div></div>
 
-<header class="amj-header"><div class="amj-w">
-<a href="{{ root }}index.html" class="amj-brand"><img src="{{ assets }}img/logo-jamaat-lockup.svg" width="{{ 262 }}" height="58" alt="{{ site.name }}" class="amj-logo-full"><small class="amj-brandline">{{ site.tagline }}</small></a>
-<button class="amj-burger" aria-expanded="false" aria-controls="amj-nav">Menu</button>
+<header class="amj-header"><div class="amj-bar">
+<a href="{{ root }}index.html" class="amj-brand"><img src="{{ assets }}img/logo-jamaat-lockup.svg" width="181" height="40" alt="{{ site.name }}" class="amj-logo-full"></a>
+<button class="amj-burger" aria-expanded="false" aria-controls="amj-nav" aria-label="Menu"><span></span><span></span><span></span></button>
 <nav class="amj-nav" id="amj-nav" aria-label="Menu principale">
 {% for label, href in nav %}
 {% if href == 'dipartimenti/' %}
@@ -43,12 +51,13 @@
 
 <footer class="amj-footer amj-patdark">
 <div class="amj-w g">
-<div><strong>{{ site.name }}</strong><span style="line-height:1.6;font-size:15px">{{ site.address|replace(', Gavaseto, ', '<br>Gavaseto, ')|safe }}</span></div>
+<div><strong>{{ site.name }}</strong><span style="line-height:24px;font-size:16px">{{ site.address|replace(', Gavaseto, ', '<br>Gavaseto, ')|safe }}</span></div>
 <div><small>Conoscere</small><a href="{{ root }}islam/">Che cos’è l’Islam</a><a href="{{ root }}chi-siamo/">Chi siamo</a><a href="{{ root }}chi-siamo/messia-promesso.html">Il Messia Promesso</a><a href="{{ root }}chi-siamo/khulafa.html">La Khilafat</a><a href="{{ root }}dicono-di-noi/">Dicono di noi</a></div>
+<div><small>Da seguire</small><a href="{{ root }}ramadan/">Ramadan e orari di preghiera</a><a href="{{ root }}eventi/">Eventi</a><a href="{{ root }}sermoni/">Sermoni del Venerdì</a><a href="{{ root }}libri/">Libri</a><a href="{{ root }}domande/">Domande e risposte</a></div>
 <div><small>Per la Comunità</small><a href="{{ root }}dipartimenti/">Dipartimenti</a><a href="{{ root }}dipartimenti/rishta-nata/">Rishta Nata</a><a href="{{ root }}dipartimenti/waqf-e-nau/">Waqf-e-Nau</a><a href="{{ root }}area-riservata/">Area riservata</a></div>
 <div><small>Contatti</small><a href="tel:{{ site.toll_free|replace(' ','') }}">Numero verde {{ site.toll_free }}</a><a href="{{ site.whatsapp_link }}">WhatsApp {{ site.whatsapp }}</a><a href="mailto:{{ site.email }}">{{ site.email }}</a></div>
 </div>
 <div class="amj-w bot"><span>© {{ site.legal }}</span><span><a href="{{ root }}privacy/">Privacy e cookie</a></span></div>
 </footer>
-<script src="{{ root }}assets/js/amj.js" defer></script>
+<script src="{{ assets }}js/amj.js" defer></script>
 </body></html>

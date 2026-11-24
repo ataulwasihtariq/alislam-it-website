@@ -1,0 +1,15 @@
+{
+ "events": [
+  {
+   "id": "ramadan-2027-inizio",
+   "title": "Inizio previsto del Ramadan 2027",
+   "start": "2027-02-08",
+   "kind": "Ramadan",
+   "city": "",
+   "place": "",
+   "tentative": true,
+   "desc": "La data dipende dalla luna nuova e sarà confermata con l’annuncio della Comunità.",
+   "url": "ramadan/index.html"
+  }
+ ]
+}

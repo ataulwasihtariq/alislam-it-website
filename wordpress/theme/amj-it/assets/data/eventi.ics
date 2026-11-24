@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//alislam.it//Eventi//IT
+X-WR-CALNAME:Comunità Ahmadiyya Italia · Eventi
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:ramadan-2027-inizio@alislam.it
+DTSTAMP:20261124T000000Z
+DTSTART;VALUE=DATE:20270208
+DTEND;VALUE=DATE:20270209
+SUMMARY:Inizio previsto del Ramadan 2027 (data da confermare)
+LOCATION:
+DESCRIPTION:La data dipende dalla luna nuova e sarà confermata con l’annuncio della Comunità.
+END:VEVENT
+END:VCALENDAR

@@ -22,10 +22,12 @@ CITIES = ["Bologna", "Parma", "Brescia", "Ravenna", "Venezia-Mestre", "Padova", 
 NAV = [
     ("Conoscere l’Islam", "islam/"),
     ("Chi siamo", "chi-siamo/"),
+    ("Ramadan", "ramadan/"),
     ("Domande e risposte", "domande/"),
     ("Dicono di noi", "dicono-di-noi/"),
-    ("Sermoni del Venerdì", "sermoni/"),
+    ("Sermoni", "sermoni/"),
     ("Libri", "libri/"),
+    ("Eventi", "eventi/"),
     ("Dipartimenti", "dipartimenti/"),
 ]
 
@@ -107,3 +109,77 @@ DEPT_TEXT = {
                   "Qui saranno raccolte le iniziative di volontariato locali e le attività umanitarie a cui i membri partecipano."],
         "do": ["Iniziative di volontariato locali", "Raccolte e aiuti umanitari", "Collaborazione con enti e associazioni del territorio"]},
 }
+
+
+# ---------------------------------------------------------------------------------------------
+# DICONO DI NOI: cronache e articoli. Per aggiungerne uno basta una voce qui (ordine: dal più recente).
+# kind: "stampa" = giornale indipendente; "comunita" = pubblicazione della Comunità (Al Hakam, Review of Religions).
+# Ogni voce è stata aperta e letta prima di essere inserita; il riassunto è nostro, non una citazione.
+PRESS = [
+    {"kind": "comunita", "outlet": "Al Hakam", "date": "29 novembre 2025", "author": "Ataul Wasih Tariq",
+     "title": "Recent tabligh activities of Jamaat-e-Ahmadiyya Italy",
+     "url": "https://www.alhakam.org/recent-tabligh-activities-jamaat-e-ahmadiyya-italy",
+     "summary": "Cronaca di ottobre e novembre 2025: l’incontro interreligioso in Vaticano per i 60 anni di Nostra Aetate, la presentazione del messaggio di pace dell’Islam al Senato della Repubblica e il ricevimento con il cardinale Matteo Zuppi a Bait-ul-Tauhid, a San Pietro in Casale."},
+    {"kind": "comunita", "outlet": "Al Hakam", "date": "26 maggio 2025", "author": "Ataul Wasih Tariq",
+     "title": "Ahmadiyya missionary attends Vatican inauguration events and conveys message on Gaza crisis",
+     "url": "https://www.alhakam.org/ahmadiyya-missionary-vatican-inauguration-gaza",
+     "summary": "Il racconto della partecipazione alla messa di inizio pontificato di Leone XIV, il 18 maggio 2025, e del messaggio consegnato il giorno dopo da parte del Califfo della Comunità."},
+    {"kind": "comunita", "outlet": "Al Hakam", "date": "1 novembre 2024", "author": "Ataul Wasih Tariq",
+     "title": "Jamaat-e-Ahmadiyya Italy hosts historic event in Rome",
+     "url": "https://www.alhakam.org/jamaat-e-ahmadiyya-italy-hosts-historic-event-in-rome",
+     "summary": "L’incontro di dialogo interreligioso del 18 ottobre 2024 nella Sala della Protomoteca, in Campidoglio, a Roma, con rappresentanti delle istituzioni, del mondo accademico e della stampa."},
+    {"kind": "comunita", "outlet": "Al Hakam", "date": "31 ottobre 2024", "author": "Ata-ul-Haye Nasir, Ahmadiyya Archive & Research Centre",
+     "title": "Islam in Italy and Tahrik-e-Jadid: The early years of the Ahmadiyya Mission and press coverage",
+     "url": "https://www.alhakam.org/islam-ahmadiyya-italy",
+     "summary": "Un articolo di storia: i primi contatti con l’Italia, la visita del Califfo nel 1924, la fondazione della missione nel 1937, le difficoltà del periodo bellico e i tentativi successivi di riaprirla, con la rassegna della stampa italiana dell’epoca."},
+    {"kind": "comunita", "outlet": "Al Hakam", "date": "4 novembre 2022", "author": "Marwan Gill",
+     "title": "Ahmadi Muslim missionaries meet Pope Francis, who pays homage to Hazrat Mirza Masroor Ahmad",
+     "url": "https://www.alhakam.org/ahmadi-muslim-missionaries-meet-pope-francis-who-pays-homage-to-hazrat-mirza-masroor-ahmad",
+     "summary": "L’incontro del 5 settembre 2022 in Vaticano tra papa Francesco e due missionari della Comunità, fra cui il responsabile per l’Italia: il dialogo sull’armonia tra le religioni e lo scambio di doni."},
+    {"kind": "stampa", "outlet": "Avvenire", "date": "15 giugno 2021", "author": "Stefano Vecchia",
+     "title": "«Noi, Ahmadi, musulmani ma perseguitati in Pakistan»",
+     "url": "https://www.avvenire.it/idee-e-commenti/noi-ahmadi-musulmani-ma-perseguitati-in-pakistan_53332",
+     "summary": "Il quotidiano dei vescovi italiani racconta la condizione degli ahmadi in Pakistan, tra restrizioni legali e violenze, partendo dalla testimonianza dell’imam della Comunità in Italia."},
+]
+
+# Approfondimenti nostri (articoli della Comunità in stile blog). In WordPress sono gli articoli della categoria «approfondimenti».
+ARTICLES = [
+    {"title": "Gli ahmadi sono musulmani?", "href": "domande/accuse.html#musulmani", "summary": "La definizione di «musulmano» data dal Corano e dal Profeta (sa), e che cosa è successo nel 1974 in Pakistan."},
+    {"title": "Muhammad (sa) è l’ultimo profeta?", "href": "domande/accuse.html#khatam", "summary": "Che cosa significa «sigillo dei profeti» e che cosa crediamo davvero, con i versetti e gli hadith."},
+    {"title": "Gesù: vivo in cielo o morto?", "href": "domande/gesu.html", "summary": "I versetti del Corano sulla morte di Gesù (as), con la lettura di un rettore di al-Azhar."},
+    {"title": "Il Messia Promesso (as)", "href": "chi-siamo/messia-promesso.html", "summary": "Chi era Mirza Ghulam Ahmad, che cosa ha affermato e che cosa ha scritto, con passi dai suoi libri."},
+]
+
+# ---------------------------------------------------------------------------------------------
+# EVENTI. Per aggiungere un evento: una voce qui sotto (o un «Evento» in WordPress) e ricostruire.
+# start = AAAA-MM-GG; time facoltativo "HH:MM"; tentative=True mostra «Data da confermare».
+EVENTS = [
+    {"id": "ramadan-2027-inizio", "title": "Inizio previsto del Ramadan 2027", "start": "2027-02-08", "kind": "Ramadan",
+     "city": "", "place": "", "tentative": True,
+     "desc": "La data dipende dalla luna nuova e sarà confermata con l’annuncio della Comunità.", "url": "ramadan/index.html"},
+]
+
+RAMADAN = {"start": "2027-02-07", "first_fast": "2027-02-08", "days": 32, "default": "Bologna"}
+# Città della Comunità -> tabella ufficiale di alislam.it. Dove la città non è nella tabella ufficiale si usa la località più vicina.
+RAMADAN_GROUPS = [
+    {"label": "Sedi della Comunità", "items": [
+        ("Bologna", "Bologna", ""), ("Parma", "Parma", ""), ("Brescia", "Brescia", ""), ("Ravenna", "Ravenna", ""),
+        ("Padova", "Padova", ""), ("Milano", "Milano", ""), ("Varese", "Varese", ""), ("Como", "Como", ""), ("Torino", "Torino", ""),
+        ("Roma", "Roma", ""), ("Napoli", "Napoli", ""), ("Catania", "Catania", ""),
+        ("Venezia-Mestre (orari di Padova)", "Padova", "Venezia-Mestre non è nella tabella ufficiale: orari di Padova, la località più vicina."),
+        ("Trento (orari di Strigno)", "Strigno", "Trento non è nella tabella ufficiale: orari di Strigno, la località più vicina."),
+        ("Bolzano (orari di Brunico)", "Brunico", "Bolzano non è nella tabella ufficiale: orari di Brunico, la località più vicina. Possono differire di qualche minuto."),
+        ("Cuneo (orari di Mondovì)", "Mondovi", "Cuneo non è nella tabella ufficiale: orari di Mondovì, la località più vicina."),
+        ("Firenze (orari di Barberino di Mugello)", "Barberino Di Mugello", "Firenze non è nella tabella ufficiale: orari di Barberino di Mugello, la località più vicina."),
+    ]},
+    {"label": "Altre località della tabella", "items": [("San Pietro in Casale", "San Pietro In Casale", "")]},
+]
+
+FAQ_HOME = [
+    ("Chi sono gli ahmadi?", "Siamo musulmani che credono che il Messia atteso sia venuto nella persona di Mirza Ghulam Ahmad (as) di Qadian, fondatore della Comunità nel 1889. Leggiamo lo stesso Corano e seguiamo gli stessi cinque pilastri di tutti i musulmani. <a href=\"{root}chi-siamo/\">Chi siamo →</a>"),
+    ("Gli ahmadi sono musulmani?", "Sì: recitiamo la professione di fede, preghiamo rivolti alla Ka‘ba, digiuniamo a Ramadan, versiamo la zakat e compiamo il pellegrinaggio. Alcuni teologi non ci riconoscono come tali, e noi spieghiamo perché non siamo d’accordo. <a href=\"{root}domande/accuse.html#musulmani\">La risposta con le fonti →</a>"),
+    ("Che cosa significa «jihad»?", "La parola significa «sforzo». Per noi è anzitutto lo sforzo su sé stessi per migliorarsi, e la Comunità respinge ogni uso della religione per giustificare la violenza. <a href=\"{root}domande/#jihad\">Il dettaglio con le fonti →</a>"),
+    ("Posso visitare una vostra sede o invitarvi a un incontro?", "Sì. Scrivici su WhatsApp o chiama il numero verde: ti indichiamo la sede più vicina fra le 17 città in cui siamo presenti e come organizzare un incontro in una scuola, una parrocchia o un’associazione."),
+    ("Quando inizia il Ramadan 2027?", "La data prevista è lunedì 8 febbraio 2027. Dipende dalla luna nuova e sarà confermata con l’annuncio della Comunità. Gli orari di preghiera sono quelli della tabella ufficiale di alislam.it. <a href=\"{root}ramadan/\">Orari e calendario →</a>"),
+    ("Dove trovo i sermoni del Venerdì in italiano?", "Ogni settimana pubblichiamo il sermone del Califfo della Comunità tradotto in italiano. <a href=\"{root}sermoni/\">Vai ai sermoni →</a>"),
+]
