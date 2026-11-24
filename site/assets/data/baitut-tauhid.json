@@ -1,0 +1,67 @@
+{
+ "place": "Baitut Tauhid · San Pietro in Casale",
+ "updated": "2026-11-24",
+ "start": "2026-11-25",
+ "end": "2026-12-31",
+ "periods": [
+  {
+   "from": "2026-11-24",
+   "to": "2026-11-25",
+   "fajr": "06:00",
+   "zuhr_asr": "13:30",
+   "jumuah": "13:25",
+   "maghrib_isha": "20:15"
+  },
+  {
+   "from": "2026-11-26",
+   "to": "2026-12-04",
+   "fajr": "06:15",
+   "zuhr_asr": "13:30",
+   "jumuah": "13:25",
+   "maghrib_isha": "20:15"
+  },
+  {
+   "from": "2026-12-05",
+   "to": "2026-12-18",
+   "fajr": "06:25",
+   "zuhr_asr": "13:30",
+   "jumuah": "13:25",
+   "maghrib_isha": "20:15"
+  },
+  {
+   "from": "2026-12-19",
+   "to": "2026-12-31",
+   "fajr": "06:30",
+   "zuhr_asr": "13:30",
+   "jumuah": "13:25",
+   "maghrib_isha": "20:15"
+  }
+ ],
+ "overrides": [],
+ "pdf": "orari/orari-baitut-tauhid.pdf",
+ "image": "orari/orari-baitut-tauhid.png",
+ "quote_image": "orari/pensiero-del-mese.png",
+ "quote": {
+  "month": "2026-12",
+  "title_it": "La preghiera in congregazione",
+  "title_ur": "باجماعت نماز کی برکت",
+  "items": [
+   {
+    "kind_it": "Hadith",
+    "kind_ur": "حدیث",
+    "ur": "جو مسجد کو صبح شام جاتا ہے، اللہ تعالیٰ اس کے لئے جنت میں اپنی مہمان نوازی کا سامان تیار کرتا ہے۔",
+    "it": "Chi va alla moschea al mattino e alla sera, Allah gli prepara in Paradiso la Sua ospitalità.",
+    "ref_it": "Abu Hurayra (ra) riferisce dal Profeta (sa). Sahih al-Bukhari, Kitab al-Adhan, bab «La virtù di chi va alla moschea al mattino e alla sera», hadith n. 662 (numerazione dell'edizione urdu).",
+    "ref_ur": "صحیح بخاری، کتاب الاذان، حدیث نمبر 662 (روایت حضرت ابوہریرہؓ)"
+   },
+   {
+    "kind_it": "Il Messia Promesso (as)",
+    "kind_ur": "حضرت مسیح موعود علیہ السلام",
+    "ur": "…اس میں یہی غرض ہے کہ وحدت پیدا ہوتی ہے…",
+    "it": "…lo scopo (del maggior merito della preghiera in congregazione) è proprio questo: che nasca l'unità…",
+    "ref_it": "Fatawa Masih-e-Mau'ood, vol. 2, sezione «Il motivo e la realtà del maggior merito della preghiera in congregazione» (n. 183 nell'archivio). Pagina da verificare sul libro stampato.",
+    "ref_ur": "فتاویٰ حضرت مسیح موعودؑ، جلد 2، باجماعت نماز میں زیادہ ثواب کی وجہ و حقیقت"
+   }
+  ]
+ }
+}

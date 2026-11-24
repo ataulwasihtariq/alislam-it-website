@@ -206,6 +206,51 @@
     });
   }
 
+
+  /* ---------- Baitut Tauhid: orari della moschea, scelti in base alla data di oggi ---------- */
+  var btBoxes = $$('[data-bt]');
+  if (btBoxes.length) {
+    fetch(btBoxes[0].getAttribute('data-src'), { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (B) {
+      var iso = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+      var dow = new Date(iso + 'T12:00:00Z').getUTCDay(), dd = iso.split('-').map(Number);
+      var P = null; B.periods.forEach(function (x) { if (iso >= x.from && iso <= x.to) P = x; });
+      var O = null; (B.overrides || []).forEach(function (x) { if (x.date === iso) O = x; });
+      var label = 'Oggi, ' + FULLD[dow] + ' ' + dd[2] + ' ' + FULLM[dd[1] - 1];
+      var base = P, stale = false;
+      if (!P) { stale = true; base = iso < B.periods[0].from ? B.periods[0] : B.periods[B.periods.length - 1]; label = iso < B.periods[0].from ? 'Orari dal ' + B.periods[0].from.split('-').reverse().join('/') : 'Ultimo calendario pubblicato'; }
+      var t = {}; ['fajr', 'zuhr_asr', 'jumuah', 'maghrib_isha'].forEach(function (k) { t[k] = (O && O[k]) || base[k]; });
+      var fri = dow === 5, mid = fri ? ['Jumu‘ah', t.jumuah] : ['Zuhr + Asr', t.zuhr_asr];
+      var html = '<p class="amj-tnote" style="margin:0 0 12px;font-weight:600;color:var(--amj-green-d)">' + label + ' · ' + B.place + '</p>' +
+        '<div class="amj-tgrid" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div class="hot"><small>Fajr</small><b>' + t.fajr + '</b></div><div><small>' + mid[0] + '</small><b>' + mid[1] + '</b></div>' +
+        '<div class="hot"><small>Maghrib + Isha</small><b>' + t.maghrib_isha + '</b></div></div>' +
+        (fri ? '<p class="amj-tnote">Il venerdì il Jumu‘ah è alle ' + t.jumuah + ' e l’Asr segue il Jumu‘ah.</p>' : '') +
+        (O && O.label_it ? '<p class="amj-tnote" style="font-weight:600;color:var(--amj-gold-d)">Oggi: ' + O.label_it + '</p>' : '') +
+        (stale ? '<p class="amj-tnote">Il calendario del periodo è in aggiornamento: fa fede l’ultimo PDF.</p>' : '');
+      $$('[data-bt-today]').forEach(function (b) { b.innerHTML = html; });
+      var tb = $('[data-bt-table]');
+      if (tb) tb.innerHTML = B.periods.map(function (x) {
+        var a = x.from.split('-').map(Number), z = x.to.split('-').map(Number);
+        var r = a[2] + (a[1] !== z[1] ? ' ' + MONTHS[a[1] - 1] : '') + (x.from === x.to ? '' : ' – ' + z[2]) + ' ' + MONTHS[z[1] - 1];
+        return '<tr' + (P === x ? ' class="today"' : '') + '><td>' + r + '</td><td class="hot">' + x.fajr + '</td><td>' + x.zuhr_asr + '</td><td>' + x.jumuah + '</td><td class="hot">' + x.maghrib_isha + '</td></tr>';
+      }).join('');
+      var sp = $('[data-bt-special]');
+      if (sp) sp.innerHTML = (B.overrides && B.overrides.length) ? '<ul>' + B.overrides.map(function (o) {
+        var z = o.date.split('-').map(Number);
+        return '<li><b>' + z[2] + ' ' + FULLM[z[1] - 1] + '</b>: ' + (o.label_it || 'orario speciale') + ' — ' + ['fajr', 'zuhr_asr', 'jumuah', 'maghrib_isha'].filter(function (k) { return o[k]; }).map(function (k) { return { fajr: 'Fajr', zuhr_asr: 'Zuhr + Asr', jumuah: 'Jumu‘ah', maghrib_isha: 'Maghrib + Isha' }[k] + ' ' + o[k]; }).join(', ') + '</li>';
+      }).join('') + '</ul>' : '<p class="amj-tnote">Nessun orario speciale in programma.</p>';
+      var q = $('[data-bt-quote]');
+      if (q && B.quote) q.innerHTML = B.quote.items.map(function (it) {
+        return '<figure class="amj-btq"><figcaption>' + it.kind_it + '</figcaption><p lang="ur" dir="rtl" class="ur">' + it.ur + '</p><blockquote>«' + it.it + '»</blockquote><small>' + it.ref_it + '</small></figure>';
+      }).join('');
+      $$('[data-bt-updated]').forEach(function (e) { var u = B.updated.split('-').map(Number); e.textContent = u[2] + ' ' + FULLM[u[1] - 1] + ' ' + u[0]; });
+      var root = btBoxes[0].getAttribute('data-src').replace(/data\/baitut-tauhid\.json.*$/, '');
+      $$('[data-bt-pdf]').forEach(function (a) { a.href = root + B.pdf; });
+      $$('[data-bt-img]').forEach(function (a) { a.href = root + B.image; });
+    }).catch(function () {
+      $$('[data-bt-today]').forEach(function (b) { b.innerHTML = '<p class="amj-tnote">Gli orari non si caricano. Chiedi gli orari del mese su WhatsApp.</p>'; });
+    });
+  }
+
   /* ---------- filtro del blog ---------- */
   var chips = $$('.amj-chip[data-filter]');
   chips.forEach(function (c) {
