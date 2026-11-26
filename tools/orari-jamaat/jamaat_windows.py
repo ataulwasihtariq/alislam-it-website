@@ -4,8 +4,8 @@ Convenzioni (le stesse di Baitut Tauhid, decise dall'Imam):
   Fajr: da 90 minuti prima del sorgere del sole fino al sorgere (shuruq).
   Zuhr: dal mezzogiorno solare fino all'inizio dell'Asr.
   Asr: ombra uguale all'altezza dell'oggetto (hadith Muslim 958), fino al tramonto.
-  Maghrib: dal tramonto fino alla scomparsa del crepuscolo rosso (sole a 15 gradi sotto l'orizzonte).
-  Isha: da quel momento fino a meta' notte (tramonto -> inizio Fajr).
+  Maghrib: dal tramonto fino all'inizio dell'Isha.
+  Isha: 90 minuti dopo il tramonto (come la tabella di alislam.it), fino a meta' notte.
 Minuti dalla mezzanotte, ora di Roma. Inizi arrotondati per eccesso, fini per difetto."""
 import sys, json, math, datetime as dt
 import solar
@@ -31,7 +31,7 @@ def day(date, lat, lon):
     t = solar.day_times(date, lat, lon)
     sr, noon, ss = mins(t['sunrise']), mins(t['noon']), mins(t['sunset'])
     fajr = sr - 90
-    isha = mins(solar.day_times(date, lat, lon, zenith=105)['sunset'])
+    isha = ss + 90
     mid = ss + (fajr + 1440 - ss) / 2
     c, f = math.ceil, math.floor
     return [c(fajr), f(sr), c(noon), c(asr(date, noon, lat)), f(ss), c(isha), f(mid - 1440 if mid >= 1440 else mid)]

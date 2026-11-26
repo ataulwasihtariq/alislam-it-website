@@ -57,11 +57,62 @@
   function dayOf(base, i) { var d = new Date(Date.UTC(base[0], base[1] - 1, base[2] + i)); return d; }
   function rome(d) { var p = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d).split('-'); return Date.UTC(+p[0], +p[1] - 1, +p[2]); }
 
+
+  /* ---------- Calcolo degli orari di preghiera nel browser (algoritmo NOAA / Meeus, margine circa 1 minuto) ---------- */
+  var PT = (function () {
+    var R = Math.PI / 180, DG = 180 / Math.PI;
+    function jd(y, m, d) { if (m <= 2) { y -= 1; m += 12; } var A = Math.floor(y / 100), B = 2 - A + Math.floor(A / 4); return Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + d + B - 1524.5; }
+    function sun(jc) {
+      var L0 = (280.46646 + jc * (36000.76983 + jc * 0.0003032)) % 360, M = 357.52911 + jc * (35999.05029 - 0.0001537 * jc), e = 0.016708634 - jc * (0.000042037 + 0.0000001267 * jc);
+      var C = Math.sin(M * R) * (1.914602 - jc * (0.004817 + 0.000014 * jc)) + Math.sin(2 * M * R) * (0.019993 - 0.000101 * jc) + Math.sin(3 * M * R) * 0.000289;
+      var om = 125.04 - 1934.136 * jc, app = L0 + C - 0.00569 - 0.00478 * Math.sin(om * R);
+      var eps0 = 23 + (26 + (21.448 - jc * (46.815 + jc * (0.00059 - jc * 0.001813))) / 60) / 60, eps = eps0 + 0.00256 * Math.cos(om * R);
+      var decl = Math.asin(Math.sin(eps * R) * Math.sin(app * R)) * DG, y = Math.pow(Math.tan(eps * R / 2), 2);
+      var eot = 4 * DG * (y * Math.sin(2 * L0 * R) - 2 * e * Math.sin(M * R) + 4 * e * y * Math.sin(M * R) * Math.cos(2 * L0 * R) - 0.5 * y * y * Math.sin(4 * L0 * R) - 1.25 * e * e * Math.sin(2 * M * R));
+      return [decl, eot];
+    }
+    function solve(y, m, d, lat, lon, ev, zen) {
+      var t = 0.5, mins = 0;
+      for (var i = 0; i < 4; i++) {
+        var s = sun((jd(y, m, d) + t - 2451545) / 36525), decl = s[0], eot = s[1];
+        var c = Math.cos(zen * R) / (Math.cos(lat * R) * Math.cos(decl * R)) - Math.tan(lat * R) * Math.tan(decl * R);
+        var ha = Math.acos(Math.max(-1, Math.min(1, c))) * DG, noon = 720 - 4 * lon - eot;
+        mins = ev === 'noon' ? noon : (ev === 'rise' ? noon - 4 * ha : noon + 4 * ha); t = mins / 1440;
+      }
+      return mins;
+    }
+    function tzOff(y, m, d, tz) {
+      var p = new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date(Date.UTC(y, m - 1, d, 12)));
+      var h = +p.filter(function (x) { return x.type === 'hour'; })[0].value, mi = +p.filter(function (x) { return x.type === 'minute'; })[0].value;
+      return (h - 12) * 60 + mi;
+    }
+    /* valori in minuti dalla mezzanotte locale. Fajr = alba - 90; Isha = tramonto + 90 (convenzione della tabella di alislam.it) */
+    function day(y, m, d, lat, lon, tz) {
+      var o = tzOff(y, m, d, tz || 'Europe/Rome'), sr = solve(y, m, d, lat, lon, 'rise', 90.833) + o, ss = solve(y, m, d, lat, lon, 'set', 90.833) + o, no = solve(y, m, d, lat, lon, 'noon', 90.833) + o;
+      var s = sun((jd(y, m, d) + 0.5 - 2451545) / 36525), la = lat * R, de = s[0] * R, alt = Math.atan(1 / (1 + Math.tan(Math.abs(la - de))));
+      var H = Math.acos((Math.sin(alt) - Math.sin(la) * Math.sin(de)) / (Math.cos(la) * Math.cos(de))) * DG, fa = sr - 90, mid = ss + (fa + 1440 - ss) / 2;
+      return { fajr: Math.ceil(fa), sunrise: Math.floor(sr), zuhr: Math.ceil(no), asr: Math.ceil(no + 4 * H), maghrib: Math.floor(ss), isha: Math.ceil(ss + 90), mid: Math.floor(mid >= 1440 ? mid - 1440 : mid) };
+    }
+    var CITIES = { 'Bologna': [44.4949, 11.3426], 'San Pietro in Casale': [44.7006, 11.4119], 'Parma': [44.8015, 10.3279], 'Brescia': [45.5416, 10.2118], 'Ravenna': [44.4184, 12.2035], 'Venezia-Mestre': [45.4903, 12.2424], 'Padova': [45.4064, 11.8768], 'Trento': [46.0748, 11.1217], 'Bolzano': [46.4983, 11.3548], 'Milano': [45.4642, 9.19], 'Varese': [45.8206, 8.8251], 'Como': [45.8081, 9.0852], 'Torino': [45.0703, 7.6869], 'Cuneo': [44.3845, 7.5427], 'Firenze': [43.7696, 11.2558], 'Roma': [41.9028, 12.4964], 'Napoli': [40.8518, 14.2681], 'Catania': [37.5079, 15.083] };
+    return { day: day, CITIES: CITIES };
+  })();
+
   var ram = $('[data-ram]');
   if (ram) {
     var url = ram.getAttribute('data-src');
     fetch(url, { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (D) {
-      var base = D.start.split('-').map(Number), cityKeys = Object.keys(D.cities);
+      var base = D.start.split('-').map(Number);
+      /* orari calcolati qui, per le coordinate di ogni città (non copiati da una tabella) */
+      var GROUPS = [{ label: 'Sedi della Comunità', items: ['Bologna', 'Parma', 'Brescia', 'Ravenna', 'Venezia-Mestre', 'Padova', 'Trento', 'Bolzano', 'Milano', 'Varese', 'Como', 'Torino', 'Cuneo', 'Firenze', 'Roma', 'Napoli', 'Catania'].map(function (k) { return { key: k, label: k, note: '' }; }) },
+        { label: 'Altre località', items: [{ key: 'San Pietro in Casale', label: 'San Pietro in Casale', note: '' }] }];
+      D.groups = GROUPS; D.cities = {};
+      function buildCity(k, lat, lon, tz) {
+        var c = { fajr: [], zuhr: [], asr: [], maghrib: [] };
+        for (var i = 0; i < D.days; i++) { var d0 = dayOf(base, i), x = PT.day(d0.getUTCFullYear(), d0.getUTCMonth() + 1, d0.getUTCDate(), lat, lon, tz); c.fajr.push(x.fajr); c.zuhr.push(x.zuhr); c.asr.push(x.asr); c.maghrib.push(x.maghrib); }
+        D.cities[k] = c;
+      }
+      Object.keys(PT.CITIES).forEach(function (k) { buildCity(k, PT.CITIES[k][0], PT.CITIES[k][1]); });
+      var cityKeys = Object.keys(D.cities);
       var sels = $$('[data-ram-city]');
       var cur = store.get('amj-city');
       if (!D.cities[cur]) cur = D.default;
@@ -103,9 +154,9 @@
         function utc(d, min) { var t = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), 0, min - 60); var x = new Date(t); return x.getUTCFullYear() + pad(x.getUTCMonth() + 1) + pad(x.getUTCDate()) + 'T' + pad(x.getUTCHours()) + pad(x.getUTCMinutes()) + '00Z'; }
         for (var i = 1; i < D.days; i++) {
           var d = dayOf(base, i), r = row(c, i);
-          [['Fine del pasto (Fajr)', r.fajr, 10, 0], ['Iftar (Maghrib)', r.maghrib, 15, 15]].forEach(function (e) {
+          [['Fine del suhūr (Fajr)', r.fajr, 10, 0], ['Iftar (Maghrib)', r.maghrib, 15, 15]].forEach(function (e) {
             L.push('BEGIN:VEVENT', 'UID:ramadan2027-' + cur.replace(/\W/g, '') + '-' + i + '-' + e[3] + '@alislam.it', 'DTSTAMP:20261124T000000Z', 'DTSTART:' + utc(d, e[1]), 'DTEND:' + utc(d, e[1] + e[2]),
-              'SUMMARY:' + e[0] + ' · Ramadan ' + i + ' · ' + city, 'DESCRIPTION:Orari della tabella pubblicata da alislam.it. Data del Ramadan da confermare con l’annuncio della Comunità.');
+              'SUMMARY:' + e[0] + ' · Ramadan ' + i + ' · ' + city, 'DESCRIPTION:Orari calcolati per la località (algoritmo NOAA). Data del Ramadan da confermare con l’annuncio della Comunità.');
             if (e[3]) L.push('BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:Iftar tra ' + e[3] + ' minuti', 'TRIGGER:-PT' + e[3] + 'M', 'END:VALARM');
             L.push('END:VEVENT');
           });
@@ -371,53 +422,62 @@
   }
 
 
-  /* ---------- Orari di preghiera delle Jama'at ---------- */
+  /* ---------- Orari di preghiera: calcolati dal browser per la città scelta o per la posizione dell'utente ---------- */
   var opj = $('[data-opj]');
   if (opj) {
     var q2 = function (n) { return (n < 10 ? '0' : '') + n; };
     var qh = function (m) { if (m >= 1440) m -= 1440; return q2(Math.floor(m / 60)) + ':' + q2(m % 60); };
     var qIso = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
-    var qsel = $('[data-opj-city]', opj), qd = $('[data-opj-date]', opj), qD = null, qcur = null;
-    var qidx = function (iso) { return Math.round((new Date(iso + 'T12:00:00Z') - new Date(qD.start + 'T12:00:00Z')) / 864e5); };
-    var qiso = function (i) { var d = new Date(qD.start + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + i); return d.toISOString().slice(0, 10); };
+    var qsel = $('[data-opj-city]', opj), qd = $('[data-opj-date]', opj), qcur = qIso, qloc = null;
+    var qnames = Object.keys(PT.CITIES).filter(function (k) { return k !== 'Bologna' && k !== 'San Pietro in Casale'; });
+    qnames.forEach(function (c) { var o = document.createElement('option'); o.value = o.textContent = c; qsel.appendChild(o); });
+    var og = document.createElement('option'); og.value = '__gps'; og.textContent = 'La mia posizione'; og.hidden = true; qsel.appendChild(og);
+    var saved = null; try { saved = localStorage.getItem('amj-city'); } catch (e) {}
+    if (saved && PT.CITIES[saved] && qnames.indexOf(saved) >= 0) qsel.value = saved;
+    var qloc2 = function () {
+      if (qsel.value === '__gps' && qloc) return { name: 'La tua posizione', lat: qloc[0], lon: qloc[1], tz: Intl.DateTimeFormat().resolvedOptions().timeZone };
+      var c = PT.CITIES[qsel.value]; return { name: qsel.value, lat: c[0], lon: c[1], tz: 'Europe/Rome' };
+    };
+    var qcalc = function (iso, L) { var z = iso.split('-').map(Number); return PT.day(z[0], z[1], z[2], L.lat, L.lon, L.tz); };
+    var qshift = function (iso, n) { var d = new Date(iso + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+    var qsrc = function (L) {
+      $('[data-opj-src]', opj).innerHTML = '<b>' + esc(L.name) + '</b>: latitudine ' + L.lat.toFixed(4) + '°, longitudine ' + L.lon.toFixed(4) + '° · fuso ' + esc(L.tz) + ' · <a href="https://www.openstreetmap.org/?mlat=' + L.lat + '&mlon=' + L.lon + '#map=12/' + L.lat + '/' + L.lon + '" target="_blank" rel="noopener">vedi il punto su OpenStreetMap</a>';
+    };
     var qrender = function (iso) {
       qcur = iso; qd.value = iso;
-      var city = qsel.value, i = qidx(iso), v = qD.cities[city] && qD.cities[city][i];
-      var d = iso.split('-').map(Number), dow = new Date(iso + 'T12:00:00Z').getUTCDay();
-      $('[data-opj-title]', opj).textContent = city + ' · ' + FULLD[dow] + ' ' + d[2] + ' ' + FULLM[d[1] - 1] + ' ' + d[0];
-      if (!v) { $('[data-opj-out]', opj).innerHTML = '<p class="amj-tnote">Data fuori dal periodo disponibile.</p>'; return; }
-      var mid = v[6] < 600 ? v[6] + 1440 : v[6];
-      var R = [['Fajr', v[0], v[1]], [dow === 5 ? 'Zuhr (il venerdì Jumu‘ah)' : 'Zuhr', v[2], v[3]], ['Asr', v[3], v[4]], ['Maghrib', v[4], v[5]], ['Isha', v[5], mid]];
+      var L = qloc2(), v = qcalc(iso, L), d = iso.split('-').map(Number), dow = new Date(iso + 'T12:00:00Z').getUTCDay();
+      $('[data-opj-title]', opj).textContent = L.name + ' · ' + FULLD[dow] + ' ' + d[2] + ' ' + FULLM[d[1] - 1] + ' ' + d[0];
+      var mid = v.mid < 600 ? v.mid + 1440 : v.mid;
+      var R = [['Fajr', v.fajr, v.sunrise], [dow === 5 ? 'Zuhr (il venerdì Jumu‘ah)' : 'Zuhr', v.zuhr, v.asr], ['Asr', v.asr, v.maghrib], ['Maghrib', v.maghrib, v.isha], ['Isha', v.isha, mid]];
       $('[data-opj-out]', opj).innerHTML = '<div class="amj-twrap"><table class="amj-rtable amj-btp-t"><thead><tr><th>Preghiera</th><th>Inizio (awwal waqt)</th><th>Fine (ākhir waqt)</th></tr></thead><tbody>' + R.map(function (r) {
-        return '<tr><td><b>' + r[0] + '</b></td><td class="hot">' + qh(r[1]) + '</td><td>' + qh(r[2]) + (r[2] >= 1440 || (r[0] === 'Isha' && v[6] < 600) ? ' <small>(dopo mezzanotte)</small>' : '') + '</td></tr>';
-      }).join('') + '</tbody></table></div><p class="amj-tnote">Shuruq (sorgere del sole): ' + qh(v[1]) + '. Mezzogiorno solare: ' + qh(v[2]) + '. Tramonto: ' + qh(v[4]) + '.</p>';
-      qmonth(iso);
-    };
-    var qmonth = function (iso) {
-      var z = iso.split('-').map(Number), city = qsel.value, n = new Date(Date.UTC(z[0], z[1], 0)).getUTCDate(), rows = '';
-      $('[data-opj-mtitle]', opj).textContent = city + ', ' + FULLM[z[1] - 1] + ' ' + z[0];
+        return '<tr><td><b>' + r[0] + '</b></td><td class="hot">' + qh(r[1]) + '</td><td>' + qh(r[2]) + (r[2] >= 1440 ? ' <small>(dopo mezzanotte)</small>' : '') + '</td></tr>';
+      }).join('') + '</tbody></table></div><p class="amj-tnote">Shuruq (sorgere del sole): ' + qh(v.sunrise) + '. Tramonto: ' + qh(v.maghrib) + '.</p>';
+      qsrc(L);
+      var n = new Date(Date.UTC(d[0], d[1], 0)).getUTCDate(), rows = '';
+      $('[data-opj-mtitle]', opj).textContent = L.name + ', ' + FULLM[d[1] - 1] + ' ' + d[0];
       for (var k = 1; k <= n; k++) {
-        var s = z[0] + '-' + q2(z[1]) + '-' + q2(k), v = qD.cities[city][qidx(s)], dw = new Date(s + 'T12:00:00Z').getUTCDay();
-        if (!v) continue;
-        rows += '<tr' + (s === iso ? ' class="today"' : '') + '><td>' + k + ' ' + MONTHS[z[1] - 1] + (dw === 5 ? ' <small>ven</small>' : '') + '</td><td>' + qh(v[0]) + '</td><td>' + qh(v[1]) + '</td><td>' + qh(v[2]) + '</td><td>' + qh(v[3]) + '</td><td>' + qh(v[4]) + '</td><td>' + qh(v[5]) + '</td></tr>';
+        var s2 = d[0] + '-' + q2(d[1]) + '-' + q2(k), x = qcalc(s2, L), dw = new Date(s2 + 'T12:00:00Z').getUTCDay();
+        rows += '<tr' + (s2 === iso ? ' class="today"' : '') + '><td>' + k + ' ' + MONTHS[d[1] - 1] + (dw === 5 ? ' <small>ven</small>' : '') + '</td><td>' + qh(x.fajr) + '</td><td>' + qh(x.sunrise) + '</td><td>' + qh(x.zuhr) + '</td><td>' + qh(x.asr) + '</td><td>' + qh(x.maghrib) + '</td><td>' + qh(x.isha) + '</td></tr>';
       }
       $('[data-opj-month]', opj).innerHTML = '<table class="amj-rtable amj-btp-t"><thead><tr><th>Giorno</th><th>Fajr</th><th>Shuruq</th><th>Zuhr</th><th>Asr</th><th>Maghrib</th><th>Isha</th></tr></thead><tbody>' + rows + '</tbody></table>';
     };
-    fetch(opj.getAttribute('data-src')).then(function (r) { return r.json(); }).then(function (D) {
-      qD = D; var last = qiso(D.days - 1);
-      qd.min = D.start; qd.max = last;
-      Object.keys(D.cities).forEach(function (c) { var o = document.createElement('option'); o.value = o.textContent = c; qsel.appendChild(o); });
-      var saved = null; try { saved = localStorage.getItem('amj-city'); } catch (e) {}
-      if (saved && D.cities[saved]) qsel.value = saved;
-      var start = (qIso >= D.start && qIso <= last) ? qIso : D.start;
-      qrender(start);
-      qsel.addEventListener('change', function () { try { localStorage.setItem('amj-city', qsel.value); } catch (e) {} qrender(qcur); });
-      qd.addEventListener('change', function () { if (qd.value) qrender(qd.value); });
-      $('[data-opj-prev]', opj).addEventListener('click', function () { if (qcur > D.start) qrender(qiso(qidx(qcur) - 1)); });
-      $('[data-opj-next]', opj).addEventListener('click', function () { if (qcur < last) qrender(qiso(qidx(qcur) + 1)); });
-      $('[data-opj-today]', opj).addEventListener('click', function () { qrender(start); });
-      $('[data-opj-print]', opj).addEventListener('click', function () { window.print(); });
-    }).catch(function () { $('[data-opj-out]', opj).innerHTML = '<p class="amj-tnote">Gli orari non si caricano. Riprova più tardi.</p>'; });
+    var tb = $('[data-opj-cities]', opj);
+    if (tb) tb.innerHTML = qnames.map(function (c) { var p = PT.CITIES[c]; return '<tr><td>' + c + '</td><td>' + p[0].toFixed(4) + '</td><td>' + p[1].toFixed(4) + '</td><td><a href="https://www.openstreetmap.org/?mlat=' + p[0] + '&mlon=' + p[1] + '#map=12/' + p[0] + '/' + p[1] + '" target="_blank" rel="noopener">mappa</a></td></tr>'; }).join('');
+    qrender(qIso);
+    qsel.addEventListener('change', function () { if (qsel.value !== '__gps') { try { localStorage.setItem('amj-city', qsel.value); } catch (e) {} } qrender(qcur); });
+    qd.addEventListener('change', function () { if (qd.value) qrender(qd.value); });
+    $('[data-opj-prev]', opj).addEventListener('click', function () { qrender(qshift(qcur, -1)); });
+    $('[data-opj-next]', opj).addEventListener('click', function () { qrender(qshift(qcur, 1)); });
+    $('[data-opj-today]', opj).addEventListener('click', function () { qrender(qIso); });
+    $('[data-opj-print]', opj).addEventListener('click', function () { window.print(); });
+    var gb = $('[data-opj-gps]', opj);
+    if (gb) gb.addEventListener('click', function () {
+      var msg = $('[data-opj-gpsmsg]', opj);
+      if (!navigator.geolocation) { msg.textContent = 'Il browser non permette di leggere la posizione.'; return; }
+      msg.textContent = 'Leggo la posizione…';
+      navigator.geolocation.getCurrentPosition(function (p) { qloc = [p.coords.latitude, p.coords.longitude]; qsel.value = '__gps'; msg.textContent = 'Posizione letta. La posizione resta nel tuo browser e non viene inviata.'; qrender(qcur); },
+        function () { msg.textContent = 'Posizione non disponibile: scegli la città dall’elenco.'; }, { timeout: 10000 });
+    });
   }
 
   /* ---------- filtro del blog ---------- */

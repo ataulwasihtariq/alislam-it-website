@@ -1,7 +1,9 @@
-# Orari di preghiera delle Jama'at (pagina /orari-preghiera/)
+# Orari di preghiera (pagina /orari-preghiera/ e pagina Ramadan)
 
-- Dati: `assets/data/orari-jamaat.json`, generato da `tools/orari-jamaat/jamaat_windows.py` (`python3 jamaat_windows.py 2026-11-01 2027-12-31 ../../assets/data/orari-jamaat.json`). Da rigenerare a fine 2027.
-- 16 città (Bologna e San Pietro in Casale non sono in elenco: la moschea ha la sua pagina, Baitut Tauhid).
-- Nessuna preghiera è unita. L'unione vale solo per Baitut Tauhid, con la regola dell'Imam.
-- Convenzioni: Fajr da 90 minuti prima del sorgere; Asr a un'ombra (Muslim 958); Maghrib fino al crepuscolo rosso (15°); Isha fino a metà notte.
-- Verifica aperta: le tabelle di alislam.it usate nella pagina Ramadan differiscono dal calcolo astronomico di circa 6–15 minuti (Zuhr e Maghrib più tardi, Fajr più presto a nord). Da chiarire con chi le pubblica prima di usarle come fonte unica.
+- Gli orari sono **calcolati nel browser** (`PT` in assets/js/amj.js, algoritmo NOAA/Meeus, margine circa 1 minuto) per le coordinate della città o della posizione dell'utente. Non ci sono tabelle copiate.
+- `tools/orari-jamaat/jamaat_windows.py` è il riferimento Python per controllare il JavaScript (stesse formule).
+- Coordinate: centro città, inserite a mano e mostrate nella pagina con il link a OpenStreetMap. Bologna e San Pietro in Casale non sono nell'elenco della pagina Orari (la moschea ha Baitut Tauhid); restano nella pagina Ramadan.
+- Convenzioni, come la tabella di alislam.it: Fajr = alba − 90 min; Isha = tramonto + 90 min. Asr a un'ombra (Muslim 958). Nessuna preghiera unita fuori da Baitut Tauhid.
+- Differenza dalla tabella di alislam.it (26 nov 2026, Bologna): alba 7:28 contro 7:24, tramonto 16:41 contro 16:38, Zuhr 12:17 contro 12:02, Asr 14:34 contro 14:20. La tabella ufficiale è più tarda; va chiarito con chi la pubblica.
+- Le date islamiche (Ramadan, 1 Rajab, ecc.) vengono dal calendario della Jama'at, non sono calcolate qui.
+- Il planner di Baitut Tauhid usa ancora il crepuscolo a 15° per l'Isha: da allineare se l'Imam lo decide.

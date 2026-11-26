@@ -1,18 +1,21 @@
-<section class="amj-w amj-s" data-opj data-src="/wp-content/themes/amj-it/assets/data/orari-jamaat.json">
-<div class="amj-btp-ctl"><label>Città <select class="amj-sel" data-opj-city></select></label></div>
+<section class="amj-w amj-s" data-opj>
+<div class="amj-btp-ctl"><label>Città <select class="amj-sel" data-opj-city></select></label><button class="amj-btn2" type="button" data-opj-gps><i class="ph ph-map-pin"></i> Usa la mia posizione</button></div><p class="amj-tnote" data-opj-gpsmsg></p>
 <div class="amj-btp-ctl"><button class="amj-btn2" type="button" data-opj-prev aria-label="Giorno prima">‹</button><label>Data <input type="date" data-opj-date></label><button class="amj-btn2" type="button" data-opj-next aria-label="Giorno dopo">›</button><button class="amj-btn2" type="button" data-opj-today>Oggi</button></div>
 <h2 class="heading-4" data-opj-title></h2>
 <div data-opj-out><p class="amj-tnote">Carico gli orari…</p></div>
 <h2 class="heading-4" style="margin-top:var(--s-500)" data-opj-mtitle></h2>
 <div class="amj-twrap amj-opj-m" data-opj-month></div>
 <div class="amj-acts"><button class="amj-btn2" type="button" data-opj-print><i class="ph ph-printer"></i> Stampa il mese</button></div>
-<div class="amj-note"><b>Come sono calcolati</b>
-<ul style="margin:6px 0 0;padding-left:20px">
-<li><b>Fajr</b>: inizia 90 minuti prima del sorgere del sole (convenzione adottata dalla Comunità in Italia) e termina al sorgere (shuruq).</li>
-<li><b>Zuhr</b>: dal mezzogiorno solare (zawal) fino all'inizio dell'Asr. Il venerdì si prega il Jumu'ah al posto dello Zuhr, all'ora fissata dalla Jama'at locale.</li>
-<li><b>Asr</b>: quando l'ombra di un oggetto è uguale alla sua altezza (hadith in Sahih Muslim, n. 958 dell'edizione urdu); termina al tramonto.</li>
-<li><b>Maghrib</b>: dal tramonto alla scomparsa del crepuscolo rosso (sole a 15° sotto l'orizzonte).</li>
-<li><b>Isha</b>: da quel momento fino a metà della notte, tra il tramonto e l'inizio del Fajr.</li>
+<div class="amj-note"><b>Da dove vengono questi orari</b>
+<p style="margin:6px 0 0" data-opj-src></p>
+<ul style="margin:8px 0 0;padding-left:20px">
+<li><b>Alba, tramonto e mezzogiorno solare</b>: calcolati qui, nel tuo browser, per la latitudine e la longitudine del luogo, con le formule astronomiche del calcolatore solare NOAA (basate su Jean Meeus, <i>Astronomical Algorithms</i>). Il margine è di circa un minuto. Non sono copiati da una tabella: cambiando città o data si ricalcolano.</li>
+<li><b>Coordinate</b>: il centro di ogni città, qui sotto con il link alla mappa per controllarle. Con «Usa la mia posizione» si usano le coordinate del tuo dispositivo e il tuo fuso orario.</li>
+<li><b>Fajr</b>: inizia 90 minuti prima del sorgere del sole e termina al sorgere (shuruq). <b>Isha</b>: inizia 90 minuti dopo il tramonto. Sono le due convenzioni della tabella ufficiale di <a href="https://www.alislam.it/orario-delle-preghiere/" target="_blank" rel="noopener">alislam.it</a>.</li>
+<li><b>Zuhr</b>: dal mezzogiorno solare (zawal). <b>Asr</b>: quando l'ombra è uguale all'altezza dell'oggetto (Sahih Muslim, n. 958 dell'edizione urdu). <b>Maghrib</b>: dal tramonto fino all'inizio dell'Isha.</li>
 </ul>
-<p style="margin:8px 0 0">Il calcolo astronomico ha un margine di circa un minuto: gli inizi sono arrotondati per eccesso, i termini per difetto. L'ora è quella di Roma, con ora legale. Per la moschea di San Pietro in Casale vedi <a href="/baitut-tauhid/index.html">Baitut Tauhid</a>.</p></div>
+<p style="margin:8px 0 0"><b>Differenze dalla tabella di alislam.it.</b> Il 26 novembre 2026 a Bologna la tabella ufficiale dava alba 7:28 e tramonto 16:41; qui si calcola 7:24 e 16:38 (gli inizi sono arrotondati per eccesso, i termini per difetto). Lo Zuhr ufficiale era 12:17 contro il mezzogiorno solare delle 12:02 e l'Asr 14:34 contro 14:19: la tabella ufficiale è circa un quarto d'ora più tarda. In caso di dubbio fa fede la tabella pubblicata dalla Comunità.</p>
+<p style="margin:8px 0 0">Ogni preghiera si prega nel suo tempo. Per la moschea di San Pietro in Casale vedi <a href="/baitut-tauhid/index.html">Baitut Tauhid</a>.</p></div>
+<details class="amj-note"><summary><b>Le coordinate di ogni città</b></summary>
+<div class="amj-twrap"><table class="amj-rtable amj-btp-t"><thead><tr><th>Città</th><th>Latitudine</th><th>Longitudine</th><th>Controlla</th></tr></thead><tbody data-opj-cities></tbody></table></div></details>
 </section>
