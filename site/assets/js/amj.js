@@ -81,7 +81,7 @@
         var t = row(c, idx);
         $$('[data-ram-today]').forEach(function (box) {
           box.innerHTML = '<p class="amj-tnote" style="margin:0 0 12px;font-weight:600;color:var(--amj-green-d)">' + label + ' · ' + info.label.replace(/ \(.*/, '') + '</p>' +
-            '<div class="amj-tgrid"><div class="hot"><small>Fine pasto (Fajr)</small><b>' + hm(t.fajr) + '</b></div><div><small>Alba</small><b>' + hm(t.alba) + '</b></div><div><small>Zuhr</small><b>' + hm(t.zuhr) + '</b></div>' +
+            '<div class="amj-tgrid"><div class="hot"><small>Fine del suhūr (Fajr)</small><b>' + hm(t.fajr) + '</b></div><div><small>Alba</small><b>' + hm(t.alba) + '</b></div><div><small>Zuhr</small><b>' + hm(t.zuhr) + '</b></div>' +
             '<div><small>Asr</small><b>' + hm(t.asr) + '</b></div><div class="hot"><small>Iftar (Maghrib)</small><b>' + hm(t.maghrib) + '</b></div><div><small>Isha</small><b>' + hm(t.isha) + '</b></div></div>' +
             (info.note ? '<p class="amj-tnote">' + info.note + '</p>' : '');
         });
@@ -284,7 +284,7 @@
       var R = rows(iso);
       if (!R) { out.innerHTML = '<p class="amj-tnote">Data fuori dal periodo disponibile (2026–2027).</p>'; chk.textContent = ''; return; }
       var w = W.days[iso];
-      out.innerHTML = '<div class="amj-twrap"><table class="amj-rtable amj-btp-t"><thead><tr><th>Preghiera</th><th>Inizia</th><th>Fine massima</th><th>Jama‘at</th></tr></thead><tbody>' + R.map(function (r) {
+      out.innerHTML = '<div class="amj-twrap"><table class="amj-rtable amj-btp-t"><thead><tr><th>Preghiera</th><th>Inizio (awwal waqt)</th><th>Fine (ākhir waqt)</th><th>Jama‘at</th></tr></thead><tbody>' + R.map(function (r) {
         var l = Math.max(0, r.s / 1440 * 100), wd = Math.max(1.2, (Math.min(r.e, 1440) - r.s) / 1440 * 100);
         var mk = r.j ? '<i class="m" style="left:' + (toMin(r.j) / 1440 * 100) + '%"></i>' : '';
         return '<tr><td><b>' + r.n + '</b></td><td>' + hm(r.s) + '</td><td>' + hm(r.e) + '</td><td class="hot">' + r.jl + '</td></tr>' +
@@ -368,6 +368,56 @@
     rf.addEventListener('input', rcheck); rf.addEventListener('change', rcheck);
     Promise.all([fetch(rq.getAttribute('data-wsrc')).then(function (r) { return r.json(); }), fetch(rq.getAttribute('data-bsrc'), { cache: 'no-cache' }).then(function (r) { return r.json(); }), fetch(rq.getAttribute('data-esrc'), { cache: 'no-cache' }).then(function (r) { return r.json(); })])
       .then(function (x) { rW = x[0]; rB = x[1]; rE = norm(x[2]); rcheck(); }).catch(function () { rc.innerHTML = '<p class="amj-tnote">Il controllo degli orari non si carica: puoi comunque inviare la richiesta.</p>'; });
+  }
+
+
+  /* ---------- Orari di preghiera delle Jama'at ---------- */
+  var opj = $('[data-opj]');
+  if (opj) {
+    var q2 = function (n) { return (n < 10 ? '0' : '') + n; };
+    var qh = function (m) { if (m >= 1440) m -= 1440; return q2(Math.floor(m / 60)) + ':' + q2(m % 60); };
+    var qIso = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+    var qsel = $('[data-opj-city]', opj), qd = $('[data-opj-date]', opj), qD = null, qcur = null;
+    var qidx = function (iso) { return Math.round((new Date(iso + 'T12:00:00Z') - new Date(qD.start + 'T12:00:00Z')) / 864e5); };
+    var qiso = function (i) { var d = new Date(qD.start + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + i); return d.toISOString().slice(0, 10); };
+    var qrender = function (iso) {
+      qcur = iso; qd.value = iso;
+      var city = qsel.value, i = qidx(iso), v = qD.cities[city] && qD.cities[city][i];
+      var d = iso.split('-').map(Number), dow = new Date(iso + 'T12:00:00Z').getUTCDay();
+      $('[data-opj-title]', opj).textContent = city + ' · ' + FULLD[dow] + ' ' + d[2] + ' ' + FULLM[d[1] - 1] + ' ' + d[0];
+      if (!v) { $('[data-opj-out]', opj).innerHTML = '<p class="amj-tnote">Data fuori dal periodo disponibile.</p>'; return; }
+      var mid = v[6] < 600 ? v[6] + 1440 : v[6];
+      var R = [['Fajr', v[0], v[1]], [dow === 5 ? 'Zuhr (il venerdì Jumu‘ah)' : 'Zuhr', v[2], v[3]], ['Asr', v[3], v[4]], ['Maghrib', v[4], v[5]], ['Isha', v[5], mid]];
+      $('[data-opj-out]', opj).innerHTML = '<div class="amj-twrap"><table class="amj-rtable amj-btp-t"><thead><tr><th>Preghiera</th><th>Inizio (awwal waqt)</th><th>Fine (ākhir waqt)</th></tr></thead><tbody>' + R.map(function (r) {
+        return '<tr><td><b>' + r[0] + '</b></td><td class="hot">' + qh(r[1]) + '</td><td>' + qh(r[2]) + (r[2] >= 1440 || (r[0] === 'Isha' && v[6] < 600) ? ' <small>(dopo mezzanotte)</small>' : '') + '</td></tr>';
+      }).join('') + '</tbody></table></div><p class="amj-tnote">Shuruq (sorgere del sole): ' + qh(v[1]) + '. Mezzogiorno solare: ' + qh(v[2]) + '. Tramonto: ' + qh(v[4]) + '.</p>';
+      qmonth(iso);
+    };
+    var qmonth = function (iso) {
+      var z = iso.split('-').map(Number), city = qsel.value, n = new Date(Date.UTC(z[0], z[1], 0)).getUTCDate(), rows = '';
+      $('[data-opj-mtitle]', opj).textContent = city + ', ' + FULLM[z[1] - 1] + ' ' + z[0];
+      for (var k = 1; k <= n; k++) {
+        var s = z[0] + '-' + q2(z[1]) + '-' + q2(k), v = qD.cities[city][qidx(s)], dw = new Date(s + 'T12:00:00Z').getUTCDay();
+        if (!v) continue;
+        rows += '<tr' + (s === iso ? ' class="today"' : '') + '><td>' + k + ' ' + MONTHS[z[1] - 1] + (dw === 5 ? ' <small>ven</small>' : '') + '</td><td>' + qh(v[0]) + '</td><td>' + qh(v[1]) + '</td><td>' + qh(v[2]) + '</td><td>' + qh(v[3]) + '</td><td>' + qh(v[4]) + '</td><td>' + qh(v[5]) + '</td></tr>';
+      }
+      $('[data-opj-month]', opj).innerHTML = '<table class="amj-rtable amj-btp-t"><thead><tr><th>Giorno</th><th>Fajr</th><th>Shuruq</th><th>Zuhr</th><th>Asr</th><th>Maghrib</th><th>Isha</th></tr></thead><tbody>' + rows + '</tbody></table>';
+    };
+    fetch(opj.getAttribute('data-src')).then(function (r) { return r.json(); }).then(function (D) {
+      qD = D; var last = qiso(D.days - 1);
+      qd.min = D.start; qd.max = last;
+      Object.keys(D.cities).forEach(function (c) { var o = document.createElement('option'); o.value = o.textContent = c; qsel.appendChild(o); });
+      var saved = null; try { saved = localStorage.getItem('amj-city'); } catch (e) {}
+      if (saved && D.cities[saved]) qsel.value = saved;
+      var start = (qIso >= D.start && qIso <= last) ? qIso : D.start;
+      qrender(start);
+      qsel.addEventListener('change', function () { try { localStorage.setItem('amj-city', qsel.value); } catch (e) {} qrender(qcur); });
+      qd.addEventListener('change', function () { if (qd.value) qrender(qd.value); });
+      $('[data-opj-prev]', opj).addEventListener('click', function () { if (qcur > D.start) qrender(qiso(qidx(qcur) - 1)); });
+      $('[data-opj-next]', opj).addEventListener('click', function () { if (qcur < last) qrender(qiso(qidx(qcur) + 1)); });
+      $('[data-opj-today]', opj).addEventListener('click', function () { qrender(start); });
+      $('[data-opj-print]', opj).addEventListener('click', function () { window.print(); });
+    }).catch(function () { $('[data-opj-out]', opj).innerHTML = '<p class="amj-tnote">Gli orari non si caricano. Riprova più tardi.</p>'; });
   }
 
   /* ---------- filtro del blog ---------- */

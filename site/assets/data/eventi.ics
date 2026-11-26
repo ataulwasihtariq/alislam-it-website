@@ -84,6 +84,26 @@ LOCATION:
 DESCRIPTION:
 END:VEVENT
 BEGIN:VEVENT
+UID:bid-rajab-1448@alislam.it
+DTSTAMP:20261124T000000Z
+DTSTART;VALUE=DATE:20261223
+DTEND;VALUE=DATE:20261226
+SUMMARY:Ayyam al-Bid (13–15 Rajab 1448): digiuno raccomandato (data da confermare)
+STATUS:TENTATIVE
+LOCATION:
+DESCRIPTION:I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall'inizio del mese.
+END:VEVENT
+BEGIN:VEVENT
+UID:bid-shaban-1448@alislam.it
+DTSTAMP:20261124T000000Z
+DTSTART;VALUE=DATE:20270122
+DTEND;VALUE=DATE:20270125
+SUMMARY:Ayyam al-Bid (13–15 Sha‘ban 1448): digiuno raccomandato (data da confermare)
+STATUS:TENTATIVE
+LOCATION:
+DESCRIPTION:I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall'inizio del mese.
+END:VEVENT
+BEGIN:VEVENT
 UID:ramadan-1448@alislam.it
 DTSTAMP:20261124T000000Z
 DTSTART;VALUE=DATE:20270208
@@ -112,6 +132,36 @@ SUMMARY:Eid al-Fitr (1 Shawwal 1448) (data da confermare)
 STATUS:TENTATIVE
 LOCATION:
 DESCRIPTION:Data calcolata sulla visibilità prevista della luna a Bologna. La data sarà confermata dalla Jama'at.
+END:VEVENT
+BEGIN:VEVENT
+UID:bid-shawwal-1448@alislam.it
+DTSTAMP:20261124T000000Z
+DTSTART;VALUE=DATE:20270322
+DTEND;VALUE=DATE:20270325
+SUMMARY:Ayyam al-Bid (13–15 Shawwal 1448): digiuno raccomandato (data da confermare)
+STATUS:TENTATIVE
+LOCATION:
+DESCRIPTION:I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall'inizio del mese.
+END:VEVENT
+BEGIN:VEVENT
+UID:qadah-1448@alislam.it
+DTSTAMP:20261124T000000Z
+DTSTART;VALUE=DATE:20270408
+DTEND;VALUE=DATE:20270409
+SUMMARY:1 Dhul Qa‘dah 1448 (data da confermare)
+STATUS:TENTATIVE
+LOCATION:
+DESCRIPTION:Data calcolata sulla visibilità prevista della luna a Bologna. L’avvistamento effettivo prevale sul calcolo.
+END:VEVENT
+BEGIN:VEVENT
+UID:bid-qadah-1448@alislam.it
+DTSTAMP:20261124T000000Z
+DTSTART;VALUE=DATE:20270420
+DTEND;VALUE=DATE:20270423
+SUMMARY:Ayyam al-Bid (13–15 Dhul Qa‘dah 1448): digiuno raccomandato (data da confermare)
+STATUS:TENTATIVE
+LOCATION:
+DESCRIPTION:I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall'inizio del mese.
 END:VEVENT
 BEGIN:VEVENT
 UID:jalsa-masih-maud-2027@alislam.it

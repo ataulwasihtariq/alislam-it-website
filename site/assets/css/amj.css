@@ -467,3 +467,6 @@ div.amj-s{padding-top:var(--s-800);padding-bottom:var(--s-800)}
 .amj-evreq input,.amj-evreq select,.amj-evreq textarea{font:inherit;padding:10px;border:1px solid var(--amj-line,#d9d4c7);border-radius:8px;background:#fff;min-width:0}
 .amj-evreq-chk{margin:0 0 14px}
 @media(max-width:600px){.amj-evreq{grid-template-columns:1fr}}
+
+.amj-opj-m .amj-rtable{font-size:13px}.amj-opj-m th,.amj-opj-m td{padding:6px 3px!important}
+@media print{.amj-opj-m{overflow:visible}}
