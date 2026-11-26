@@ -459,3 +459,11 @@ div.amj-s{padding-top:var(--s-800);padding-bottom:var(--s-800)}
 .amj-rtable.amj-btp-t{min-width:0;table-layout:auto}
 .amj-btp-t th,.amj-btp-t td{white-space:normal;padding-left:var(--s-75);padding-right:var(--s-75)}
 .amj-btp-t td:first-child,.amj-btp-t th:first-child{padding-left:var(--s-100)}
+
+/* richiesta evento */
+.amj-evreq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}
+.amj-evreq label{display:flex;flex-direction:column;gap:4px;font-size:.9rem;font-weight:600}
+.amj-evreq label.wide{grid-column:1/-1}
+.amj-evreq input,.amj-evreq select,.amj-evreq textarea{font:inherit;padding:10px;border:1px solid var(--amj-line,#d9d4c7);border-radius:8px;background:#fff;min-width:0}
+.amj-evreq-chk{margin:0 0 14px}
+@media(max-width:600px){.amj-evreq{grid-template-columns:1fr}}

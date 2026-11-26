@@ -8,6 +8,8 @@ SITE = {
     "base_url": "https://alislam.it",
     "whatsapp": "+39 051 199 00 451",
     "whatsapp_link": "https://wa.me/390511990451",
+    # ID del calendario Google PUBBLICO «Eventi pubblici» (non quello interno). Vuoto = nessun calendario incorporato.
+    "public_calendar_id": "",
     "toll_free": "800 598 005",
     "email": "contatti@alislam.it",
     "address": "Bait-ul-Tauhid (sede nazionale e moschea), Via Morgobbo 1035/A, Gavaseto, 40018 San Pietro in Casale (BO)",

@@ -315,6 +315,61 @@
     }).catch(function () { out.innerHTML = '<p class="amj-tnote">Gli orari non si caricano. Riprova più tardi.</p>'; });
   }
 
+
+  /* ---------- Eventi: richiesta di una data, con controllo di preghiere e sovrapposizioni ---------- */
+  var rq = $('[data-evreq]');
+  if (rq) {
+    var rf = $('form', rq), rc = $('[data-evreq-chk]', rq), rs = $('[data-evreq-send]', rq);
+    var rW = null, rB = null, rE = [];
+    var p2 = function (n) { return (n < 10 ? '0' : '') + n; };
+    var rhm = function (m) { m = Math.round(m); if (m >= 1440) m -= 1440; return p2(Math.floor(m / 60)) + ':' + p2(m % 60); };
+    var rmin = function (t) { var z = t.split(':'); return +z[0] * 60 + +z[1]; };
+    var rdays = function (a, b) { var o = [], d = new Date(a + 'T12:00:00Z'), z = new Date((b || a) + 'T12:00:00Z'); while (d <= z && o.length < 15) { o.push(d.toISOString().slice(0, 10)); d.setUTCDate(d.getUTCDate() + 1); } return o; };
+    var fv = function (n) { return rf.elements[n].value.trim(); };
+    var jam = function (iso) {
+      var P = null; rB.periods.forEach(function (x) { if (iso >= x.from && iso <= x.to) P = x; });
+      if (!P) return null;
+      var O = null; (rB.overrides || []).forEach(function (x) { if (x.date === iso) O = x; });
+      var g = function (k) { return (O && O[k]) || P[k]; }, fri = new Date(iso + 'T12:00:00Z').getUTCDay() === 5;
+      return [['Fajr', g('fajr')], [fri ? 'Jumu‘ah' : 'Zuhr + Asr', fri ? g('jumuah') : g('zuhr_asr')], ['Maghrib + Isha', g('maghrib_isha')]];
+    };
+    var rcheck = function () {
+      var d1 = fv('data'), d2 = fv('fine') || d1, a = fv('dalle'), b = fv('alle'), msg = [], ok = true;
+      if (!d1) { rc.innerHTML = '<p class="amj-tnote">Scegli la data per vedere gli orari di preghiera e le sovrapposizioni.</p>'; return; }
+      if (d2 < d1) { rc.innerHTML = '<p class="amj-tnote">La fine deve essere dopo l’inizio.</p>'; return; }
+      var days = rdays(d1, d2);
+      days.forEach(function (iso) {
+        var w = rW && rW.days[iso], L = jam(iso), lab = iso.split('-').reverse().slice(0, 2).join('/');
+        if (!w) { msg.push('<li>' + lab + ': data fuori dal periodo degli orari (2026–2027).</li>'); return; }
+        if (a && b && rmin(b) > rmin(a)) {
+          var A = rmin(a), Bm = rmin(b);
+          if (L) L.forEach(function (x) { var j = rmin(x[1]); if (j >= A && j < Bm) msg.push('<li>' + lab + ': comprende la Jama‘at di <b>' + x[0] + '</b> (' + x[1] + '). Prevedi la preghiera nel programma.</li>'); });
+          if (Bm > w[5] && A < w[5] + 1) msg.push('<li>' + lab + ': l’evento attraversa il tramonto (' + rhm(w[5]) + '): il Maghrib va previsto.</li>');
+        } else if (days.length === 1) msg.push('<li>Aggiungi l’orario di inizio e di fine per controllare le preghiere.</li>');
+        if (new Date(iso + 'T12:00:00Z').getUTCDay() === 5) msg.push('<li>' + lab + ' è venerdì: il Jumu‘ah è alle ' + (L ? L[1][1] : '13:25') + '.</li>');
+      });
+      rE.forEach(function (e) {
+        var s = new Date(e.s).toISOString().slice(0, 10), z = new Date(e.e).toISOString().slice(0, 10);
+        if (!e.minor && s <= d2 && z >= d1) msg.push('<li>Si sovrappone a <b>' + esc(e.title) + '</b> (' + s.split('-').reverse().join('/') + (z !== s ? '–' + z.split('-').reverse().join('/') : '') + (e.tentative ? ', da confermare' : '') + '). Concorda con il responsabile.</li>');
+      });
+      rc.innerHTML = msg.length ? '<div class="amj-note"><b>Da considerare</b><ul style="margin:6px 0 0;padding-left:20px">' + msg.join('') + '</ul></div>' : '<div class="amj-note">Nessuna Jama‘at e nessun evento pubblicato in questa data.</div>';
+    };
+    var rsend = function () {
+      var t = ['Assalamu alaikum wa rahmatullahi wa barakatuhu.', 'RICHIESTA DATA/PROGRAMMA', 'Struttura: ' + fv('struttura'), 'Titolo: ' + fv('titolo'),
+        'Data: ' + fv('data') + (fv('fine') ? ' – ' + fv('fine') : ''), 'Orario: ' + (fv('dalle') || '?') + ' – ' + (fv('alle') || '?'), 'Luogo: ' + (fv('luogo') || '?'), 'Referente: ' + (fv('referente') || '?')];
+      if (fv('note')) t.push('Note: ' + fv('note'));
+      t.push('Controllo preghiere eseguito sul sito. In attesa di approvazione.');
+      return rq.getAttribute('data-wa') + '?text=' + encodeURIComponent(t.join('\n'));
+    };
+    rs.addEventListener('click', function (ev) {
+      if (!fv('struttura') || !fv('titolo') || !fv('data')) { ev.preventDefault(); rc.innerHTML = '<div class="amj-note"><b>Mancano dati</b>: struttura, titolo e data sono obbligatori.</div>'; return; }
+      rs.href = rsend(); rs.target = '_blank';
+    });
+    rf.addEventListener('input', rcheck); rf.addEventListener('change', rcheck);
+    Promise.all([fetch(rq.getAttribute('data-wsrc')).then(function (r) { return r.json(); }), fetch(rq.getAttribute('data-bsrc'), { cache: 'no-cache' }).then(function (r) { return r.json(); }), fetch(rq.getAttribute('data-esrc'), { cache: 'no-cache' }).then(function (r) { return r.json(); })])
+      .then(function (x) { rW = x[0]; rB = x[1]; rE = norm(x[2]); rcheck(); }).catch(function () { rc.innerHTML = '<p class="amj-tnote">Il controllo degli orari non si carica: puoi comunque inviare la richiesta.</p>'; });
+  }
+
   /* ---------- filtro del blog ---------- */
   var chips = $$('.amj-chip[data-filter]');
   chips.forEach(function (c) {
