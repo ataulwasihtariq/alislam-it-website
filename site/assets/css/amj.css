@@ -108,7 +108,7 @@ body.amj{margin:0;background:var(--amj-cream);font-family:var(--amj-sans);font-s
 .amj-burger[aria-expanded=true] span:nth-child(1){transform:translateY(5px) rotate(45deg)}
 .amj-burger[aria-expanded=true] span:nth-child(2){opacity:0}
 .amj-burger[aria-expanded=true] span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
-@media(max-width:1099px){
+@media(max-width:1179px){
   .amj-bar{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(250,248,244,.97)}
   .amj-burger{display:block}
   .amj-nav{position:fixed;inset:0;z-index:65;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;padding:var(--s-900) var(--s-400) var(--s-400);background:rgba(250,248,244,.96);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);overflow:auto;opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility .5s var(--ease);font-size:18px;line-height:28px}
@@ -490,14 +490,14 @@ div.amj-s{padding-top:var(--s-800);padding-bottom:var(--s-800)}
 @media(max-width:700px){.amj-top .amj-w>span:first-child{display:none}.amj-top .amj-w{justify-content:center}.amj-top .amj-w>span:last-child{justify-content:center;gap:var(--s-50) var(--s-200)}.amj-draft{padding:var(--s-75) var(--s-200)}}
 .amj-header{max-width:100%}
 @media(min-width:1400px){.amj-logo-full{width:280px}}
-@media(max-width:1099px){.amj-logo-full{width:260px}}
+@media(max-width:1179px){.amj-logo-full{width:260px}}
 @media(max-width:420px){.amj-logo-full{width:220px}}
 
 /* sottomenu: voce attiva evidenziata, nome lungo mai tagliato */
 .amj-menu a[aria-current]{background:var(--amj-sand);font-weight:700}
 .amj-menu a{white-space:normal;min-width:max-content}
 .amj-nav a:focus-visible,.amj-menu a:focus-visible{outline:3px solid var(--amj-gold-d);outline-offset:var(--s-25)}
-@media(max-width:1099px){
+@media(max-width:1179px){
   .amj-nav{padding-top:var(--s-800)}
   .amj-menu{padding:var(--s-50) 0 var(--s-75) var(--s-200)}
   .amj-menu a{font-size:16px;line-height:24px;padding:var(--s-75) 0;min-width:0;border-radius:0}
@@ -571,6 +571,26 @@ div.amj-s{padding-top:var(--s-800);padding-bottom:var(--s-800)}
 .amj-embed .rn .f a{min-height:44px;display:inline-flex;align-items:center}
 @media(max-width:700px){.amj-embed .wn,.amj-embed .rn{padding-left:var(--s-300);padding-right:var(--s-300)}.amj-embed .wn .hd h2,.amj-embed .rn .rn-hd h2{font-size:30px;line-height:36px}}
 /* menu aperto su telefono: il pulsante di chiusura resta sempre in alto a destra */
-@media(max-width:1099px){.amj-burger[aria-expanded=true]{position:fixed;top:var(--s-200);right:var(--s-200);background:var(--amj-cream)}}
+@media(max-width:1179px){.amj-burger[aria-expanded=true]{position:fixed;top:var(--s-200);right:var(--s-200);background:var(--amj-cream)}}
 .amj-box h3{font-size:20px;line-height:28px}
 .amj-footer .bot>span:last-child{display:flex;flex-wrap:wrap;gap:var(--s-100) var(--s-300)}
+/* menu: voce speciale Jalsa Salana, logo dei dipartimenti */
+.amj-nav a.amj-jalsa{display:inline-flex;align-items:center;gap:var(--s-75);padding:var(--s-50) var(--s-100) var(--s-50) var(--s-75);border:1px solid var(--amj-gold);border-radius:9999px;background:var(--amj-white);color:var(--amj-gold-d);font-weight:600;white-space:nowrap}
+.amj-nav a.amj-jalsa:hover{background:var(--amj-sand);color:var(--amj-green-d)}
+.amj-nav a.amj-jalsa img{display:block;width:var(--s-300);height:var(--s-300);object-fit:contain}
+.amj-nav a.amj-jalsa[aria-current]{background:var(--amj-sand)}
+@media(max-width:1179px){.amj-nav a.amj-jalsa{align-self:flex-start;margin-top:var(--s-200);border-radius:var(--r-xl);padding:var(--s-100) var(--s-200)}}
+.amj-badge{box-shadow:inset 0 0 0 3px var(--amj-dept),inset 0 0 0 4px rgba(255,255,255,.85)}
+.amj-d .amj-badge.amj-badge-img{background:var(--amj-white);box-shadow:none;object-fit:cover;border:1px solid var(--amj-line)}
+.amj-dhead{display:flex;align-items:center;gap:var(--s-200);margin-bottom:var(--s-200)}
+.amj-dhead .amj-eyebrow{margin-bottom:var(--s-100)}.amj-dhead .amj-rule{margin-bottom:0}
+.amj-dlogo{width:var(--s-800);height:var(--s-800);border-radius:9999px;flex:none;display:block}
+.amj-dlogo.amj-badge{background:var(--amj-dept);color:#fff;display:flex;align-items:center;justify-content:center;font-size:40px;line-height:48px;font-weight:600}
+img.amj-dlogo{object-fit:cover;background:var(--amj-white);border:1px solid var(--amj-line)}
+.amj-jhero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:var(--s-600);align-items:center}
+.amj-jhero img{width:100%;height:auto;display:block}
+.amj-jnext{border:1px solid var(--amj-gold);border-radius:var(--r-2xl);background:var(--amj-white);padding:var(--s-400);display:flex;flex-wrap:wrap;gap:var(--s-200) var(--s-500);align-items:center;justify-content:space-between}
+.amj-jnext b{display:block;font-size:30px;line-height:36px;font-weight:600;color:var(--amj-green-d)}
+.amj-jnext span{color:var(--amj-mute)}
+.amj-jed{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--s-300)}
+@media(max-width:860px){.amj-jhero{grid-template-columns:1fr}.amj-jhero img{max-width:240px}}

@@ -22,36 +22,23 @@ SITE = {
 CITIES = ["Bologna", "Parma", "Brescia", "Ravenna", "Venezia-Mestre", "Padova", "Trento", "Bolzano",
           "Milano", "Varese", "Como", "Torino", "Cuneo", "Firenze", "Roma", "Napoli", "Catania"]
 
-# Menu principale: (etichetta, percorso, sottovoci). "Dipartimenti" ha il sottomenu generato da DEPARTMENTS.
-# Ogni pagina del sito è raggiungibile da una voce o da una sottovoce; la voce attiva si evidenzia da sola.
+# Menu principale: (etichetta, percorso). "Dipartimenti" ha il sottomenu generato da DEPARTMENTS.
+# Menu principale: cinque voci (con sottomenu dove serve) più la voce speciale Jalsa Salana.
+# Ogni voce: (etichetta, indirizzo, [(etichetta, indirizzo), ...]).
 NAV = [
-    ("Conoscere l’Islam", "islam/", []),
-    ("Chi siamo", "chi-siamo/", [
-        ("Chi siamo", "chi-siamo/"),
-        ("Il Messia Promesso", "chi-siamo/messia-promesso.html"),
-        ("La Khilafat e i cinque Califfi", "chi-siamo/khulafa.html"),
-        ("La Comunità in Italia", "chi-siamo/storia-in-italia.html"),
-        ("Dicono di noi", "dicono-di-noi/"),
-    ]),
-    ("Domande", "domande/", [
-        ("Tutte le domande", "domande/"),
-        ("Le accuse più comuni", "domande/accuse.html"),
-        ("Gesù: vivo o morto?", "domande/gesu.html"),
-    ]),
-    ("Orari di preghiera", "orari-preghiera/", [
-        ("Orari delle Jama’at in Italia", "orari-preghiera/"),
-        ("Moschea Baitut Tauhid", "baitut-tauhid/"),
-        ("Ramadan 2027", "ramadan/"),
-    ]),
-    ("Sermoni", "sermoni/", []),
-    ("Libri", "libri/", []),
+    ("Conoscere", "islam/", [
+        ("Che cos’è l’Islam", "islam/"), ("Chi siamo", "chi-siamo/"), ("Il Messia Promesso", "chi-siamo/messia-promesso.html"),
+        ("La Khilafat", "chi-siamo/khulafa.html"), ("Domande e risposte", "domande/"), ("Dicono di noi", "dicono-di-noi/")]),
+    ("Orari e Ramadan", "orari-preghiera/", [
+        ("Orari di preghiera", "orari-preghiera/"), ("Orari di Baitut Tauhid", "baitut-tauhid/"), ("Ramadan 2027", "ramadan/")]),
     ("Eventi", "eventi/", []),
-    ("Dipartimenti", "dipartimenti/", []),
+    ("Sermoni e libri", "sermoni/", [("Sermoni del Venerdì", "sermoni/"), ("Libri", "libri/")]),
+    ("Dipartimenti", "dipartimenti/", None),  # None: il sottomenu si compila dai dipartimenti
 ]
-
-# status: "attivo" = pagina con contenuti reali; "bozza" = scheda introduttiva, contenuti da completare
+# Voce speciale: ha un proprio logo.
+JALSA = {"label": "Jalsa Salana", "href": "jalsa-salana/", "logo": "img/dept/jalsa-salana.webp"}
 DEPARTMENTS = [
-    {"slug": "waqf-e-nau", "name": "Waqf-e-Nau", "ur": "وقفِ نو", "color": "#1f4a3a", "initial": "W", "status": "attivo",
+    {"slug": "waqf-e-nau", "name": "Waqf-e-Nau", "ur": "وقفِ نو", "color": "#1f4a3a", "initial": "W", "status": "attivo", "logo": "img/dept/waqf-e-nau.webp",
      "summary": "I bambini dedicati al servizio della fede: programma 2026, Nisab per età, Jaiza, quiz per i genitori.",
      "embed": "waqfe-nau/wordpress/waqfe-nau-embed.html"},
     {"slug": "rishta-nata", "name": "Rishta Nata", "ur": "رشتہ ناطہ", "color": "#8a3b4a", "initial": "R", "status": "attivo",

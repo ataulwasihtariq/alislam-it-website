@@ -3,7 +3,7 @@
 <div class="amj-cards amj-cards4">
 {% for d in departments %}
 <a class="amj-card amj-d" href="{{ root }}dipartimenti/{{ d.slug }}/" style="--amj-dept:{{ d.color }}"><div class="amj-b">
-<span class="amj-badge" aria-hidden="true">{{ d.initial }}</span>
+{% if d.logo %}<img class="amj-badge amj-badge-img" src="{{ assets }}{{ d.logo }}" width="64" height="64" alt="Logo {{ d.name }}">{% else %}<span class="amj-badge" aria-hidden="true">{{ d.initial }}</span>{% endif %}
 <h3>{{ d.name }}</h3><span class="amj-ur" lang="ur" dir="rtl">{{ d.ur }}</span>
 <p>{{ d.summary }}</p>
 <span class="amj-tag{% if d.status == 'attivo' %} live{% endif %}">{{ 'Pagina attiva' if d.status == 'attivo' else 'In preparazione' }}</span>

@@ -1,6 +1,6 @@
 # Revisione design, menu e SEO (26 novembre 2026)
 
-**Menu.** Otto voci con sottomenu (Chi siamo, Domande, Orari di preghiera, Dipartimenti). "Ramadan" e "Moschea Baitut Tauhid" sono ora sotto "Orari di preghiera"; "Dicono di noi" e "La Comunità in Italia" sotto "Chi siamo". Il menu si modifica solo in `src/site.py` (`NAV`). Il tema WordPress ha lo stesso schema in `header.php`.
+**Menu.** Cinque voci (Conoscere, Orari e Ramadan, Eventi, Sermoni e libri, Dipartimenti) più la voce speciale Jalsa Salana, come deciso nell'ultima versione di `main`. Ogni pagina è raggiungibile dal menu o dal piè di pagina; la voce attiva si evidenzia da sola. Il menu si modifica solo in `src/site.py` (`NAV`). Il tema WordPress ha lo stesso schema in `header.php`.
 
 **Grafica.** Contorni e ombre delle schede più visibili; barra del menu che non esce più dal riquadro; logo ingrandito; date degli eventi non più tagliate; blocchi Waqf-e-Nau e Rishta Nata con gli stessi caratteri e colori del sito (regole `.amj-embed`); testi mai sotto 12 px; comparsa delle sezioni attiva solo se JavaScript funziona.
 

@@ -19,17 +19,23 @@ $req = trim(wp_parse_url(add_query_arg([]), PHP_URL_PATH), '/');
 <a href="<?php echo $home; ?>" class="amj-brand"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/logo-jamaat-lockup.svg" width="181" height="40" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" class="amj-logo-full"></a>
 <button class="amj-burger" aria-expanded="false" aria-controls="amj-nav" aria-label="Menu"><span></span><span></span><span></span></button>
 <nav class="amj-nav" id="amj-nav" aria-label="Menu principale">
-<?php foreach ($voci as [$label, $path, $kids]) :
-    $first = strtok($path, '/');
-    $cur = ($req === rtrim($path, '/') || strpos($req, $first) === 0) ? ' aria-current="page"' : '';
-    if ($kids) : ?>
-<span class="amj-dd"><a href="<?php echo esc_url(home_url('/' . $path)); ?>"<?php echo $cur; ?> aria-haspopup="true"><?php echo esc_html($label); ?></a>
-<span class="amj-menu"><?php foreach ($kids as [$kl, $kp]) : $kc = ($req === rtrim($kp, '/')) ? ' aria-current="page"' : ''; ?><a href="<?php echo esc_url(home_url('/' . $kp)); ?>"<?php echo $kc; ?>><?php echo esc_html($kl); ?></a><?php endforeach; ?></span></span>
+<?php
+$gruppi = [
+    ['Conoscere', 'islam/', [['Che cos’è l’Islam', 'islam/'], ['Chi siamo', 'chi-siamo/'], ['Il Messia Promesso', 'chi-siamo/messia-promesso.html'], ['La Khilafat', 'chi-siamo/khulafa.html'], ['Domande e risposte', 'domande/'], ['Dicono di noi', 'dicono-di-noi/']]],
+    ['Orari e Ramadan', 'orari-preghiera/', [['Orari di preghiera', 'orari-preghiera/'], ['Orari di Baitut Tauhid', 'baitut-tauhid/'], ['Ramadan 2027', 'ramadan/']]],
+    ['Eventi', 'eventi/', []],
+    ['Sermoni e libri', 'sermoni/', [['Sermoni del Venerdì', 'sermoni/'], ['Libri', 'libri/']]],
+];
+foreach ($gruppi as $g) : $cur = ($req === rtrim($g[1], '/')) ? ' aria-current="page"' : ''; ?>
+<?php if ($g[2]) : ?>
+<span class="amj-dd"><a href="<?php echo esc_url(home_url('/' . $g[1])); ?>"<?php echo $cur; ?>><?php echo esc_html($g[0]); ?></a>
+<span class="amj-menu"><?php foreach ($g[2] as $k) : ?><a href="<?php echo esc_url(home_url('/' . $k[1])); ?>"><?php echo esc_html($k[0]); ?></a><?php endforeach; ?></span></span>
 <?php else : ?>
-<a href="<?php echo esc_url(home_url('/' . $path)); ?>"<?php echo $cur; ?>><?php echo esc_html($label); ?></a>
+<a href="<?php echo esc_url(home_url('/' . $g[1])); ?>"<?php echo $cur; ?>><?php echo esc_html($g[0]); ?></a>
 <?php endif; endforeach; ?>
-<span class="amj-dd"><a href="<?php echo esc_url(home_url('/dipartimenti/')); ?>"<?php echo (strpos($req, 'dipartimenti') === 0) ? ' aria-current="page"' : ''; ?> aria-haspopup="true">Dipartimenti</a>
-<span class="amj-menu"><?php foreach (get_posts(['post_type' => 'dipartimento', 'numberposts' => 20, 'orderby' => 'menu_order title', 'order' => 'ASC']) as $d) : ?><a href="<?php echo esc_url(get_permalink($d)); ?>"><i></i><?php echo esc_html(get_the_title($d)); ?></a><?php endforeach; ?></span></span>
+<span class="amj-dd"><a href="<?php echo esc_url(home_url('/dipartimenti/')); ?>">Dipartimenti</a>
+<span class="amj-menu"><?php foreach (get_posts(['post_type' => 'dipartimento', 'numberposts' => 20, 'orderby' => 'menu_order title', 'order' => 'ASC']) as $d) : ?><a href="<?php echo esc_url(get_permalink($d)); ?>"><i></i><?php echo esc_html(get_the_title($d)); ?></a><?php endforeach; ?><hr><a href="<?php echo esc_url(home_url('/dipartimenti/')); ?>"><i></i>Tutti i dipartimenti</a><a href="<?php echo esc_url(home_url('/area-riservata/')); ?>"><i></i>Area riservata</a></span></span>
+<a href="<?php echo esc_url(home_url('/jalsa-salana/')); ?>" class="amj-jalsa"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/dept/jalsa-salana.webp" width="22" height="22" alt="">Jalsa Salana</a>
 <a href="<?php echo esc_url(home_url('/contatti/')); ?>" class="amj-cta">Parliamone</a>
 </nav></div></header>
 <main id="contenuto">
