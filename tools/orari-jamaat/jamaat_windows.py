@@ -31,7 +31,7 @@ def day(date, lat, lon):
     t = solar.day_times(date, lat, lon)
     sr, noon, ss = mins(t['sunrise']), mins(t['noon']), mins(t['sunset'])
     fajr = sr - 90
-    isha = ss + 90
+    isha = max(ss + 90, mins(solar.day_times(date, lat, lon, zenith=105)['sunset']))
     mid = ss + (fajr + 1440 - ss) / 2
     c, f = math.ceil, math.floor
     return [c(fajr), f(sr), c(noon), c(asr(date, noon, lat)), f(ss), c(isha), f(mid - 1440 if mid >= 1440 else mid)]
