@@ -408,7 +408,7 @@
       rc.innerHTML = msg.length ? '<div class="amj-note"><b>Da considerare</b><ul style="margin:6px 0 0;padding-left:20px">' + msg.join('') + '</ul></div>' : '<div class="amj-note">Nessuna Jama‘at e nessun evento pubblicato in questa data.</div>';
     };
     var rsend = function () {
-      var t = ['Assalamu alaikum wa rahmatullahi wa barakatuhu.', 'RICHIESTA DATA/PROGRAMMA', 'Struttura: ' + fv('struttura'), 'Titolo: ' + fv('titolo'),
+      var t = ['Assalamu alaikum wa rahmatullahi wa barakatuhu.', 'RICHIESTA DATA/PROGRAMMA (per il Segretario Generale nazionale)', 'Struttura: ' + fv('struttura'), 'Titolo: ' + fv('titolo'),
         'Data: ' + fv('data') + (fv('fine') ? ' – ' + fv('fine') : ''), 'Orario: ' + (fv('dalle') || '?') + ' – ' + (fv('alle') || '?'), 'Luogo: ' + (fv('luogo') || '?'), 'Referente: ' + (fv('referente') || '?')];
       if (fv('note')) t.push('Note: ' + fv('note'));
       t.push('Controllo preghiere eseguito sul sito. In attesa di approvazione.');

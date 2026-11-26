@@ -1,10 +1,10 @@
 # Richieste di date e programmi (pagina Eventi)
 
 ## Come funziona oggi
-1. Un responsabile (Amila nazionale, ausiliaria, dipartimento, Zaitun, Jama'at locale) apre `eventi/#richiesta`.
+1. Un responsabile (Amila nazionale, Jama'at locale, organizzazione ausiliaria, dipartimento) apre `eventi/#richiesta`.
 2. Il modulo controlla la data contro gli orari di Baitut Tauhid (Jama'at e finestre di preghiera) e contro gli eventi già pubblicati.
 3. «Invia la richiesta» apre WhatsApp con il testo già scritto. Nessun dato è salvato dal sito.
-4. L'Imam (o chi approva) decide. Se approvato, l'evento va nel calendario **pubblico** e compare sul sito.
+4. Approva il Segretario Generale nazionale (il numero WhatsApp è quello della Comunità in `site.whatsapp_link`, da confermare che sia la linea diretta). Se approvato, l'evento va nel calendario **pubblico** e compare sul sito.
 
 ## Calendario: regola
 - Decisione dell'Imam (26 nov 2026): il «Calendario Annuale» contiene solo eventi nazionali e viene incorporato nel sito. Deve essere condiviso come pubblico con «tutti i dettagli dell'evento»; ogni evento inserito lì diventa visibile. Le note interne vanno quindi tenute fuori da questo calendario.
@@ -13,4 +13,4 @@
 - Per avere anche l'elenco interattivo e il file .ics: indirizzo iCal pubblico in `tools/sync_eventi.py`.
 
 ## Passo successivo (richiede una decisione)
-Sostituire WhatsApp con Google Form → Foglio → colonna «Stato» (Approvato) → Apps Script che crea l'evento nel calendario pubblico. Va deciso: chi approva e quali strutture compaiono nell'elenco.
+Sostituire WhatsApp con Google Form → Foglio → colonna «Stato» (Approvato) → Apps Script che crea l'evento nel calendario pubblico. Chi approva è deciso (Segretario Generale nazionale); le strutture sono organizzazioni ausiliarie e dipartimenti.
