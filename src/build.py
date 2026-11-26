@@ -48,13 +48,18 @@ def depth_root(rel):
 
 def section_of(rel):
     first = rel.split("/")[0] + "/"
-    return first if any(h == first for _, h in cfg.NAV) else ""
+    if first == cfg.JALSA["href"]:
+        return first
+    for _, h, kids in cfg.NAV:
+        if first == h or any(k.split("/")[0] + "/" == first for _, k in (kids or [])):
+            return h
+    return ""
 
 
 def render(meta, body, rel, wp=False, **extra):
     root = "/" if wp else depth_root(rel)
     assets = "/wp-content/themes/amj-it/assets/" if wp else root + "assets/"
-    ctx = dict(site=cfg.SITE, nav=cfg.NAV, departments=cfg.DEPARTMENTS, auxiliary=cfg.AUXILIARY,
+    ctx = dict(site=cfg.SITE, nav=cfg.NAV, jalsa=cfg.JALSA, departments=cfg.DEPARTMENTS, auxiliary=cfg.AUXILIARY,
                cities=cfg.CITIES, sermons=cfg.SERMONS, books=cfg.BOOKS, press=cfg.PRESS, articles=cfg.ARTICLES, faq_home=cfg.FAQ_HOME, root=root, assets=assets,
                title=meta.get("title", cfg.SITE["name"]), description=meta.get("description", ""),
                noindex=meta.get("noindex") == "true", is_home=rel == "index.html",

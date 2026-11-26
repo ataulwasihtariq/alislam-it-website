@@ -22,9 +22,26 @@ Avorio `#faf8f4` e sabbia `#f1ede4` (fondi), verde profondo `#1f4a3a` e `#16201c
 - Condivisione sui social: `assets/img/og-jamaat.png` (1200×630, logo esteso e motto «Amore per tutti, odio per nessuno»).
 
 ## Navigazione
-Menu a icona (burger) sotto i 1440 px per evitare che le voci si sovrappongano; barra completa sopra. Evidenziare sempre la pagina corrente. Obiettivo: ogni pagina raggiungibile in due clic.
+Cinque voci con sottomenu, più la voce speciale della Jalsa Salana e il pulsante «Parliamone»:
+1. **Conoscere**: Che cos'è l'Islam, Chi siamo, Il Messia Promesso, La Khilafat, Domande e risposte, Dicono di noi.
+2. **Orari e Ramadan**: Orari di preghiera, Orari di Baitut Tauhid, Ramadan 2027.
+3. **Eventi**.
+4. **Sermoni e libri**.
+5. **Dipartimenti** (sottomenu con tutti i dipartimenti e l'area riservata).
+- **Jalsa Salana**: voce speciale con il proprio logo (pillola dorata), pagina `jalsa-salana/`.
+Sotto 1180 px il menu diventa a icona; la pagina corrente è sempre evidenziata. Obiettivo: ogni pagina a due clic. Il menu si modifica in `src/site.py` (`NAV`, `JALSA`) e in `wordpress/theme/amj-it/header.php`.
+
+## Dipartimenti e logo propri
+Ogni dipartimento segue lo stesso stile del sito (stessi caratteri, spazi, filetto in oro, motivo dell'emblema) e ha il proprio colore e il proprio logo.
+- Se il dipartimento ha un logo ufficiale, si usa quello (`logo` in `DEPARTMENTS`, file in `assets/img/dept/`): oggi Waqf-e-Nau.
+- Finché non c'è, un medaglione provvisorio con l'iniziale nel colore del dipartimento, con il doppio cerchio dell'emblema. Rishta Nata, Tarbiyyat, Tabligh, Talim, Mal, Isha'at e Servizio all'umanità aspettano il proprio logo.
+- Ogni pagina di dipartimento porta la dicitura «Dipartimento della Jama'at» e resta sotto il logo esteso della Jama'at nell'intestazione.
+- Per aggiungere un logo: copiare il file in `assets/img/dept/`, aggiungere `"logo": "img/dept/<nome>.webp"` al dipartimento e ricostruire con `python3 src/build.py --sources ..`.
+
+## Jalsa Salana
+Ha un proprio logo (oro su trasparente, `assets/img/dept/jalsa-salana.webp`, dal file «Jalsa Logo.png» del repository jalsa-salana-italia: reca la scritta «2026», da sostituire con una versione senza anno per le edizioni future). La pagina riassume prossima edizione, edizione 2026, archivio e video.
 
 ## Da decidere
-1. Ridurre le voci del menu principale (oggi nove più il pulsante) raggruppando: «Conoscere» (Islam, Chi siamo, Domande), «Orari e Ramadan», «Eventi», «Sermoni e libri», «Dipartimenti».
+1. Loghi ufficiali degli altri sette dipartimenti.
 2. Ospitare i font sul sito (GDPR) e valutare un carattere con grazie per i titoli.
-3. Sostituire la fotografia con la cupola e la mezzaluna sul finale (`chi-siamo.webp`) con una immagine senza mezzaluna, oppure con l'emblema.
+3. Date della Jalsa 2027 (11–13 giugno, ancora da confermare).

@@ -1,6 +1,6 @@
 <section class="amj-page"><div class="amj-w">
 <p class="amj-crumbs"><a href="{{ root }}index.html">Home</a> › <a href="{{ root }}dipartimenti/">Dipartimenti</a> › {{ d.name }}</p>
-<p class="amj-eyebrow">Dipartimento</p><div class="amj-rule" style="background:var(--amj-dept)"></div>
+<div class="amj-dhead">{% if d.logo %}<img class="amj-dlogo" src="{{ assets }}{{ d.logo }}" width="96" height="96" alt="Logo {{ d.name }}">{% else %}<span class="amj-dlogo amj-badge" aria-hidden="true">{{ d.initial }}</span>{% endif %}<div><p class="amj-eyebrow">Dipartimento della Jama'at</p><div class="amj-rule" style="background:var(--amj-dept)"></div></div></div>
 <h1>{{ d.name }} <span lang="ur" dir="rtl" style="font-family:var(--amj-urdu);font-size:.5em;color:var(--amj-dept);margin-inline-start:12px">{{ d.ur }}</span></h1>
 <p class="amj-lead">{{ d.summary }}</p>
 </div></section>
