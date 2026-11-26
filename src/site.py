@@ -25,6 +25,7 @@ NAV = [
     ("Conoscere l’Islam", "islam/"),
     ("Chi siamo", "chi-siamo/"),
     ("Orari di preghiera", "orari-preghiera/"),
+    ("Baitut Tauhid", "baitut-tauhid/"),
     ("Ramadan", "ramadan/"),
     ("Domande", "domande/"),
     ("Dicono di noi", "dicono-di-noi/"),

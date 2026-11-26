@@ -326,7 +326,7 @@
         { n: fri ? 'Jumu‘ah (al posto di Zuhr)' : 'Zuhr', s: w[2], e: w[3], j: t && (fri ? t.jumuah : t.zuhr_asr), jl: t ? (fri ? t.jumuah : t.zuhr_asr + ' (con l’Asr)') : 'da definire', note: 'Inizio: mezzogiorno solare (zawal). Fine: quando l’ombra è uguale all’altezza (' + hm(w[3]) + '); secondo Abu Hanifa fino a ombra doppia (' + hm(w[4]) + ').' + (fri ? ' Il Jumu‘ah va dopo lo zawal.' : '') },
         { n: 'Asr', s: w[3], e: w[5], j: t && (fri ? null : t.zuhr_asr), jl: t ? (fri ? 'segue il Jumu‘ah' : t.zuhr_asr + ' (con lo Zuhr)') : 'da definire', note: 'Inizio: ombra uguale all’altezza (' + hm(w[3]) + '); secondo Abu Hanifa ombra doppia (' + hm(w[4]) + '). Fine: tramonto; meglio prima che il sole ingiallisca.' },
         { n: 'Maghrib', s: w[5], e: w[5], nowin: true, j: t && t.maghrib_isha, jl: t ? t.maghrib_isha + ' (con l’Isha)' : 'da definire', note: 'Inizio: tramonto. Nessuna finestra: secondo l’hadith dell’imamato di Gabriele il Maghrib è nello stesso momento in entrambi i giorni, quindi si prega subito dopo il tramonto. Solo a Baitut Tauhid, con la regola dell’Imam, si unisce all’Isha.' },
-        { n: 'Isha', s: Math.max(w[5] + 90, w[7]), e: midEnd, j: t && t.maghrib_isha, jl: t ? t.maghrib_isha + ' (con il Maghrib)' : 'da definire', note: 'Inizio: il più tardi tra 90 minuti dopo il tramonto (' + hm(w[5] + 90) + ') e la scomparsa del crepuscolo rosso a 15° (' + hm(w[7]) + '). Secondo Abu Hanifa si aspetta il crepuscolo bianco (18°): ' + hm(w[8]) + '. Fine: metà della notte' + (mid < 600 ? ' (dopo mezzanotte)' : '') + '.' }
+        { n: 'Isha', s: Math.max(w[5] + 90, w[7]), e: midEnd, noend: true, j: t && t.maghrib_isha, jl: t ? t.maghrib_isha + ' (con il Maghrib)' : 'da definire', note: 'Inizio: il più tardi tra 90 minuti dopo il tramonto (' + hm(w[5] + 90) + ') e la scomparsa del crepuscolo rosso a 15° (' + hm(w[7]) + '). Secondo Abu Hanifa si aspetta il crepuscolo bianco (18°): ' + hm(w[8]) + '. Fine: nessun orario indicato.' }
       ].map(function (r) { r.ws = r.s; return r; });
     };
     var render = function (iso) {
@@ -337,9 +337,9 @@
       if (!R) { out.innerHTML = '<p class="amj-tnote">Data fuori dal periodo disponibile (2026–2027).</p>'; chk.textContent = ''; return; }
       var w = W.days[iso];
       out.innerHTML = '<div class="amj-twrap"><table class="amj-rtable amj-btp-t"><thead><tr><th>Preghiera</th><th>Inizio (awwal waqt)</th><th>Fine (ākhir waqt)</th><th>Jama‘at</th></tr></thead><tbody>' + R.map(function (r) {
-        var l = Math.max(0, r.s / 1440 * 100), wd = r.nowin ? 0.8 : Math.max(1.2, (Math.min(r.e, 1440) - r.s) / 1440 * 100);
+        var l = Math.max(0, r.s / 1440 * 100), wd = (r.nowin || r.noend) ? 0.8 : Math.max(1.2, (Math.min(r.e, 1440) - r.s) / 1440 * 100);
         var mk = r.j ? '<i class="m" style="left:' + (toMin(r.j) / 1440 * 100) + '%"></i>' : '';
-        return '<tr><td><b>' + r.n + '</b></td><td>' + hm(r.s) + '</td><td>' + (r.nowin ? '—' : hm(r.e)) + '</td><td class="hot">' + r.jl + '</td></tr>' +
+        return '<tr><td><b>' + r.n + '</b></td><td>' + hm(r.s) + '</td><td>' + (r.nowin || r.noend ? '—' : hm(r.e)) + '</td><td class="hot">' + r.jl + '</td></tr>' +
           '<tr class="bar"><td colspan="4"><div class="amj-btp-bar"><span style="left:' + l + '%;width:' + wd + '%"></span>' + mk + '</div><small>' + r.note + '</small></td></tr>';
       }).join('') + '</tbody></table></div><p class="amj-tnote">Alba ' + hm(w[1]) + ' · Mezzogiorno solare ' + hm(w[2]) + ' · Tramonto ' + hm(w[5]) + ' · Metà notte ' + hm(w[9]) + '. La linea verde è la finestra; il segno scuro è la Jama‘at.</p>';
       check();
@@ -449,10 +449,9 @@
       qcur = iso; qd.value = iso;
       var L = qloc2(), v = qcalc(iso, L), d = iso.split('-').map(Number), dow = new Date(iso + 'T12:00:00Z').getUTCDay();
       $('[data-opj-title]', opj).textContent = L.name + ' · ' + FULLD[dow] + ' ' + d[2] + ' ' + FULLM[d[1] - 1] + ' ' + d[0];
-      var mid = v.mid < 600 ? v.mid + 1440 : v.mid;
-      var R = [['Fajr', v.fajr, v.sunrise], [dow === 5 ? 'Zuhr (il venerdì Jumu‘ah)' : 'Zuhr', v.zuhr, v.asr], ['Asr', v.asr, v.maghrib], ['Maghrib', v.maghrib, null], ['Isha', v.isha, mid]];
+      var R = [['Fajr', v.fajr, v.sunrise], [dow === 5 ? 'Zuhr (il venerdì Jumu‘ah)' : 'Zuhr', v.zuhr, v.asr], ['Asr', v.asr, v.maghrib], ['Maghrib', v.maghrib, null], ['Isha', v.isha, null, true]];
       $('[data-opj-out]', opj).innerHTML = '<div class="amj-twrap"><table class="amj-rtable amj-btp-t"><thead><tr><th>Preghiera</th><th>Inizio (awwal waqt)</th><th>Fine (ākhir waqt)</th></tr></thead><tbody>' + R.map(function (r) {
-        return '<tr><td><b>' + r[0] + '</b></td><td class="hot">' + qh(r[1]) + '</td><td>' + (r[2] === null ? '<small>si prega subito dopo il tramonto</small>' : qh(r[2])) + (r[2] >= 1440 ? ' <small>(dopo mezzanotte)</small>' : '') + '</td></tr>';
+        return '<tr><td><b>' + r[0] + '</b></td><td class="hot">' + qh(r[1]) + '</td><td>' + (r[2] === null ? (r[3] ? '<small>nessun orario indicato</small>' : '<small>si prega subito dopo il tramonto</small>') : qh(r[2])) + (r[2] >= 1440 ? ' <small>(dopo mezzanotte)</small>' : '') + '</td></tr>';
       }).join('') + '</tbody></table></div><p class="amj-tnote">Shuruq (sorgere del sole): ' + qh(v.sunrise) + '. Tramonto: ' + qh(v.maghrib) + '.</p>';
       qsrc(L);
       var n = new Date(Date.UTC(d[0], d[1], 0)).getUTCDate(), rows = '';
