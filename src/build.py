@@ -47,8 +47,36 @@ def depth_root(rel):
 
 
 def section_of(rel):
+    """Voce del menu principale a cui appartiene la pagina (anche tramite le sottovoci)."""
     first = rel.split("/")[0] + "/"
-    return first if any(h == first for _, h in cfg.NAV) else ""
+    for _, h, kids in cfg.NAV:
+        if h == first or any(k.split("/")[0] + "/" == first for _, k in kids):
+            return h
+    return ""
+
+
+def norm(p):
+    return p + "index.html" if p.endswith("/") else p
+
+
+def breadcrumb_jsonld(crumbs, url, here):
+    """BreadcrumbList per i risultati di ricerca, ricavata dalle briciole di pane della pagina."""
+    items = []
+    for part in crumbs.split("›"):
+        part = part.strip()
+        m = re.search(r'href="([^"]*)"', part)
+        name = _html.unescape(re.sub(r"<[^>]+>", "", part)).strip()
+        if m:
+            href = m.group(1)
+            if not href.startswith("http"):
+                href = href.replace("index.html", "")
+                href = cfg.SITE["base_url"] + "/" + href.lstrip("./")
+            items.append((name, href))
+        else:
+            items.append((name, url))
+    data = {"@context": "https://schema.org", "@type": "BreadcrumbList",
+            "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": u} for i, (n, u) in enumerate(items)]}
+    return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + "</script>"
 
 
 def render(meta, body, rel, wp=False, **extra):
@@ -58,14 +86,17 @@ def render(meta, body, rel, wp=False, **extra):
                cities=cfg.CITIES, sermons=cfg.SERMONS, books=cfg.BOOKS, press=cfg.PRESS, articles=cfg.ARTICLES, faq_home=cfg.FAQ_HOME, root=root, assets=assets,
                title=meta.get("title", cfg.SITE["name"]), description=meta.get("description", ""),
                noindex=meta.get("noindex") == "true", is_home=rel == "index.html",
-               section=section_of(rel), accent=None, extra_head="")
+               section=section_of(rel), current=norm(rel), accent=None, extra_head="")
+    ctx["canonical"] = cfg.SITE["base_url"] + "/" + ("" if rel == "index.html" else rel[:-10] if rel.endswith("/index.html") else rel)
     ctx.update(extra)
     inner = env.from_string(body).render(**ctx)
     layout = meta.get("layout", "page")
     if layout == "page" and not wp:
         crumbs = env.from_string(meta.get("crumbs", "")).render(root=root)
+        if crumbs:
+            ctx["extra_head"] = ctx["extra_head"] + breadcrumb_jsonld(crumbs, ctx["canonical"], meta.get("h1", meta.get("title", "")))
         head = (f'<section class="amj-page{(" art-" + meta["art"]) if meta.get("art") else ""}"><div class="amj-w">'
-                f'{("<p class=amj-crumbs>" + crumbs + "</p>") if crumbs else ""}'
+                f'{("<nav class=amj-crumbs aria-label=Percorso>" + crumbs + "</nav>") if crumbs else ""}'
                 f'<p class="amj-eyebrow">{meta.get("eyebrow","")}</p><div class="amj-rule"></div>'
                 f'<h1>{meta.get("h1", meta.get("title",""))}</h1>'
                 f'{("<p class=amj-lead>" + meta["lead"] + "</p>") if meta.get("lead") else ""}</div></section>')
@@ -146,6 +177,26 @@ def faq_jsonld():
     return '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": qa}, ensure_ascii=False) + "</script>"
 
 
+def write_seo_files():
+    """sitemap.xml e robots.txt: finché il sito è in bozza si vieta l'indicizzazione, poi si pubblica la mappa."""
+    base = cfg.SITE["base_url"]
+    urls = []
+    for p in sorted(OUT.rglob("*.html")):
+        rel = p.relative_to(OUT).as_posix()
+        if rel == "404.html" or 'name="robots" content="noindex' in p.read_text(encoding="utf-8"):
+            continue
+        loc = "/" if rel == "index.html" else "/" + (rel[:-10] if rel.endswith("/index.html") else rel)
+        urls.append(base + loc)
+    sm = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    sm += [f"<url><loc>{u}</loc></url>" for u in urls] + ["</urlset>"]
+    (OUT / "sitemap.xml").write_text("\n".join(sm) + "\n", encoding="utf-8")
+    if cfg.SITE["published"]:
+        rb = f"User-agent: *\nAllow: /\nDisallow: /area-riservata/\n\nSitemap: {base}/sitemap.xml\n"
+    else:
+        rb = "User-agent: *\nDisallow: /\n"
+    (OUT / "robots.txt").write_text(rb, encoding="utf-8")
+
+
 def write(rel, html):
     p = OUT / rel
     p.parent.mkdir(parents=True, exist_ok=True)
@@ -200,7 +251,8 @@ def main():
             embed = "<section class='amj-s'><div class='amj-w'><p>Contenuti in arrivo.</p></div></section>"
         rel = f"dipartimenti/{d['slug']}/index.html"
         meta = {"title": d["name"], "layout": "raw", "description": d["summary"]}
-        html, inner = render(meta, tpl_dept, rel, d=d, accent=d["color"], embed=embed, theme_css=theme_css, auxiliary=cfg.AUXILIARY, DEPT_TEXT=cfg.DEPT_TEXT)
+        bc = breadcrumb_jsonld(f'<a href="{{root}}index.html">Home</a> › <a href="dipartimenti/">Dipartimenti</a> › {d["name"]}', cfg.SITE["base_url"] + f"/dipartimenti/{d['slug']}/", d["name"])
+        html, inner = render(meta, tpl_dept, rel, extra_head=bc, d=d, accent=d["color"], embed=embed, theme_css=theme_css, auxiliary=cfg.AUXILIARY, DEPT_TEXT=cfg.DEPT_TEXT)
         write(rel, html); n += 1
         _, winner = render(meta, tpl_dept, rel, wp=True, d=d, accent=d["color"], embed=embed, theme_css=theme_css, auxiliary=cfg.AUXILIARY, DEPT_TEXT=cfg.DEPT_TEXT)
         (WPPAGES / f"dipartimenti__{d['slug']}.html").write_text(winner, encoding="utf-8")
@@ -211,6 +263,7 @@ def main():
             "<div class='amj-cta2'><a class='amj-btn' href='{{ root }}index.html'>Torna alla home</a><a class='amj-btn2' href='{{ site.whatsapp_link }}'>Scrivici su WhatsApp</a></div></div></section>")
     html, _ = render(m404, b404, "404.html")
     write("404.html", html); n += 1
+    write_seo_files()
     print(f"costruite {n} pagine in {OUT}")
 
 

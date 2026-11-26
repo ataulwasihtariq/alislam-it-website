@@ -6,32 +6,47 @@ SITE = {
     "tagline": "in Italia · prima missione 1937",
     "legal": "Associazione The Ahmadiyya Muslim Jama’at Italia",
     "base_url": "https://alislam.it",
+    "logo_url": "https://alislam.it/assets/img/logo-jamaat-lockup.svg",
     "whatsapp": "+39 051 199 00 451",
     "whatsapp_link": "https://wa.me/390511990451",
     # ID del calendario Google PUBBLICO «Eventi pubblici» (non quello interno). Vuoto = nessun calendario incorporato.
+    "short_name": "Jama’at Italia",
     "public_calendar_id": "6eac6d82f39ca2f50434bf232cc5be0e8ac6aaf4bf429a7330d6a2405e9dd5ea@group.calendar.google.com",
     "toll_free": "800 598 005",
     "email": "contatti@alislam.it",
     "address": "Bait-ul-Tauhid (sede nazionale e moschea), Via Morgobbo 1035/A, Gavaseto, 40018 San Pietro in Casale (BO)",
-    # Dopo la verifica con l'amministratore: mettere True per togliere "noindex" e la fascia "bozza".
+    # Dopo la verifica con l’amministratore: mettere True per togliere "noindex" e la fascia "bozza".
     "published": False,
 }
 
 CITIES = ["Bologna", "Parma", "Brescia", "Ravenna", "Venezia-Mestre", "Padova", "Trento", "Bolzano",
           "Milano", "Varese", "Como", "Torino", "Cuneo", "Firenze", "Roma", "Napoli", "Catania"]
 
-# Menu principale: (etichetta, percorso). "Dipartimenti" ha il sottomenu generato da DEPARTMENTS.
+# Menu principale: (etichetta, percorso, sottovoci). "Dipartimenti" ha il sottomenu generato da DEPARTMENTS.
+# Ogni pagina del sito è raggiungibile da una voce o da una sottovoce; la voce attiva si evidenzia da sola.
 NAV = [
-    ("Conoscere l’Islam", "islam/"),
-    ("Chi siamo", "chi-siamo/"),
-    ("Orari di preghiera", "orari-preghiera/"),
-    ("Ramadan", "ramadan/"),
-    ("Domande", "domande/"),
-    ("Dicono di noi", "dicono-di-noi/"),
-    ("Sermoni", "sermoni/"),
-    ("Libri", "libri/"),
-    ("Eventi", "eventi/"),
-    ("Dipartimenti", "dipartimenti/"),
+    ("Conoscere l’Islam", "islam/", []),
+    ("Chi siamo", "chi-siamo/", [
+        ("Chi siamo", "chi-siamo/"),
+        ("Il Messia Promesso", "chi-siamo/messia-promesso.html"),
+        ("La Khilafat e i cinque Califfi", "chi-siamo/khulafa.html"),
+        ("La Comunità in Italia", "chi-siamo/storia-in-italia.html"),
+        ("Dicono di noi", "dicono-di-noi/"),
+    ]),
+    ("Domande", "domande/", [
+        ("Tutte le domande", "domande/"),
+        ("Le accuse più comuni", "domande/accuse.html"),
+        ("Gesù: vivo o morto?", "domande/gesu.html"),
+    ]),
+    ("Orari di preghiera", "orari-preghiera/", [
+        ("Orari delle Jama’at in Italia", "orari-preghiera/"),
+        ("Moschea Baitut Tauhid", "baitut-tauhid/"),
+        ("Ramadan 2027", "ramadan/"),
+    ]),
+    ("Sermoni", "sermoni/", []),
+    ("Libri", "libri/", []),
+    ("Eventi", "eventi/", []),
+    ("Dipartimenti", "dipartimenti/", []),
 ]
 
 # status: "attivo" = pagina con contenuti reali; "bozza" = scheda introduttiva, contenuti da completare
@@ -56,7 +71,7 @@ DEPARTMENTS = [
      "summary": "Volontariato e aiuto concreto, senza distinzione di fede: iniziative locali e umanitarie."},
 ]
 
-# Organizzazioni ausiliarie: età secondo l'ordinamento della Comunità
+# Organizzazioni ausiliarie: età secondo l’ordinamento della Comunità
 AUXILIARY = [
     ("Lajna Imaillah", "Le donne dai 15 anni in su"),
     ("Majlis Khuddam-ul-Ahmadiyya", "Gli uomini dai 15 ai 40 anni"),
@@ -157,11 +172,11 @@ ARTICLES = [
 # EVENTI. Per aggiungere un evento: una voce qui sotto (o un «Evento» in WordPress) e ricostruire.
 # start = AAAA-MM-GG; time facoltativo "HH:MM"; tentative=True mostra «Data da confermare».
 EVENTS = [
-    # Fonte: calendario annuale della Jama'at (Google Calendar «Ahmadiyya Muslim Jamaat Italia»), letto il 24 novembre 2026.
+    # Fonte: calendario annuale della Jama’at (Google Calendar «Ahmadiyya Muslim Jamaat Italia»), letto il 24 novembre 2026.
     # Esclusi dal sito pubblico: riunioni di Majlis-e-Amla, Shura in attesa di approvazione, fine settimana riservati, festività e vacanze scolastiche.
     # start/end: date inclusive (AAAA-MM-GG). tentative = data da confermare.
-    {"id": "ijlas-dic-2026", "title": "Ijlas mensile nelle Jama'at locali", "start": "2026-12-19", "end": "2026-12-20", "kind": "Comunità", "tentative": False,
-     "desc": "Due giorni: ogni Jama'at sceglie sabato o domenica."},
+    {"id": "ijlas-dic-2026", "title": "Ijlas mensile nelle Jama’at locali", "start": "2026-12-19", "end": "2026-12-20", "kind": "Comunità", "tentative": False,
+     "desc": "Due giorni: ogni Jama’at sceglie sabato o domenica."},
     {"id": "rajab-1448", "minor": True, "title": "1 Rajab 1448", "start": "2026-12-11", "kind": "Calendario islamico", "tentative": True,
      "desc": "Data calcolata sulla visibilità prevista della luna a Bologna. Se la luna non viene avvistata, il mese inizia il giorno dopo."},
     {"id": "tarbiyyati-nazionali-dic-2026", "title": "Classi Tarbiyyati nazionali", "start": "2026-12-24", "end": "2026-12-26", "kind": "Formazione", "tentative": True, "desc": ""},
@@ -173,21 +188,21 @@ EVENTS = [
      "desc": "Spostata dal 27 novembre 2026."},
     {"id": "ansar-tarbiyyati-2027", "title": "Ansar: Classe Tarbiyyati", "start": "2027-01-30", "end": "2027-01-31", "kind": "Formazione", "tentative": False, "desc": ""},
     {"id": "bid-rajab-1448", "minor": True, "title": "Ayyam al-Bid (13–15 Rajab 1448): digiuno raccomandato", "start": "2026-12-23", "end": "2026-12-25", "kind": "Calendario islamico", "tentative": True,
-     "desc": "I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall'inizio del mese."},
+     "desc": "I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall’inizio del mese."},
     {"id": "bid-shaban-1448", "minor": True, "title": "Ayyam al-Bid (13–15 Sha‘ban 1448): digiuno raccomandato", "start": "2027-01-22", "end": "2027-01-24", "kind": "Calendario islamico", "tentative": True,
-     "desc": "I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall'inizio del mese."},
+     "desc": "I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall’inizio del mese."},
     {"id": "ramadan-1448", "title": "Ramadan 1448", "start": "2027-02-08", "end": "2027-03-09", "kind": "Calendario islamico", "tentative": True,
-     "desc": "Il digiuno comincia lunedì 8 febbraio 2027 secondo il calcolo della luna. La data sarà confermata dalla Jama'at.", "url": "ramadan/index.html"},
-    {"id": "musleh-maud-ijlas-2027", "title": "Ijlas: Giornata del Musleh Mau'ud", "start": "2027-02-20", "end": "2027-02-21", "kind": "Comunità", "tentative": True, "desc": ""},
+     "desc": "Il digiuno comincia lunedì 8 febbraio 2027 secondo il calcolo della luna. La data sarà confermata dalla Jama’at.", "url": "ramadan/index.html"},
+    {"id": "musleh-maud-ijlas-2027", "title": "Ijlas: Giornata del Musleh Mau’ud", "start": "2027-02-20", "end": "2027-02-21", "kind": "Comunità", "tentative": True, "desc": ""},
     {"id": "eid-fitr-2027", "title": "Eid al-Fitr (1 Shawwal 1448)", "start": "2027-03-10", "kind": "Calendario islamico", "tentative": True,
-     "desc": "Data calcolata sulla visibilità prevista della luna a Bologna. La data sarà confermata dalla Jama'at.", "url": "ramadan/index.html"},
+     "desc": "Data calcolata sulla visibilità prevista della luna a Bologna. La data sarà confermata dalla Jama’at.", "url": "ramadan/index.html"},
     {"id": "bid-shawwal-1448", "minor": True, "title": "Ayyam al-Bid (13–15 Shawwal 1448): digiuno raccomandato", "start": "2027-03-22", "end": "2027-03-24", "kind": "Calendario islamico", "tentative": True,
-     "desc": "I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall'inizio del mese."},
+     "desc": "I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall’inizio del mese."},
     {"id": "qadah-1448", "minor": True, "title": "1 Dhul Qa‘dah 1448", "start": "2027-04-08", "kind": "Calendario islamico", "tentative": True,
      "desc": "Data calcolata sulla visibilità prevista della luna a Bologna. L’avvistamento effettivo prevale sul calcolo."},
     {"id": "bid-qadah-1448", "minor": True, "title": "Ayyam al-Bid (13–15 Dhul Qa‘dah 1448): digiuno raccomandato", "start": "2027-04-20", "end": "2027-04-22", "kind": "Calendario islamico", "tentative": True,
-     "desc": "I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall'inizio del mese."},
-    {"id": "jalsa-masih-maud-2027", "title": "Ijlas: Jalsa Masih Mau'ud", "start": "2027-03-20", "end": "2027-03-21", "kind": "Comunità", "tentative": True, "desc": ""},
+     "desc": "I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall’inizio del mese."},
+    {"id": "jalsa-masih-maud-2027", "title": "Ijlas: Jalsa Masih Mau’ud", "start": "2027-03-20", "end": "2027-03-21", "kind": "Comunità", "tentative": True, "desc": ""},
     {"id": "messia-promesso-2027", "title": "Giornata del Messia Promesso", "start": "2027-03-23", "kind": "Comunità", "tentative": False, "desc": ""},
     {"id": "lajna-ijtema-2027", "title": "Lajna: Ijtema Nazionale", "start": "2027-03-26", "end": "2027-03-28", "kind": "Formazione", "tentative": True, "desc": "In presenza."},
 ]

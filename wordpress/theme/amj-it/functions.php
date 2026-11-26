@@ -93,3 +93,21 @@ add_shortcode('amj_accesso', function () {
 add_action('wp_head', function () {
     if (is_page(['area-riservata', 'privacy'])) echo '<meta name="robots" content="noindex,nofollow">' . "\n";
 });
+
+
+/* SEO: descrizione, Open Graph e dati strutturati (Organization) su ogni pagina */
+add_action('wp_head', function () {
+    $desc = is_singular() ? wp_strip_all_tags(get_the_excerpt()) : get_bloginfo('description');
+    $desc = mb_substr(trim($desc), 0, 160);
+    $url = is_singular() ? get_permalink() : home_url('/');
+    $img = get_template_directory_uri() . '/assets/img/hero.webp';
+    if ($desc) { echo '<meta name="description" content="' . esc_attr($desc) . '">' . "\n"; }
+    echo '<meta property="og:type" content="website"><meta property="og:locale" content="it_IT">';
+    echo '<meta property="og:site_name" content="' . esc_attr(get_bloginfo('name')) . '"><meta property="og:title" content="' . esc_attr(wp_get_document_title()) . '">';
+    echo '<meta property="og:url" content="' . esc_url($url) . '"><meta property="og:image" content="' . esc_url($img) . '"><meta name="twitter:card" content="summary_large_image">' . "\n";
+    echo '<script type="application/ld+json">' . wp_json_encode([
+        '@context' => 'https://schema.org', '@type' => 'Organization', 'name' => get_bloginfo('name'), 'url' => home_url('/'),
+        'logo' => get_template_directory_uri() . '/assets/img/logo-jamaat-lockup.svg', 'email' => 'contatti@alislam.it', 'telephone' => '800 598 005',
+        'address' => ['@type' => 'PostalAddress', 'streetAddress' => 'Via Morgobbo 1035/A, Gavaseto', 'postalCode' => '40018', 'addressLocality' => 'San Pietro in Casale', 'addressRegion' => 'BO', 'addressCountry' => 'IT'],
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</script>' . "\n";
+}, 5);

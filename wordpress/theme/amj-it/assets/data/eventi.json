@@ -2,12 +2,12 @@
  "events": [
   {
    "id": "ijlas-dic-2026",
-   "title": "Ijlas mensile nelle Jama'at locali",
+   "title": "Ijlas mensile nelle Jama’at locali",
    "start": "2026-12-19",
    "end": "2026-12-20",
    "kind": "Comunità",
    "tentative": false,
-   "desc": "Due giorni: ogni Jama'at sceglie sabato o domenica."
+   "desc": "Due giorni: ogni Jama’at sceglie sabato o domenica."
   },
   {
    "id": "rajab-1448",
@@ -78,7 +78,7 @@
    "end": "2026-12-25",
    "kind": "Calendario islamico",
    "tentative": true,
-   "desc": "I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall'inizio del mese."
+   "desc": "I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall’inizio del mese."
   },
   {
    "id": "bid-shaban-1448",
@@ -88,7 +88,7 @@
    "end": "2027-01-24",
    "kind": "Calendario islamico",
    "tentative": true,
-   "desc": "I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall'inizio del mese."
+   "desc": "I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall’inizio del mese."
   },
   {
    "id": "ramadan-1448",
@@ -97,12 +97,12 @@
    "end": "2027-03-09",
    "kind": "Calendario islamico",
    "tentative": true,
-   "desc": "Il digiuno comincia lunedì 8 febbraio 2027 secondo il calcolo della luna. La data sarà confermata dalla Jama'at.",
+   "desc": "Il digiuno comincia lunedì 8 febbraio 2027 secondo il calcolo della luna. La data sarà confermata dalla Jama’at.",
    "url": "ramadan/index.html"
   },
   {
    "id": "musleh-maud-ijlas-2027",
-   "title": "Ijlas: Giornata del Musleh Mau'ud",
+   "title": "Ijlas: Giornata del Musleh Mau’ud",
    "start": "2027-02-20",
    "end": "2027-02-21",
    "kind": "Comunità",
@@ -115,7 +115,7 @@
    "start": "2027-03-10",
    "kind": "Calendario islamico",
    "tentative": true,
-   "desc": "Data calcolata sulla visibilità prevista della luna a Bologna. La data sarà confermata dalla Jama'at.",
+   "desc": "Data calcolata sulla visibilità prevista della luna a Bologna. La data sarà confermata dalla Jama’at.",
    "url": "ramadan/index.html"
   },
   {
@@ -126,7 +126,7 @@
    "end": "2027-03-24",
    "kind": "Calendario islamico",
    "tentative": true,
-   "desc": "I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall'inizio del mese."
+   "desc": "I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall’inizio del mese."
   },
   {
    "id": "qadah-1448",
@@ -145,11 +145,11 @@
    "end": "2027-04-22",
    "kind": "Calendario islamico",
    "tentative": true,
-   "desc": "I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall'inizio del mese."
+   "desc": "I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall’inizio del mese."
   },
   {
    "id": "jalsa-masih-maud-2027",
-   "title": "Ijlas: Jalsa Masih Mau'ud",
+   "title": "Ijlas: Jalsa Masih Mau’ud",
    "start": "2027-03-20",
    "end": "2027-03-21",
    "kind": "Comunità",

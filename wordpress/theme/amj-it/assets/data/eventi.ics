@@ -8,10 +8,10 @@ UID:ijlas-dic-2026@alislam.it
 DTSTAMP:20261124T000000Z
 DTSTART;VALUE=DATE:20261219
 DTEND;VALUE=DATE:20261221
-SUMMARY:Ijlas mensile nelle Jama'at locali
+SUMMARY:Ijlas mensile nelle Jama’at locali
 STATUS:CONFIRMED
 LOCATION:
-DESCRIPTION:Due giorni: ogni Jama'at sceglie sabato o domenica.
+DESCRIPTION:Due giorni: ogni Jama’at sceglie sabato o domenica.
 END:VEVENT
 BEGIN:VEVENT
 UID:rajab-1448@alislam.it
@@ -91,7 +91,7 @@ DTEND;VALUE=DATE:20261226
 SUMMARY:Ayyam al-Bid (13–15 Rajab 1448): digiuno raccomandato (data da confermare)
 STATUS:TENTATIVE
 LOCATION:
-DESCRIPTION:I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall'inizio del mese.
+DESCRIPTION:I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall’inizio del mese.
 END:VEVENT
 BEGIN:VEVENT
 UID:bid-shaban-1448@alislam.it
@@ -101,7 +101,7 @@ DTEND;VALUE=DATE:20270125
 SUMMARY:Ayyam al-Bid (13–15 Sha‘ban 1448): digiuno raccomandato (data da confermare)
 STATUS:TENTATIVE
 LOCATION:
-DESCRIPTION:I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall'inizio del mese.
+DESCRIPTION:I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall’inizio del mese.
 END:VEVENT
 BEGIN:VEVENT
 UID:ramadan-1448@alislam.it
@@ -111,14 +111,14 @@ DTEND;VALUE=DATE:20270310
 SUMMARY:Ramadan 1448 (data da confermare)
 STATUS:TENTATIVE
 LOCATION:
-DESCRIPTION:Il digiuno comincia lunedì 8 febbraio 2027 secondo il calcolo della luna. La data sarà confermata dalla Jama'at.
+DESCRIPTION:Il digiuno comincia lunedì 8 febbraio 2027 secondo il calcolo della luna. La data sarà confermata dalla Jama’at.
 END:VEVENT
 BEGIN:VEVENT
 UID:musleh-maud-ijlas-2027@alislam.it
 DTSTAMP:20261124T000000Z
 DTSTART;VALUE=DATE:20270220
 DTEND;VALUE=DATE:20270222
-SUMMARY:Ijlas: Giornata del Musleh Mau'ud (data da confermare)
+SUMMARY:Ijlas: Giornata del Musleh Mau’ud (data da confermare)
 STATUS:TENTATIVE
 LOCATION:
 DESCRIPTION:
@@ -131,7 +131,7 @@ DTEND;VALUE=DATE:20270311
 SUMMARY:Eid al-Fitr (1 Shawwal 1448) (data da confermare)
 STATUS:TENTATIVE
 LOCATION:
-DESCRIPTION:Data calcolata sulla visibilità prevista della luna a Bologna. La data sarà confermata dalla Jama'at.
+DESCRIPTION:Data calcolata sulla visibilità prevista della luna a Bologna. La data sarà confermata dalla Jama’at.
 END:VEVENT
 BEGIN:VEVENT
 UID:bid-shawwal-1448@alislam.it
@@ -141,7 +141,7 @@ DTEND;VALUE=DATE:20270325
 SUMMARY:Ayyam al-Bid (13–15 Shawwal 1448): digiuno raccomandato (data da confermare)
 STATUS:TENTATIVE
 LOCATION:
-DESCRIPTION:I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall'inizio del mese.
+DESCRIPTION:I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall’inizio del mese.
 END:VEVENT
 BEGIN:VEVENT
 UID:qadah-1448@alislam.it
@@ -161,14 +161,14 @@ DTEND;VALUE=DATE:20270423
 SUMMARY:Ayyam al-Bid (13–15 Dhul Qa‘dah 1448): digiuno raccomandato (data da confermare)
 STATUS:TENTATIVE
 LOCATION:
-DESCRIPTION:I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall'inizio del mese.
+DESCRIPTION:I giorni bianchi: secondo la Sunnah si raccomanda di digiunare il 13, 14 e 15 di ogni mese islamico. Date calcolate dall’inizio del mese.
 END:VEVENT
 BEGIN:VEVENT
 UID:jalsa-masih-maud-2027@alislam.it
 DTSTAMP:20261124T000000Z
 DTSTART;VALUE=DATE:20270320
 DTEND;VALUE=DATE:20270322
-SUMMARY:Ijlas: Jalsa Masih Mau'ud (data da confermare)
+SUMMARY:Ijlas: Jalsa Masih Mau’ud (data da confermare)
 STATUS:TENTATIVE
 LOCATION:
 DESCRIPTION:

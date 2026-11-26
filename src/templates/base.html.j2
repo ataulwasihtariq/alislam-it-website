@@ -3,17 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ title }}{% if not is_home %} – {{ site.name }}{% endif %}</title>
+<title>{{ title }}{% if not is_home %} – {{ site.short_name }}{% endif %}</title>
+<link rel="canonical" href="{{ canonical }}">
 <meta name="description" content="{{ description }}">
 {% if not site.published or noindex %}<meta name="robots" content="noindex, nofollow">{% endif %}
 <meta property="og:title" content="{{ title }}">
 <meta property="og:description" content="{{ description }}">
 <meta property="og:type" content="website">
+<meta property="og:url" content="{{ canonical }}">
 <meta property="og:locale" content="it_IT">
 <meta property="og:site_name" content="{{ site.name }}">
 <meta property="og:image" content="{{ site.base_url }}/assets/img/hero.webp">
+<meta property="og:image:alt" content="{{ site.name }}">
+<meta name="twitter:title" content="{{ title }}">
+<meta name="twitter:description" content="{{ description }}">
+<meta name="twitter:image" content="{{ site.base_url }}/assets/img/hero.webp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1e2b26">
+<meta name="theme-color" content="#16201c">
+<meta name="format-detection" content="telephone=no">
 <link rel="icon" href="{{ assets }}favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,6 +28,7 @@
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <link rel="stylesheet" href="{{ assets }}css/amj.css">
 {% if accent %}<style>:root{--amj-dept:{{ accent }}}</style>{% endif %}
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"{{ site.base_url }}/#org","name":"{{ site.name }}","url":"{{ site.base_url }}/","logo":"{{ site.logo_url }}","email":"{{ site.email }}","telephone":"{{ site.toll_free }}","address":{"@type":"PostalAddress","streetAddress":"Via Morgobbo 1035/A, Gavaseto","postalCode":"40018","addressLocality":"San Pietro in Casale","addressRegion":"BO","addressCountry":"IT"}},{"@type":"WebSite","@id":"{{ site.base_url }}/#site","url":"{{ site.base_url }}/","name":"{{ site.name }}","inLanguage":"it","publisher":{"@id":"{{ site.base_url }}/#org"}}]}</script>
 {{ extra_head|safe }}
 <script>document.documentElement.className='js'</script>
 <noscript><style>.amj-rv{opacity:1!important;transform:none!important}.amj-reveal .w{opacity:1!important}</style></noscript>
@@ -36,13 +44,16 @@
 <a href="{{ root }}index.html" class="amj-brand"><img src="{{ assets }}img/logo-jamaat-lockup.svg" width="181" height="40" alt="{{ site.name }}" class="amj-logo-full"></a>
 <button class="amj-burger" aria-expanded="false" aria-controls="amj-nav" aria-label="Menu"><span></span><span></span><span></span></button>
 <nav class="amj-nav" id="amj-nav" aria-label="Menu principale">
-{% for label, href in nav %}
+{% for label, href, kids in nav %}
 {% if href == 'dipartimenti/' %}
-<span class="amj-dd"><a href="{{ root }}dipartimenti/"{% if section == href %} aria-current="page"{% endif %}>{{ label }}</a>
-<span class="amj-menu">{% for d in departments %}<a href="{{ root }}dipartimenti/{{ d.slug }}/" style="--amj-dept:{{ d.color }}"><i></i>{{ d.name }}</a>{% endfor %}<hr><a href="{{ root }}dipartimenti/" style="--amj-dept:#a8873a"><i></i>Tutti i dipartimenti</a><a href="{{ root }}area-riservata/" style="--amj-dept:#1e2b26"><i></i>Area riservata</a></span></span>
+<span class="amj-dd"><a href="{{ root }}dipartimenti/"{% if section == href %} aria-current="page"{% endif %} aria-haspopup="true">{{ label }}</a>
+<span class="amj-menu">{% for d in departments %}<a href="{{ root }}dipartimenti/{{ d.slug }}/" style="--amj-dept:{{ d.color }}"{% if current == 'dipartimenti/' ~ d.slug ~ '/index.html' %} aria-current="page"{% endif %}><i></i>{{ d.name }}</a>{% endfor %}<hr><a href="{{ root }}dipartimenti/" style="--amj-dept:#a8873a"{% if current == 'dipartimenti/index.html' %} aria-current="page"{% endif %}><i></i>Tutti i dipartimenti</a><a href="{{ root }}area-riservata/" style="--amj-dept:#1e2b26"{% if current == 'area-riservata/index.html' %} aria-current="page"{% endif %}><i></i>Area riservata</a></span></span>
+{% elif kids %}
+<span class="amj-dd"><a href="{{ root }}{{ href }}"{% if section == href %} aria-current="page"{% endif %} aria-haspopup="true">{{ label }}</a>
+<span class="amj-menu">{% for kl, kh in kids %}<a href="{{ root }}{{ kh }}"{% if current == (kh ~ 'index.html' if kh.endswith('/') else kh) %} aria-current="page"{% endif %}>{{ kl }}</a>{% endfor %}</span></span>
 {% else %}<a href="{{ root }}{{ href }}"{% if section == href %} aria-current="page"{% endif %}>{{ label }}</a>{% endif %}
 {% endfor %}
-<a href="{{ root }}contatti/" class="amj-cta">Parliamone</a>
+<a href="{{ root }}contatti/" class="amj-cta"{% if current == 'contatti/index.html' %} aria-current="page"{% endif %}>Parliamone</a>
 </nav></div></header>
 
 <main id="contenuto">
@@ -51,13 +62,13 @@
 
 <footer class="amj-footer amj-patdark">
 <div class="amj-w g">
-<div><strong>{{ site.name }}</strong><span style="line-height:24px;font-size:16px">{{ site.address|replace(', Gavaseto, ', '<br>Gavaseto, ')|safe }}</span></div>
-<div><small>Conoscere</small><a href="{{ root }}islam/">Che cos’è l’Islam</a><a href="{{ root }}chi-siamo/">Chi siamo</a><a href="{{ root }}chi-siamo/messia-promesso.html">Il Messia Promesso</a><a href="{{ root }}chi-siamo/khulafa.html">La Khilafat</a><a href="{{ root }}dicono-di-noi/">Dicono di noi</a></div>
-<div><small>Da seguire</small><a href="{{ root }}baitut-tauhid/">Orari di Baitut Tauhid</a><a href="{{ root }}ramadan/">Ramadan e orari di preghiera</a><a href="{{ root }}eventi/">Eventi</a><a href="{{ root }}sermoni/">Sermoni del Venerdì</a><a href="{{ root }}libri/">Libri</a><a href="{{ root }}domande/">Domande e risposte</a></div>
+<div><strong>{{ site.name }}</strong><span>{{ site.address|replace(', Gavaseto, ', '<br>Gavaseto, ')|safe }}</span></div>
+<div><small>Conoscere</small><a href="{{ root }}islam/">Che cos’è l’Islam</a><a href="{{ root }}chi-siamo/">Chi siamo</a><a href="{{ root }}chi-siamo/messia-promesso.html">Il Messia Promesso</a><a href="{{ root }}chi-siamo/khulafa.html">La Khilafat</a><a href="{{ root }}chi-siamo/storia-in-italia.html">La Comunità in Italia</a><a href="{{ root }}dicono-di-noi/">Dicono di noi</a></div>
+<div><small>Da seguire</small><a href="{{ root }}orari-preghiera/">Orari di preghiera</a><a href="{{ root }}baitut-tauhid/">Moschea Baitut Tauhid</a><a href="{{ root }}ramadan/">Ramadan 2027</a><a href="{{ root }}eventi/">Eventi</a><a href="{{ root }}sermoni/">Sermoni del Venerdì</a><a href="{{ root }}libri/">Libri</a><a href="{{ root }}domande/">Domande e risposte</a></div>
 <div><small>Per la Comunità</small><a href="{{ root }}dipartimenti/">Dipartimenti</a><a href="{{ root }}dipartimenti/rishta-nata/">Rishta Nata</a><a href="{{ root }}dipartimenti/waqf-e-nau/">Waqf-e-Nau</a><a href="{{ root }}area-riservata/">Area riservata</a></div>
 <div><small>Contatti</small><a href="tel:{{ site.toll_free|replace(' ','') }}">Numero verde {{ site.toll_free }}</a><a href="{{ site.whatsapp_link }}">WhatsApp {{ site.whatsapp }}</a><a href="mailto:{{ site.email }}">{{ site.email }}</a></div>
 </div>
-<div class="amj-w bot"><span>© {{ site.legal }}</span><span><a href="{{ root }}privacy/">Privacy e cookie</a></span></div>
+<div class="amj-w bot"><span>© {{ site.legal }}</span><span><a href="{{ root }}privacy/">Privacy e cookie</a><a href="{{ root }}contatti/">Contatti</a></span></div>
 </footer>
 <script src="{{ assets }}js/amj.js" defer></script>
 </body></html>
