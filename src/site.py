@@ -28,7 +28,7 @@ CITIES = ["Bologna", "Parma", "Brescia", "Ravenna", "Venezia-Mestre", "Padova", 
 NAV = [
     ("Conoscere", "islam/", [
         ("Che cos’è l’Islam", "islam/"), ("Chi siamo", "chi-siamo/"), ("Il Messia Promesso", "chi-siamo/messia-promesso.html"),
-        ("La Khilafat", "chi-siamo/khulafa.html"), ("Domande e risposte", "domande/"), ("Dicono di noi", "dicono-di-noi/")]),
+        ("La Khilafat", "chi-siamo/khulafa.html"), ("Domande e risposte", "domande/"), ("Dicono di noi", "dicono-di-noi/"), ("Siti collegati", "collegamenti/")]),
     ("Orari e Ramadan", "orari-preghiera/", [
         ("Orari di preghiera", "orari-preghiera/"), ("Orari di Baitut Tauhid", "baitut-tauhid/"), ("Ramadan 2027", "ramadan/")]),
     ("Eventi", "eventi/", []),
@@ -147,7 +147,7 @@ PRESS = [
      "summary": "Il quotidiano dei vescovi italiani racconta la condizione degli ahmadi in Pakistan, tra restrizioni legali e violenze, partendo dalla testimonianza dell’imam della Comunità in Italia."},
 ]
 
-# Approfondimenti nostri (articoli della Comunità in stile blog). In WordPress sono gli articoli della categoria «approfondimenti».
+# Approfondimenti nostri (articoli della Comunità in stile blog). Per farne comparire uno in «Appena pubblicato» in homepage, aggiungere "added": "AAAA-MM-GG". In WordPress sono gli articoli della categoria «approfondimenti».
 ARTICLES = [
     {"title": "Gli ahmadi sono musulmani?", "href": "domande/accuse.html#musulmani", "summary": "La definizione di «musulmano» data dal Corano e dal Profeta (sa), e che cosa è successo nel 1974 in Pakistan."},
     {"title": "Muhammad (sa) è l’ultimo profeta?", "href": "domande/accuse.html#khatam", "summary": "Che cosa significa «sigillo dei profeti» e che cosa crediamo davvero, con i versetti e gli hadith."},
@@ -217,4 +217,51 @@ FAQ_HOME = [
     ("Posso visitare una vostra sede o invitarvi a un incontro?", "Sì. Scrivici su WhatsApp o chiama il numero verde: ti indichiamo la sede più vicina fra le 17 città in cui siamo presenti e come organizzare un incontro in una scuola, una parrocchia o un’associazione."),
     ("Quando inizia il Ramadan 2027?", "La data prevista è lunedì 8 febbraio 2027. Dipende dalla luna nuova e sarà confermata con l’annuncio della Comunità. Gli orari di preghiera sono calcolati per la tua città. <a href=\"{root}ramadan/\">Orari e calendario →</a>"),
     ("Dove trovo i sermoni del Venerdì in italiano?", "Ogni settimana pubblichiamo il sermone del Califfo della Comunità tradotto in italiano. <a href=\"{root}sermoni/\">Vai ai sermoni →</a>"),
+]
+
+# ---------------------------------------------------------------------------------------------
+# MODULI E ISCRIZIONI in evidenza in homepage. Aggiungere una voce per ogni modulo da mettere in vista.
+# deadline = AAAA-MM-GG (facoltativa: se c'è, il modulo compare con «scade fra N giorni» e sparisce il giorno dopo).
+# In WordPress i moduli sono i contenuti di tipo «Moduli» e si pubblicano senza toccare il codice.
+FORMS = [
+    {"title": "Modulo del Nikah 2026", "dept": "Rishta Nata", "href": "dipartimenti/rishta-nata/", "note": "Modulo centrale in italiano, inglese e urdu.", "deadline": ""},
+    {"title": "Quiz Ijtema Waqf-e-Nau 2026", "dept": "Waqf-e-Nau", "href": "dipartimenti/waqf-e-nau/", "note": "Per i genitori dei bambini Waqf-e-Nau.", "deadline": ""},
+    {"title": "Richiedi una data o un programma", "dept": "Per i responsabili", "href": "eventi/index.html#richiesta", "note": "Amila, organizzazioni ausiliarie e dipartimenti.", "deadline": ""},
+]
+
+# ---------------------------------------------------------------------------------------------
+# SITI COLLEGATI. Fonte: elenco ufficiale «Affiliated Websites» di alislam.org (letto il 26 novembre 2026).
+# Voce = (nome, indirizzo senza https://, descrizione). Indirizzo vuoto = sito non ancora confermato (compare senza link).
+LINKS_READ_ON = "26 novembre 2026"
+LINKS = [
+    {"label": "Siti ufficiali", "intro": "Il sito mondiale della Comunità e il sito del Califfo.", "items": [
+        ("Al Islam", "www.alislam.org", "Il sito ufficiale della Comunità Ahmadiyya: Corano, libri, sermoni e multimedia."),
+        ("Khalifatul Masih V", "www.khalifatulmasih.org", "Il sito di Hazrat Mirza Masroor Ahmad, con le sue pubblicazioni e i sermoni."),
+        ("Jalsa Salana", "www.jalsasalana.org", "Le convention annuali della Comunità nei vari Paesi.")]},
+    {"label": "Riviste e giornali", "intro": "Le pubblicazioni della Comunità, in inglese e in urdu.", "items": [
+        ("The Review of Religions", "www.reviewofreligions.org", "La rivista di pensiero religioso comparato, fondata nel 1902 da Mirza Ghulam Ahmad (as)."),
+        ("Al Hakam", "www.alhakam.org", "Il settimanale in inglese per i membri della Comunità nel mondo."),
+        ("Al Fazl", "www.alfazl.com", "Il quotidiano della Comunità, in urdu."),
+        ("The Muslim Sunrise", "www.muslimsunrise.com", "La rivista americana della Comunità, fondata nel 1921.")]},
+    {"label": "Televisione", "intro": "", "items": [
+        ("MTA International", "www.mta.tv", "Il canale televisivo ufficiale della Comunità: trasmette 24 ore su 24, gratis anche online.")]},
+    {"label": "Per approfondire", "intro": "Siti tematici curati dalla Comunità, in inglese.", "items": [
+        ("Muslims for Peace", "www.muslimsforpeace.org", "La pace interiore e i rapporti pacifici fra persone di ogni provenienza."),
+        ("Islamic FAQ", "www.islamicfaq.org", "Le domande più frequenti sull’Islam, con un modulo per inviare la propria."),
+        ("Free Online Islamic Course", "www.free-islamic-course.org", "Un corso introduttivo di base sull’Islam."),
+        ("Why Ahmadi", "www.whyahmadi.org", "Perché gli ahmadi credono ciò che credono, e le affermazioni del Messia Promesso (as).")]},
+    {"label": "Organizzazioni ausiliarie", "intro": "Le organizzazioni della Comunità per donne, uomini e ragazzi. Qui trovi i siti delle sedi estere; in Italia le organizzazioni sono presentate nella pagina Chi siamo.", "items": [
+        ("Lajna Imaillah Italia", "", "Indirizzo del sito da confermare."),
+        ("Lajna Imaillah, Regno Unito", "www.lajna.org.uk", "Le donne dai 15 anni in su."),
+        ("Lajna Imaillah, Germania", "www.lajna.de", "Le donne dai 15 anni in su."),
+        ("Khuddam-ul-Ahmadiyya, Regno Unito", "www.khuddam.org.uk", "Gli uomini dai 15 ai 40 anni."),
+        ("Khuddam-ul-Ahmadiyya, Germania", "www.khuddam.de", "Gli uomini dai 15 ai 40 anni."),
+        ("Ansarullah, Regno Unito", "www.ansar.org.uk", "Gli uomini oltre i 40 anni."),
+        ("Ansarullah, Germania", "www.ansarullah.de", "Gli uomini oltre i 40 anni.")]},
+]
+# Jama'at di altri Paesi (siti nazionali), in ordine alfabetico
+LINKS_COUNTRIES = [
+    ("Austria", "www.ahmadiyya-islam.org/at/"), ("Belgio", "www.ahmadiyya.be"), ("Canada", "www.ahmadiyya.ca"), ("Francia", "www.ahmadiyya.fr"),
+    ("Germania", "www.ahmadiyya.de"), ("Malta", "www.ahmadija.org.mt"), ("Paesi Bassi", "www.ahmadiyya-islam.nl"), ("Portogallo", "www.alislam.pt"),
+    ("Regno Unito", "www.ahmadiyya.org.uk"), ("Spagna", "www.alislam.es"), ("Stati Uniti", "www.ahmadiyya.us"), ("Svizzera", "www.ahmadiyya.ch"),
 ]

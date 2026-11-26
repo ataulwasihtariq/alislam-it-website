@@ -84,8 +84,11 @@ def breadcrumb_jsonld(crumbs, url, here):
 def render(meta, body, rel, wp=False, **extra):
     root = "/" if wp else depth_root(rel)
     assets = "/wp-content/themes/amj-it/assets/" if wp else root + "assets/"
+    # Fonti dati: nel sito statico i file JSON, in WordPress gli elenchi sempre aggiornati prodotti dal tema.
+    ev_src = "/?amj_eventi=1" if wp else assets + "data/eventi.json"
+    news_src = "/?amj_novita=1" if wp else assets + "data/novita.json"
     ctx = dict(site=cfg.SITE, nav=cfg.NAV, jalsa=cfg.JALSA, departments=cfg.DEPARTMENTS, auxiliary=cfg.AUXILIARY,
-               cities=cfg.CITIES, sermons=cfg.SERMONS, books=cfg.BOOKS, press=cfg.PRESS, articles=cfg.ARTICLES, faq_home=cfg.FAQ_HOME, root=root, assets=assets,
+               cities=cfg.CITIES, sermons=cfg.SERMONS, books=cfg.BOOKS, press=cfg.PRESS, links=cfg.LINKS, links_countries=cfg.LINKS_COUNTRIES, links_read_on=cfg.LINKS_READ_ON, articles=cfg.ARTICLES, faq_home=cfg.FAQ_HOME, root=root, assets=assets, wp=wp, ev_src=ev_src, news_src=news_src,
                title=meta.get("title", cfg.SITE["name"]), description=meta.get("description", ""),
                noindex=meta.get("noindex") == "true", is_home=rel == "index.html",
                section=section_of(rel), current=norm(rel), accent=None, extra_head="")
@@ -141,10 +144,31 @@ def decode_ramadan():
             "groups": groups, "cities": cities}
 
 
+_MESI = {m: i + 1 for i, m in enumerate("gennaio febbraio marzo aprile maggio giugno luglio agosto settembre ottobre novembre dicembre".split())}
+
+
+def _iso_it(s):
+    g, m, a = s.split()
+    return f"{int(a):04d}-{_MESI[m]:02d}-{int(g):02d}"
+
+
+def build_novita():
+    """Ultimi contenuti pubblicati (cronache e approfondimenti), dal più recente, e moduli in evidenza.
+    In WordPress lo stesso formato arriva da /?amj_novita=1 (articoli, sermoni e moduli reali)."""
+    items = [{"type": "Cronaca" if p["kind"] == "comunita" else "Stampa", "title": p["title"], "date": _iso_it(p["date"]),
+              "url": p["url"], "ext": True, "summary": p["summary"], "src": p["outlet"]} for p in cfg.PRESS]
+    items += [{"type": "Approfondimento", "title": a["title"], "date": a["added"], "url": a["href"], "ext": False, "summary": a["summary"], "src": "Comunità"}
+              for a in cfg.ARTICLES if a.get("added")]
+    items.sort(key=lambda x: x["date"], reverse=True)
+    forms = [{"title": f["title"], "dept": f["dept"], "url": f["href"], "note": f["note"], "deadline": f["deadline"] or None} for f in cfg.FORMS]
+    return {"items": items, "forms": forms}
+
+
 def write_data():
     d = ROOT / "assets" / "data"
     d.mkdir(parents=True, exist_ok=True)
     (d / "ramadan-2027.json").write_text(json.dumps(decode_ramadan(), ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    (d / "novita.json").write_text(json.dumps(build_novita(), ensure_ascii=False, indent=1), encoding="utf-8")
     (d / "eventi.json").write_text(json.dumps({"events": cfg.EVENTS}, ensure_ascii=False, indent=1), encoding="utf-8")
     import datetime as _dt
     ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//alislam.it//Eventi//IT", "X-WR-CALNAME:Comunità Ahmadiyya Italia · Eventi", "CALSCALE:GREGORIAN"]

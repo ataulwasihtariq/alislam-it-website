@@ -21,7 +21,7 @@ $req = trim(wp_parse_url(add_query_arg([]), PHP_URL_PATH), '/');
 <nav class="amj-nav" id="amj-nav" aria-label="Menu principale">
 <?php
 $gruppi = [
-    ['Conoscere', 'islam/', [['Che cos’è l’Islam', 'islam/'], ['Chi siamo', 'chi-siamo/'], ['Il Messia Promesso', 'chi-siamo/messia-promesso.html'], ['La Khilafat', 'chi-siamo/khulafa.html'], ['Domande e risposte', 'domande/'], ['Dicono di noi', 'dicono-di-noi/']]],
+    ['Conoscere', 'islam/', [['Che cos’è l’Islam', 'islam/'], ['Chi siamo', 'chi-siamo/'], ['Il Messia Promesso', 'chi-siamo/messia-promesso.html'], ['La Khilafat', 'chi-siamo/khulafa.html'], ['Domande e risposte', 'domande/'], ['Dicono di noi', 'dicono-di-noi/'], ['Siti collegati', 'collegamenti/']]],
     ['Orari e Ramadan', 'orari-preghiera/', [['Orari di preghiera', 'orari-preghiera/'], ['Orari di Baitut Tauhid', 'baitut-tauhid/'], ['Ramadan 2027', 'ramadan/']]],
     ['Eventi', 'eventi/', []],
     ['Sermoni e libri', 'sermoni/', [['Sermoni del Venerdì', 'sermoni/'], ['Libri', 'libri/']]],

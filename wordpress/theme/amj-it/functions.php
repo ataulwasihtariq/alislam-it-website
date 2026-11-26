@@ -27,6 +27,15 @@ add_action('init', function () {
         'rewrite' => ['slug' => 'sermoni'], 'menu_icon' => 'dashicons-microphone',
         'supports' => ['title', 'editor', 'excerpt'],
     ]);
+    // Moduli e iscrizioni: compaiono in evidenza in homepage finché non scade il termine (campo facoltativo).
+    register_post_type('modulo', [
+        'label' => 'Moduli', 'public' => true, 'has_archive' => false,
+        'rewrite' => ['slug' => 'modulo'], 'menu_icon' => 'dashicons-media-text',
+        'supports' => ['title', 'excerpt', 'custom-fields'], 'show_in_rest' => true,
+    ]);
+    foreach (['amj_dipartimento' => 'Struttura o dipartimento', 'amj_link' => 'Indirizzo del modulo o della pagina (se vuoto: pagina del modulo)', 'amj_scadenza' => 'Scadenza (AAAA-MM-GG, facoltativa)'] as $k => $l) {
+        register_post_meta('modulo', $k, ['single' => true, 'type' => 'string', 'show_in_rest' => true, 'description' => $l]);
+    }
     // Eventi: titolo, descrizione e quattro campi (data, ora, luogo, città).
     register_post_type('evento', [
         'label' => 'Eventi', 'public' => true, 'has_archive' => false,
@@ -60,6 +69,35 @@ add_action('template_redirect', function () {
     wp_send_json(['events' => $out]);
 });
 
+// Novità e moduli per la homepage, stesso formato di assets/data/novita.json: /?amj_novita=1
+// Gli ultimi contenuti sono gli articoli e i sermoni pubblicati, più recenti per primi: basta pubblicare, la homepage si aggiorna.
+add_action('template_redirect', function () {
+    if (!isset($_GET['amj_novita'])) return;
+    $items = [];
+    $q = new WP_Query(['post_type' => ['post', 'sermone'], 'posts_per_page' => 8, 'post_status' => 'publish', 'orderby' => 'date', 'order' => 'DESC', 'ignore_sticky_posts' => true]);
+    foreach ($q->posts as $p) {
+        $c = $p->post_type === 'post' ? get_the_category($p->ID) : [];
+        $items[] = [
+            'type' => $p->post_type === 'sermone' ? 'Sermone' : ($c ? $c[0]->name : 'Articolo'),
+            'title' => get_the_title($p), 'date' => get_the_date('Y-m-d', $p), 'url' => get_permalink($p), 'ext' => false,
+            'summary' => wp_strip_all_tags(get_the_excerpt($p)), 'src' => '',
+        ];
+    }
+    $forms = [];
+    $m = new WP_Query(['post_type' => 'modulo', 'posts_per_page' => 12, 'post_status' => 'publish', 'orderby' => 'date', 'order' => 'DESC']);
+    foreach ($m->posts as $p) {
+        $d = get_post_meta($p->ID, 'amj_scadenza', true);
+        $u = get_post_meta($p->ID, 'amj_link', true);
+        $forms[] = [
+            'title' => get_the_title($p), 'dept' => get_post_meta($p->ID, 'amj_dipartimento', true),
+            'url' => $u ? esc_url_raw($u) : get_permalink($p), 'note' => wp_strip_all_tags(get_the_excerpt($p)),
+            'deadline' => preg_match('/^\d{4}-\d{2}-\d{2}$/', (string) $d) ? $d : null,
+        ];
+    }
+    nocache_headers();
+    wp_send_json(['items' => $items, 'forms' => $forms]);
+});
+
 // [amj_eventi] mostra l'elenco degli eventi futuri (stesso aspetto della pagina Eventi del sito statico)
 add_shortcode('amj_eventi', function () {
     return '<div data-events data-src="' . esc_url(home_url('/?amj_eventi=1')) . '"></div>';
@@ -91,7 +129,7 @@ add_shortcode('amj_accesso', function () {
 });
 
 add_action('wp_head', function () {
-    if (is_page(['area-riservata', 'privacy'])) echo '<meta name="robots" content="noindex,nofollow">' . "\n";
+    if (is_page(['area-riservata'])) echo '<meta name="robots" content="noindex,nofollow">' . "\n";
 });
 
 

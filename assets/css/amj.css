@@ -64,7 +64,7 @@ body.amj{margin:0;background:var(--amj-cream);font-family:var(--amj-sans);font-s
 .amj-btn:hover{background:var(--amj-green-d);transform:translateY(-1px)}
 .amj-btn2{border:1px solid var(--amj-gold);color:var(--amj-green-d)!important;background:var(--amj-white)}
 .amj-btn2:hover{background:var(--amj-sand);transform:translateY(-1px)}
-.amj-btn3{border:1px solid var(--amj-gold-l);color:var(--amj-cream)!important}
+.amj-btn3{background:transparent;border:1px solid var(--amj-gold-l);color:var(--amj-cream)!important}
 .amj-btn3:hover{background:rgba(250,248,244,.12)}
 .amj-btn:active,.amj-btn2:active,.amj-btn3:active{transform:scale(.98)}
 .amj-btn.lg{padding:var(--s-200) var(--s-400);font-size:18px;line-height:28px}
@@ -594,3 +594,35 @@ img.amj-dlogo{object-fit:cover;background:var(--amj-white);border:1px solid var(
 .amj-jnext span{color:var(--amj-mute)}
 .amj-jed{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--s-300)}
 @media(max-width:860px){.amj-jhero{grid-template-columns:1fr}.amj-jhero img{max-width:240px}}
+
+/* In evidenza (homepage) */
+.amj-hl{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:var(--s-400);align-items:start}
+.amj-hlev{display:flex;gap:var(--s-300);align-items:flex-start;background:var(--amj-green-d);color:var(--amj-cream);border-radius:var(--r-3xl);padding:var(--s-400)}
+.amj-hlev h3{color:var(--amj-cream);margin:var(--s-75) 0}
+.amj-hlev .amj-eyebrow{color:var(--amj-gold-l)}
+.amj-hlev p{margin:var(--s-75) 0;color:#e6e0d0}
+.amj-hlev .amj-hlev-m{font-weight:600;color:var(--amj-cream)}
+.amj-hlev-d{flex:none;width:var(--s-800);text-align:center;border-radius:var(--r-2xl);background:var(--amj-cream);color:var(--amj-green-d);padding:var(--s-200) var(--s-75)}
+.amj-hlev-d b{display:block;font-size:36px;line-height:40px;font-weight:700}
+.amj-hlev-d small{display:block;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.amj-hlev .amj-actions{margin-top:var(--s-200)}
+.amj-hl-news{display:flex;flex-direction:column;gap:var(--s-100);margin-top:var(--s-100)}
+.amj-hl-item{display:flex;flex-direction:column;gap:var(--s-50);text-decoration:none;color:inherit!important;background:var(--amj-white);border:1px solid var(--amj-line);border-radius:var(--r-2xl);padding:var(--s-200);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.amj-hl-item:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(22,32,28,.1)}
+.amj-hl-item .meta{display:flex;flex-wrap:wrap;gap:var(--s-75);align-items:center;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--amj-gold-d)}
+.amj-hl-item .meta>span:last-child{margin-left:auto;color:var(--amj-mute);letter-spacing:0;text-transform:none;font-weight:500}
+.amj-hl-item b{font-weight:600;color:var(--amj-green-d)}
+.amj-new{background:var(--amj-green);color:var(--amj-cream);border-radius:9999px;padding:var(--s-25) var(--s-75);font-size:12px;line-height:16px;font-weight:600;letter-spacing:.04em}
+.amj-hl-more{margin-top:var(--s-300)}
+.amj-hl-more:empty{display:none}
+.amj-hl-more{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--s-200)}
+.amj-hl-forms{margin-top:var(--s-400)}
+.amj-hl-forms .amj-nxl{margin-top:var(--s-100)}
+.amj-form{display:flex;gap:var(--s-200);align-items:flex-start;text-decoration:none;color:inherit!important;background:var(--amj-sand);border:1px solid var(--amj-line);border-radius:var(--r-2xl);padding:var(--s-200);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.amj-form:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(22,32,28,.1)}
+.amj-form>.ph{flex:none;font-size:24px;line-height:32px;color:var(--amj-gold-d)}
+.amj-form small{display:block;font-size:12px;line-height:16px;font-weight:600;color:var(--amj-gold-d)}
+.amj-form b{display:block;font-weight:600;color:var(--amj-green-d)}
+.amj-form em{display:block;font-size:14px;line-height:20px;color:var(--amj-mute)}
+@media(max-width:980px){.amj-hl{grid-template-columns:minmax(0,1fr)}.amj-hlev{flex-direction:column;padding:var(--s-300)}}
+@media(prefers-reduced-motion:reduce){.amj-hl-item,.amj-form{transition:none}.amj-hl-item:hover,.amj-form:hover{transform:none}}

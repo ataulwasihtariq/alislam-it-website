@@ -1,0 +1,81 @@
+{
+ "items": [
+  {
+   "type": "Cronaca",
+   "title": "Recent tabligh activities of Jamaat-e-Ahmadiyya Italy",
+   "date": "2025-11-29",
+   "url": "https://www.alhakam.org/recent-tabligh-activities-jamaat-e-ahmadiyya-italy",
+   "ext": true,
+   "summary": "Cronaca di ottobre e novembre 2025: l’incontro interreligioso in Vaticano per i 60 anni di Nostra Aetate, la presentazione del messaggio di pace dell’Islam al Senato della Repubblica e il ricevimento con il cardinale Matteo Zuppi a Bait-ul-Tauhid, a San Pietro in Casale.",
+   "src": "Al Hakam"
+  },
+  {
+   "type": "Cronaca",
+   "title": "Ahmadiyya missionary attends Vatican inauguration events and conveys message on Gaza crisis",
+   "date": "2025-05-26",
+   "url": "https://www.alhakam.org/ahmadiyya-missionary-vatican-inauguration-gaza",
+   "ext": true,
+   "summary": "Il racconto della partecipazione alla messa di inizio pontificato di Leone XIV, il 18 maggio 2025, e del messaggio consegnato il giorno dopo da parte del Califfo della Comunità.",
+   "src": "Al Hakam"
+  },
+  {
+   "type": "Cronaca",
+   "title": "Jamaat-e-Ahmadiyya Italy hosts historic event in Rome",
+   "date": "2024-11-01",
+   "url": "https://www.alhakam.org/jamaat-e-ahmadiyya-italy-hosts-historic-event-in-rome",
+   "ext": true,
+   "summary": "L’incontro di dialogo interreligioso del 18 ottobre 2024 nella Sala della Protomoteca, in Campidoglio, a Roma, con rappresentanti delle istituzioni, del mondo accademico e della stampa.",
+   "src": "Al Hakam"
+  },
+  {
+   "type": "Cronaca",
+   "title": "Islam in Italy and Tahrik-e-Jadid: The early years of the Ahmadiyya Mission and press coverage",
+   "date": "2024-10-31",
+   "url": "https://www.alhakam.org/islam-ahmadiyya-italy",
+   "ext": true,
+   "summary": "Un articolo di storia: i primi contatti con l’Italia, la visita del Califfo nel 1924, la fondazione della missione nel 1937, le difficoltà del periodo bellico e i tentativi successivi di riaprirla, con la rassegna della stampa italiana dell’epoca.",
+   "src": "Al Hakam"
+  },
+  {
+   "type": "Cronaca",
+   "title": "Ahmadi Muslim missionaries meet Pope Francis, who pays homage to Hazrat Mirza Masroor Ahmad",
+   "date": "2022-11-04",
+   "url": "https://www.alhakam.org/ahmadi-muslim-missionaries-meet-pope-francis-who-pays-homage-to-hazrat-mirza-masroor-ahmad",
+   "ext": true,
+   "summary": "L’incontro del 5 settembre 2022 in Vaticano tra papa Francesco e due missionari della Comunità, fra cui il responsabile per l’Italia: il dialogo sull’armonia tra le religioni e lo scambio di doni.",
+   "src": "Al Hakam"
+  },
+  {
+   "type": "Stampa",
+   "title": "«Noi, Ahmadi, musulmani ma perseguitati in Pakistan»",
+   "date": "2021-06-15",
+   "url": "https://www.avvenire.it/idee-e-commenti/noi-ahmadi-musulmani-ma-perseguitati-in-pakistan_53332",
+   "ext": true,
+   "summary": "Il quotidiano dei vescovi italiani racconta la condizione degli ahmadi in Pakistan, tra restrizioni legali e violenze, partendo dalla testimonianza dell’imam della Comunità in Italia.",
+   "src": "Avvenire"
+  }
+ ],
+ "forms": [
+  {
+   "title": "Modulo del Nikah 2026",
+   "dept": "Rishta Nata",
+   "url": "dipartimenti/rishta-nata/",
+   "note": "Modulo centrale in italiano, inglese e urdu.",
+   "deadline": null
+  },
+  {
+   "title": "Quiz Ijtema Waqf-e-Nau 2026",
+   "dept": "Waqf-e-Nau",
+   "url": "dipartimenti/waqf-e-nau/",
+   "note": "Per i genitori dei bambini Waqf-e-Nau.",
+   "deadline": null
+  },
+  {
+   "title": "Richiedi una data o un programma",
+   "dept": "Per i responsabili",
+   "url": "eventi/index.html#richiesta",
+   "note": "Amila, organizzazioni ausiliarie e dipartimenti.",
+   "deadline": null
+  }
+ ]
+}

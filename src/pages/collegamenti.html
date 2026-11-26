@@ -1,0 +1,19 @@
+---
+title: Siti collegati
+h1: Siti collegati
+eyebrow: Dalla Comunità nel mondo
+lead: I siti ufficiali della Comunità, le sue riviste, la televisione, le organizzazioni ausiliarie e le Jama'at di altri Paesi. Sono siti indipendenti dal nostro: si aprono in una nuova scheda.
+description: Siti ufficiali e collegati della Comunità Islamica Ahmadiyya: Al Islam, riviste, MTA, organizzazioni ausiliarie e Jama'at di altri Paesi.
+path: collegamenti/index.html
+crumbs: <a href="{{ root }}index.html">Home</a> › Siti collegati
+---
+<section class="amj-w amj-s">
+{% for g in links %}<div class="amj-rv" style="margin-bottom:var(--s-600)"><div class="amj-libhead"><div><h2 class="heading-4">{{ g.label }}</h2>{% if g.intro %}<p class="body-2" style="margin:var(--s-75) 0 0;color:var(--amj-mute);max-width:680px">{{ g.intro }}</p>{% endif %}</div></div>
+<div class="amj-cards" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+{% for name, url, desc in g['items'] %}{% if url %}<a class="amj-post" href="https://{{ url }}" target="_blank" rel="noopener"><div class="meta"><span>{{ url|replace('www.','')|replace('/at/','/at') }}</span></div><h3>{{ name }}</h3><p>{{ desc }}</p><span class="amj-go">Apri il sito <i class="ph ph-arrow-up-right"></i></span></a>{% else %}<div class="amj-post"><div class="meta"><span>In arrivo</span></div><h3>{{ name }}</h3><p>{{ desc }}</p></div>{% endif %}{% endfor %}
+</div></div>{% endfor %}
+<div class="amj-rv"><div class="amj-libhead"><div><h2 class="heading-4">Jama'at di altri Paesi</h2><p class="body-2" style="margin:var(--s-75) 0 0;color:var(--amj-mute);max-width:680px">I siti nazionali della Comunità. L’elenco completo è su <a href="https://www.alislam.org/affiliated-websites.php" target="_blank" rel="noopener">alislam.org</a>.</p></div></div>
+<ul class="amj-chips">{% for n, u in links_countries %}<li><a href="https://{{ u }}" target="_blank" rel="noopener" style="text-decoration:none">{{ n }}</a></li>{% endfor %}</ul></div>
+<div class="amj-rv" style="margin-top:var(--s-600)"><h2 class="heading-5">Le comunità locali in Italia</h2><p class="body-2" style="color:var(--amj-mute);max-width:680px">Siamo presenti in 17 città. Per l’indirizzo di una sede o per incontrare la comunità più vicina, <a href="{{ root }}contatti/">scrivici</a>.</p></div>
+<p class="amj-src">Elenco ricavato dalla pagina ufficiale dei siti collegati di alislam.org, letta il {{ links_read_on }}. Non siamo responsabili dei contenuti di altri siti.</p>
+</section>

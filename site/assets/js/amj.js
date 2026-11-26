@@ -259,6 +259,60 @@
   }
 
 
+  /* calendario Google caricato solo dopo il clic (nessun dato a Google prima) */
+  var calL = $('[data-calload]');
+  if (calL) {
+    var calB = $('[data-calbtn]', calL);
+    if (calB) calB.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.title = 'Calendario eventi pubblici'; f.src = calL.getAttribute('data-src').replace(/&amp;/g, '&'); f.loading = 'lazy';
+      f.style.cssText = 'border:0;width:100%;height:560px'; f.setAttribute('scrolling', 'no');
+      calL.innerHTML = ''; calL.appendChild(f);
+    });
+  }
+
+  /* ---------- In evidenza in homepage: prossimo evento, ultimi contenuti, moduli (tutto da elenchi che si aggiornano da soli) ---------- */
+  var hl = $('[data-hl]');
+  if (hl) {
+    var hroot = hl.getAttribute('data-root') || '';
+    var link = function (u) { u = u || '#'; if (/^(https?:)?\/\//.test(u) || u.charAt(0) === '/') return u; return hroot + u + (/\/$/.test(u) && hroot.charAt(0) !== '/' ? 'index.html' : ''); };
+    var iso = function (s) { var p = String(s).slice(0, 10).split('-'); return Date.UTC(+p[0], +p[1] - 1, +p[2]); };
+    var fmt = function (ms) { var d = new Date(ms); return d.getUTCDate() + ' ' + FULLM[d.getUTCMonth()] + ' ' + d.getUTCFullYear(); };
+    var today2 = rome(new Date());
+    var evP = fetch(hl.getAttribute('data-esrc'), { cache: 'no-cache' }).then(function (r) { return r.json(); }).catch(function () { return null; });
+    var nwP = fetch(hl.getAttribute('data-nsrc'), { cache: 'no-cache' }).then(function (r) { return r.json(); }).catch(function () { return null; });
+    evP.then(function (D) {
+      var box = $('[data-hl-event]', hl), more = $('[data-hl-more]', hl);
+      if (!D) { box.innerHTML = '<div class="amj-empty">Gli eventi non si caricano. Riprova più tardi.</div>'; return; }
+      var all = norm(D), up = all.filter(function (e) { return e.e >= today2; }), big = up.filter(function (e) { return !e.minor; });
+      var f = big[0];
+      if (!f) { box.innerHTML = '<div class="amj-empty"><p class="body-2" style="margin:0 0 8px">Nessun evento in programma per ora.</p><p style="margin:0">Scrivici su WhatsApp per sapere che cosa si organizza.</p></div>'; return; }
+      var d = new Date(f.s);
+      box.innerHTML = '<article class="amj-hlev"><div class="amj-hlev-d"><b>' + d.getUTCDate() + '</b><small>' + MONTHS[d.getUTCMonth()] + ' ' + d.getUTCFullYear() + '</small></div><div><p class="amj-eyebrow">Prossimo appuntamento · ' + when(f, today2) + '</p><h3 class="heading-5">' + esc(f.title) + '</h3><p class="amj-hlev-m">' + range(f) + (f.place ? ' · ' + esc(f.place) : '') + (f.city ? ' · ' + esc(f.city) : '') + (f.tentative ? ' · data da confermare' : '') + '</p>' + (f.desc ? '<p>' + esc(f.desc) + '</p>' : '') + '<div class="amj-actions"><a class="amj-btn3" href="' + esc(f.url ? link(f.url) : hl.getAttribute('data-ehref')) + '">Dettagli</a><button class="amj-btn3" type="button" data-hl-ics><i class="ph ph-calendar-plus"></i> Aggiungi al calendario</button></div></div></article>';
+      $('[data-hl-ics]', box).addEventListener('click', function () { icsFor(f); });
+      var rest = big.slice(1, 4);
+      more.innerHTML = rest.map(function (e) {
+        var x = new Date(e.s);
+        return '<a class="amj-nx" href="' + esc(e.url ? link(e.url) : hl.getAttribute('data-ehref')) + '"><span class="d"><b>' + x.getUTCDate() + '</b><small>' + MONTHS[x.getUTCMonth()] + '</small></span><span><small>' + esc(e.kind) + ' · ' + when(e, today2) + '</small><b>' + esc(e.title) + '</b></span></a>';
+      }).join('');
+    });
+    nwP.then(function (N) {
+      var box = $('[data-hl-news]', hl), fb = $('[data-hl-forms]', hl);
+      if (!N) { box.innerHTML = '<div class="amj-empty">Le novità non si caricano. Riprova più tardi.</div>'; return; }
+      var items = (N.items || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).slice(0, 4);
+      box.innerHTML = items.length ? items.map(function (a) {
+        var isNew = today2 - iso(a.date) <= 14 * DAY;
+        return '<a class="amj-hl-item" href="' + esc(link(a.url)) + '"' + (a.ext ? ' target="_blank" rel="noopener"' : '') + '><span class="meta"><span>' + esc(a.type) + (a.src ? ' · ' + esc(a.src) : '') + '</span>' + (isNew ? '<em class="amj-new">Nuovo</em>' : '') + '<span>' + fmt(iso(a.date)) + '</span></span><b>' + esc(a.title) + '</b></a>';
+      }).join('') : '<p class="amj-tnote">Nessuna novità per ora.</p>';
+      var forms = (N.forms || []).filter(function (f) { return !f.deadline || iso(f.deadline) >= today2; });
+      fb.innerHTML = forms.length ? '<div class="amj-hl-forms"><p class="amj-eyebrow">Moduli e iscrizioni</p><div class="amj-nxl">' + forms.map(function (f) {
+        var dl = f.deadline ? Math.round((iso(f.deadline) - today2) / DAY) : null;
+        return '<a class="amj-form" href="' + esc(link(f.url)) + '"><i class="ph ph-file-text"></i><span><small>' + esc(f.dept || '') + (dl !== null ? ' · ' + (dl === 0 ? 'scade oggi' : dl === 1 ? 'scade domani' : 'scade fra ' + dl + ' giorni') : '') + '</small><b>' + esc(f.title) + '</b>' + (f.note ? '<em>' + esc(f.note) + '</em>' : '') + '</span></a>';
+      }).join('') + '</div></div>' : '';
+    });
+  }
+
+
   /* ---------- Baitut Tauhid: orari della moschea, scelti in base alla data di oggi ---------- */
   var btBoxes = $$('[data-bt]');
   if (btBoxes.length) {

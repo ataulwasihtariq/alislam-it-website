@@ -15,6 +15,17 @@ path: index.html
 <figure class="amj-art" style="margin:0"><img src="{{ assets }}img/hero-arcate.svg" alt="Illustrazione: arcate concentriche in linea sottile" width="800" height="1000"><figcaption>Illustrazione concettuale</figcaption></figure>
 </div></section>
 
+<section class="amj-w amj-s amj-rv" id="in-evidenza" data-hl data-root="{{ root }}" data-esrc="{{ ev_src }}" data-nsrc="{{ news_src }}" data-ehref="{{ root }}eventi/index.html" style="padding-top:0;padding-bottom:var(--s-400)">
+<div class="amj-libhead"><div><p class="amj-eyebrow">In evidenza</p><h2 class="heading-3">Che cosa c’è di nuovo</h2></div><a class="amj-link" href="{{ root }}eventi/index.html">Tutto il calendario <i class="ph ph-arrow-right"></i></a></div>
+<div class="amj-hl">
+<div data-hl-event><p class="amj-tnote">Carico gli eventi…</p></div>
+<div><p class="amj-eyebrow">Appena pubblicato</p><div class="amj-hl-news" data-hl-news><p class="amj-tnote">Carico le novità…</p></div></div>
+</div>
+<div class="amj-hl-more" data-hl-more></div>
+<div data-hl-forms></div>
+<noscript><p class="amj-tnote">Per vedere gli ultimi contenuti e i prossimi eventi serve JavaScript: puoi sempre aprire il <a href="{{ root }}eventi/index.html">calendario degli eventi</a>.</p></noscript>
+</section>
+
 <section class="amj-w amj-rv" style="padding-bottom:var(--s-300)" data-bt data-src="{{ assets }}data/baitut-tauhid.json">
 <div class="amj-bt"><span class="badge">Baitut Tauhid · San Pietro in Casale</span>
 <h2>Orari di preghiera della moschea</h2>
@@ -56,9 +67,6 @@ path: index.html
 <div class="amj-cards amj-rv">
 {% for a in [press[0], press[2], press[-1]] %}<a class="amj-post" href="{{ a.url }}" target="_blank" rel="noopener"><div class="meta"><span>{{ a.outlet }}</span><span>·</span><span>{{ a.date }}</span></div><h3>{{ a.title }}</h3><p>{{ a.summary }}</p><span class="amj-go">Leggi l’articolo <i class="ph ph-arrow-up-right"></i></span></a>{% endfor %}
 </div></section>
-
-<section class="amj-w amj-s amj-rv"><div class="amj-libhead"><div><p class="amj-eyebrow">Eventi</p><h2 class="heading-3">I prossimi appuntamenti</h2></div><a class="amj-link" href="{{ root }}eventi/index.html">Tutto il calendario <i class="ph ph-arrow-right"></i></a></div>
-<div class="amj-nxl" data-ev-next data-src="{{ assets }}data/eventi.json" data-href="{{ root }}eventi/index.html"><p class="amj-tnote">Carico gli eventi…</p></div></section>
 
 <section class="amj-serm amj-patdark"><div class="amj-w">
 <div style="flex:1 1 380px;min-width:0"><p class="amj-eyebrow">Ogni venerdì</p><h2>Il Sermone del Venerdì</h2>
