@@ -250,8 +250,8 @@ LINKS = [
         ("Islamic FAQ", "www.islamicfaq.org", "Le domande più frequenti sull’Islam, con un modulo per inviare la propria."),
         ("Free Online Islamic Course", "www.free-islamic-course.org", "Un corso introduttivo di base sull’Islam."),
         ("Why Ahmadi", "www.whyahmadi.org", "Perché gli ahmadi credono ciò che credono, e le affermazioni del Messia Promesso (as).")]},
-    {"label": "Organizzazioni ausiliarie", "intro": "Le organizzazioni della Comunità per donne, uomini e ragazzi. Qui trovi i siti delle sedi estere; in Italia le organizzazioni sono presentate nella pagina Chi siamo.", "items": [
-        ("Lajna Imaillah Italia", "", "Indirizzo del sito da confermare."),
+    {"label": "Organizzazioni ausiliarie", "intro": "Le organizzazioni della Comunità per donne, uomini e ragazzi: il sito della Lajna in Italia e quelli delle sedi estere.", "items": [
+        ("Lajna Imaillah Italia", "lajnaitaly.com", "Articoli, sermoni del Venerdì, rivista e materiali da scaricare, in italiano."),
         ("Lajna Imaillah, Regno Unito", "www.lajna.org.uk", "Le donne dai 15 anni in su."),
         ("Lajna Imaillah, Germania", "www.lajna.de", "Le donne dai 15 anni in su."),
         ("Khuddam-ul-Ahmadiyya, Regno Unito", "www.khuddam.org.uk", "Gli uomini dai 15 ai 40 anni."),
