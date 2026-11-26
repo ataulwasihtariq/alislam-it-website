@@ -35,7 +35,7 @@ foreach ($gruppi as $g) : $cur = ($req === rtrim($g[1], '/')) ? ' aria-current="
 <?php endif; endforeach; ?>
 <span class="amj-dd"><a href="<?php echo esc_url(home_url('/dipartimenti/')); ?>">Dipartimenti</a>
 <span class="amj-menu"><?php foreach (get_posts(['post_type' => 'dipartimento', 'numberposts' => 20, 'orderby' => 'menu_order title', 'order' => 'ASC']) as $d) : ?><a href="<?php echo esc_url(get_permalink($d)); ?>"><i></i><?php echo esc_html(get_the_title($d)); ?></a><?php endforeach; ?><hr><a href="<?php echo esc_url(home_url('/dipartimenti/')); ?>"><i></i>Tutti i dipartimenti</a><a href="<?php echo esc_url(home_url('/area-riservata/')); ?>"><i></i>Area riservata</a></span></span>
-<a href="<?php echo esc_url(home_url('/jalsa-salana/')); ?>" class="amj-jalsa"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/dept/jalsa-salana.webp" width="22" height="22" alt="">Jalsa Salana</a>
+<a href="<?php echo esc_url(home_url('/jalsa-salana/')); ?>" class="amj-jalsa"><img src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/img/dept/jalsa-salana-icon.webp" width="22" height="22" alt="">Jalsa Salana</a>
 <a href="<?php echo esc_url(home_url('/contatti/')); ?>" class="amj-cta">Parliamone</a>
 </nav></div></header>
 <main id="contenuto">

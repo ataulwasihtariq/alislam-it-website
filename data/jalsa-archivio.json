@@ -1,0 +1,336 @@
+{
+  "_nota": "Archivio Jalsa Salana Italia. Fonti: cartella Jalsa su OneDrive di Imam Ataul Wasih Tariq (rapporti per Al Fazl, programmi, comunicati stampa). Titoli degli interventi tradotti dall'urdu. Numerazione 2013-2014 e 2022-2023 dedotta dalla successione 9ª (2015) - 13ª (2019) - 16ª (2024) e dagli inviti. Nessun dato su minori o famiglie. Niente contenuti del Red Book 2013.",
+  "editions": [
+    {
+      "year": 2013, "n": "7ª", "dates": "22–23 giugno 2013", "venue": "San Pietro in Casale (BO)",
+      "theme": "«Amore per tutti, odio per nessuno»",
+      "rep": ["Tahir Nadeem (rappresentante speciale di Hazrat Khalifatul Masih V, aba)"],
+      "intro": "Convegno annuale di due giorni, con quattro sessioni, una sessione Lajna Ima’illah e una sessione di domande e risposte. La domenica pomeriggio era riservata agli ospiti, con la presentazione sulla preghiera islamica e il discorso conclusivo del rappresentante speciale.",
+      "program": [
+        {"day": "Sabato 22 giugno", "items": [
+          ["Abdul Fatir Malik", "Presidente nazionale", "Discorso inaugurale"],
+          ["Bashir Twumasi", "Segretario nazionale Tabligh", "La protezione delle future generazioni è legata al sistema del Khilafat"],
+          ["Nasir Amri", "Segretario nazionale Ta‘lim-ul-Qur’an", "La capacità di accontentarsi è un valore senza tramonto"],
+          ["Shahid Khaleel", "", "L’allineamento tra parola e pratica è segno di Taqwa"],
+          ["Sessione di domande e risposte", "", ""]
+        ]},
+        {"day": "Domenica 23 giugno", "items": [
+          ["Rana Naseer", "Presidente nazionale Majlis Ansarullah", "Il Profeta (pace su di lui), principe della pace"],
+          ["Mohamed Akram", "Segretario generale nazionale", "La vita in famiglia del Messia Promesso (as)"],
+          ["Ataul Wasih Tariq", "Missionario in Italia", "Il legame con Allah, segno di una religione viva"],
+          ["Presentazione degli ospiti e presentazione sulla Preghiera islamica", "", ""],
+          ["Rappresentante speciale di Hazrat Khalifatul Masih V (aba)", "", "Discorso conclusivo e Dua"]
+        ]},
+        {"day": "Sessione Lajna Ima’illah (sabato)", "items": [
+          ["Samina Malik", "Presidente Lajna Ima’illah Italia", "Shirk: un nemico nascosto"],
+          ["Fauzia Rehman", "", "Hazrat Amma Jan (ra)"],
+          ["Majeedah Agyapong", "", "Il ruolo della donna in una società islamica"]
+        ]}
+      ],
+      "sources": ["Programma del Convegno 2013 (PDF); invito al 7° Convegno annuale"]
+    },
+    {
+      "year": 2014, "n": "8ª", "dates": "31 maggio – 1° giugno 2014", "venue": "San Pietro in Casale (BO)",
+      "theme": "«Ascoltate la voce del cielo: il Messia è arrivato!»",
+      "rep": ["Tahir Nadeem (rappresentante speciale di Hazrat Khalifatul Masih V, aba)"],
+      "intro": "Edizione di due giorni con quattro sessioni, sessione di domande e risposte e sessione Lajna Ima’illah. Il programma era in italiano, con interventi in italiano, urdu e inglese.",
+      "program": [
+        {"day": "Sabato 31 maggio", "items": [
+          ["Abdul Fatir Malik", "Presidente nazionale", "Discorso inaugurale"],
+          ["Ataul Wasih Tariq", "Missionario in Italia", "Il vero spirito di un Ahmadi (italiano)"],
+          ["Rana Naseer", "Presidente nazionale Majlis Ansarullah", "L’adorazione di Allah, senso della nostra vita (urdu)"],
+          ["Abdul Ghaffar", "Missionario, Regno Unito", "L’importanza del sacrificio finanziario (inglese)"],
+          ["Sessione di domande e risposte", "", ""]
+        ]},
+        {"day": "Domenica 1° giugno", "items": [
+          ["Mohamed Akram", "Segretario generale nazionale", "Jihad-e-Akbar: uno sforzo di ogni giorno (italiano)"],
+          ["Shahid Khalil", "Segretario nazionale Ta‘lim", "I miracoli del Santo Profeta Muhammad (pace su di lui) (urdu)"],
+          ["Mostafa Chafaki", "Segretario nazionale Tabligh", "L’importanza di un legame forte con il Khilafat-e-Ahmadiyya (italiano)"],
+          ["Abdul Fatir Malik", "Presidente nazionale", "Messaggio di Hazrat Khalifatul Masih V (aba)"],
+          ["Tahir Nadeem", "Rappresentante speciale di Hazrat Khalifatul Masih V (aba)", "Discorso conclusivo e Dua"]
+        ]},
+        {"day": "Sessione Lajna Ima’illah (domenica)", "items": [
+          ["Samina Malik", "Presidente Lajna Ima’illah Italia", "Gli insegnamenti dell’Islam per una società pura e sana"],
+          ["Zahida Shabir", "", "Il Corano, un tesoro da scoprire"],
+          ["Khadija Radil", "", "Il ruolo della donna nel crescere bene i figli"],
+          ["Aisha Agyapong", "", "L’importanza del sacrificio finanziario"]
+        ]}
+      ],
+      "sources": ["Programma Jalsa Salana Italia 2014 (PDF italiano)"]
+    },
+    {
+      "year": 2015, "n": "9ª", "dates": "1–3 maggio 2015", "venue": "San Pietro in Casale (BO)",
+      "rep": ["Maulana Abdul Momin Tahir (rappresentante speciale di Hazrat Khalifatul Masih V, aba)"],
+      "attendance": {"total": 305},
+      "online": "Per la prima volta l’intero programma è stato trasmesso in diretta streaming.",
+      "intro": "Ogni intervento è stato tradotto in italiano, arabo e twi (lingua del Ghana), riflettendo la composizione della Comunità. Durante le pause funzionava un banco di libri; la sera di sabato è stato aperto anche alle donne. La sessione finale ha previsto le impressioni dei nuovi Ahmadi, la consegna di attestati agli studenti più meritevoli, la lettura del messaggio del Califfo con traduzione in italiano, arabo e twi e il discorso conclusivo del rappresentante speciale.",
+      "program": [
+        {"day": "Venerdì 1° maggio", "items": [
+          ["Maulana Abdul Momin Tahir", "Rappresentante speciale", "Preghiera del venerdì e alzabandiera"],
+          ["Abdul Fatir Malik", "Presidente nazionale", "Presidenza della prima sessione e discorso inaugurale"],
+          ["Ataul Wasih Tariq", "Missionario in Italia", "Le vie per raggiungere l’alta morale islamica"],
+          ["Rana Naseer Ahmad", "Presidente nazionale Majlis Ansarullah", "L’importanza di scegliere buone compagnie"]
+        ]},
+        {"day": "Sabato 2 maggio", "items": [
+          ["Muhammad Hussain", "", "Il Khilafat, una grande benedizione (in arabo)"],
+          ["Nasir Mahmood Butt", "", "Il Corano guida la comunità"],
+          ["Shahid Khalil", "Segretario nazionale Ta‘lim", "Il pudore è parte della fede"],
+          ["Muhammad Afzal", "", "Metterò la religione al di sopra del mondo"],
+          ["Al-Haj Ibrahim Nayyar", "", "Invitare al bene e allontanare dal male (in inglese)"],
+          ["Sessione di domande e risposte", "", "Risposte di Maulana Abdul Momin Tahir"]
+        ]},
+        {"day": "Domenica 3 maggio", "items": [
+          ["Maulana Abdul Momin Tahir", "Rappresentante speciale", "Presidenza della sessione conclusiva e discorso conclusivo"]
+        ]}
+      ],
+      "guests": ["Luciano Mazzoni (Parma), rappresentante di un forum interreligioso"],
+      "messages": ["Messaggio di Mons. Giuseppe Ghiberti, presidente onorario della Commissione diocesana per la Sindone"],
+      "sources": ["Rapporto del nono Jalsa Salana Italia 2015 (urdu, per Al Fazl)"]
+    },
+    {
+      "year": 2016, "n": "10ª", "dates": "22–24 aprile 2016", "venue": "San Pietro in Casale (BO)",
+      "rep": ["Tahir Nadeem (rappresentante speciale di Hazrat Khalifatul Masih V, aba)"],
+      "online": "Diretta streaming dell’intero programma; traduzione simultanea in italiano, arabo e inglese.",
+      "intro": "Il venerdì il rappresentante speciale ha tenuto il sermone e guidato la preghiera, seguita dal sermone di Hudhur in diretta su MTA. Alla cerimonia dell’alzabandiera era presente il sindaco del comune. Sono state organizzate due sessioni di domande e risposte, la seconda con priorità agli amici arabi. La sessione finale ha previsto le testimonianze dei nuovi Ahmadi, gli attestati agli studenti e la lettura del messaggio di Hazrat Khalifatul Masih V (aba).",
+      "program": [
+        {"day": "Venerdì 22 aprile", "items": [
+          ["Tahir Nadeem", "Rappresentante speciale", "Sermone e preghiera del venerdì"],
+          ["Abdul Fatir Malik", "Presidente nazionale", "Alzabandiera, presidenza della sessione inaugurale e discorso inaugurale"],
+          ["Tahir Nadeem", "Rappresentante speciale", "Sessione di domande e risposte"]
+        ]},
+        {"day": "Sabato 23 aprile", "items": [
+          ["Muhammad Hussain", "Presidente della comunità di Napoli", "Il legame con Allah (in arabo)"],
+          ["Shahid Khalil", "Segretario nazionale Ta‘lim", "Il Santo Profeta Muhammad (pace su di lui), guida di pace per il mondo"],
+          ["Rana Naseer Ahmad", "Presidente nazionale Majlis Ansarullah", "Episodi di accettazione delle preghiere nel Khilafat Ahmadiyya"],
+          ["Ataul Wasih Tariq", "Missionario in Italia", "Il sacrificio per Dio, segreto della vita dell’Islam"],
+          ["Sessione di domande e risposte con gli amici arabi", "", ""]
+        ]},
+        {"day": "Domenica 24 aprile", "items": [
+          ["Tahir Nadeem", "Rappresentante speciale", "Discorso conclusivo: la gratitudine per i doni di Dio"]
+        ]},
+        {"day": "Sessione Lajna Ima’illah (sabato)", "items": [
+          ["Samina Malik", "Presidente nazionale Lajna Ima’illah", "I diritti del prossimo (Huquq-ul-‘Ibad), con traduzione italiana"],
+          ["Maira Iqbal", "", "L’importanza, la filosofia e le benedizioni della preghiera (in inglese)"],
+          ["Fatima", "", "Il posto della donna nell’Islam (in arabo)"]
+        ]}
+      ],
+      "guests": ["Claudio Pezzoli, sindaco di San Pietro in Casale, presente all’alzabandiera"],
+      "messages": ["Messaggio di Hazrat Khalifatul Masih V (aba)", "Messaggio di Mons. Matteo Zuppi, arcivescovo di Bologna", "Messaggio di Mons. Giuseppe Ghiberti, presidente onorario della Commissione diocesana per la Sindone", "Messaggio di Luigi De Salvia, per Religions for Peace", "Messaggio dell’imam di Trieste Nader Akkad", "Messaggio del comandante della polizia locale"],
+      "sources": ["Rapporto del decimo Jalsa Salana Italia 2016 (urdu)"]
+    },
+    {
+      "year": 2017, "n": "11ª", "dates": "12–14 maggio 2017", "venue": "Bait at-Tauhid, San Pietro in Casale (BO)",
+      "rep": ["Ibrahim Akhlaf (rappresentante speciale di Hazrat Khalifatul Masih V, aba)"],
+      "attendance": {"total": 317},
+      "online": "Diretta sulla pagina Facebook della Comunità. Traduzione simultanea in quattro lingue.",
+      "intro": "Il rappresentante speciale è stato accolto in aeroporto e ha tenuto il sermone del venerdì in inglese e arabo, con traduzione in italiano e urdu. All’alzabandiera era presente il sindaco. Sono state tenute sessioni di domande e risposte in urdu e italiano, e incontri separati con studenti, amici arabi e fratelli africani. Hanno partecipato anche dalla Sicilia, dopo un viaggio di circa 16 ore.",
+      "program": [
+        {"day": "Venerdì 12 maggio", "items": [
+          ["Ibrahim Akhlaf", "Rappresentante speciale", "Sermone del venerdì sull’importanza di partecipare alla Jalsa"],
+          ["Abdul Fatir Malik", "Presidente nazionale", "Discorso inaugurale sull’importanza di partecipare alla Jalsa"],
+          ["Ataul Wasih Tariq", "Missionario in Italia", "Sessione di domande e risposte (urdu e italiano)"]
+        ]},
+        {"day": "Sabato 13 maggio", "items": [
+          ["Bashir Twumasi", "Presidente della comunità di Parma", "Le profezie sulla venuta del Profeta nei libri antichi (in inglese)"],
+          ["Rana Naseer Ahmad", "Presidente nazionale Majlis Ansarullah", "Il Corano, fonte del timore di Dio e liberazione dai peccati (in urdu)"],
+          ["Shahid Khalil", "Segretario nazionale Ta‘lim", "Lo studio dei libri e la grandezza del Kalam del Messia Promesso (as)"],
+          ["Ataul Wasih Tariq", "Missionario in Italia", "Il Sacro Corano, parola miracolosa (in urdu)"],
+          ["Sessione di domande e risposte", "", "In urdu e italiano; incontri separati con amici arabi e africani"]
+        ]},
+        {"day": "Domenica 14 maggio", "items": [
+          ["Ibrahim Akhlaf", "Rappresentante speciale", "Presidenza della sessione conclusiva e discorso conclusivo (in inglese) sulla storia dell’Islam e il Khilafat"]
+        ]}
+      ],
+      "guests": ["Il sindaco del comune, presente all’alzabandiera", "Un vicesindaco, medici, professori, ricercatori e giornalisti", "Una professoressa di sociologia di Roma, autrice di una ricerca sulla Comunità", "Una collaboratrice di progetti europei sull’immigrazione", "Due sacerdoti e due signore cristiane"],
+      "messages": ["Messaggio di Hazrat Khalifatul Masih V (aba), datato dal 12 al 14 maggio 2017", "Messaggio dell’arcivescovo di Bologna", "Messaggio dalla Santa Sede"],
+      "sources": ["Rapporto dell’undicesimo Jalsa Salana Italia 2017 (urdu), a cura di Rashid Ahmad e Ataul Wasih Tariq"]
+    },
+    {
+      "year": 2018, "n": "12ª", "dates": "11–13 maggio 2018", "venue": "Bait at-Tauhid, San Pietro in Casale (BO)",
+      "rep": ["Laeeq Ahmad Atif (rappresentante speciale di Hazrat Khalifatul Masih V, aba)"],
+      "officer": "Rana Naseer Ahmad (afsar Jalsa Salana)",
+      "attendance": {"total": 431, "men": 222, "women": 174, "italian_guests": 26, "abroad": 9},
+      "online": "Diretta su YouTube, seguita contemporaneamente da vari Paesi.",
+      "intro": "Edizione con una tenda separata per gli ospiti italiani, un banco di libri in arabo, urdu e italiano (i più venduti: Kashti-e-Nuh e, in italiano, «Gesù in India») e un sistema di accesso con controllo dei pass. Sono state tenute tre sessioni parallele di domande e risposte in lingue diverse. Il sermone del venerdì è stato tradotto in italiano e arabo.",
+      "program": [
+        {"day": "Venerdì 11 maggio", "items": [
+          ["Laeeq Ahmad Atif", "Rappresentante speciale", "Ispezione e sermone del venerdì sull’importanza della Jalsa (urdu e inglese)"],
+          ["Abdul Fatir Malik", "Presidente nazionale", "Alzabandiera e discorso inaugurale"],
+          ["Incontro per i nuovi arrivati in Italia", "", "Regole e orientamento"]
+        ]},
+        {"day": "Sabato 12 maggio", "items": [
+          ["Rana Naseer Ahmad", "Presidente nazionale Majlis Ansarullah, afsar Jalsa", "Il criterio della veridicità dei profeti secondo il Corano"],
+          ["Shahid Khalil", "Segretario nazionale Ta‘lim", "L’avvento del profeta preannunciato da Mosè dal monte Faran"],
+          ["Abdul Rahman Nimley", "Segretario generale, Parma", "Il Santo Profeta (pace su di lui), misericordia per i mondi (in italiano)"],
+          ["Ataul Wasih Tariq", "Missionario in Italia", "La profezia, necessità urgente del nostro tempo"],
+          ["Tre sessioni di domande e risposte", "", "In urdu (Laeeq Ahmad Atif), inglese (Abdul Fatir Malik), arabo (Ataul Wasih Tariq)"]
+        ]},
+        {"day": "Domenica 13 maggio", "items": [
+          ["Laeeq Ahmad Atif", "Rappresentante speciale", "Presidenza e discorso conclusivo su Tawhid, amore per il Profeta e obbedienza al Khilafat"]
+        ]}
+      ],
+      "guests": ["Louis Bono, indicato nel rapporto come vice ambasciatore degli Stati Uniti", "Prof. Francesco Zannini, docente di studi arabi e islamici", "Una ricercatrice che studia l’Ahmadiyya presso un istituto di studi islamici in Vaticano", "Il comandante della polizia locale e il sindaco", "Abdul Khaliq, responsabile della sezione Ansar presso l’ufficio del Segretario privato (Regno Unito), ha presieduto la terza sessione"],
+      "messages": ["Messaggio di Hazrat Khalifatul Masih V (aba)", "Messaggi di Religions for Peace (Italia ed Europa) e del direttore del Centro internazionale della Sindone"],
+      "sources": ["Rapporto del dodicesimo Jalsa Salana Italia 2018 (urdu), a cura di Rashid Ahmad"]
+    },
+    {
+      "year": 2019, "n": "13ª", "dates": "21–23 giugno 2019", "venue": "Bait at-Tauhid, San Pietro in Casale (BO)",
+      "theme": "«Invitare alla bontà» (Corano 3:105)",
+      "rep": ["Maulana Abdul Majeed Amir (rappresentante speciale di Hazrat Khalifatul Masih V, aba)"],
+      "officer": "Kashif Kamal (afsar Jalsa Salana)",
+      "attendance": {"total": 369, "men": 242, "women_children": 127, "italian_guests": 11},
+      "online": "Diretta su YouTube; riprese video dell’intero programma.",
+      "intro": "Il venerdì sera il Presidente nazionale ha mostrato in italiano le immagini della visita del Califfo in Italia nel 2010. Sabato si sono tenute quattro sessioni in gruppi: Pan-African Ahmadiyya Muslim Association, Arab Desk, Bangla Desk e una sessione di domande e risposte per gli ospiti italiani. Il programma è stato tradotto in arabo, inglese, italiano, twi e bengalese.",
+      "program": [
+        {"day": "Venerdì 21 giugno", "items": [
+          ["Abdul Majeed Amir", "Rappresentante speciale", "Ispezione, alzabandiera e preghiera"],
+          ["Ataul Wasih Tariq", "Missionario in Italia", "Lettura del messaggio di Hazrat Khalifatul Masih V (aba)"],
+          ["Abdul Fatir Malik", "Presidente nazionale", "Islam e giustizia (discorso inaugurale)"]
+        ]},
+        {"day": "Sabato 22 giugno", "items": [
+          ["Kashif Kamal", "Presidente nazionale Majlis Khuddamul Ahmadiyya", "Le benedizioni di un legame saldo con il Khilafat"],
+          ["Mazhar Ahmad", "Segretario nazionale Finanze", "La filosofia del sacrificio finanziario nell’Islam Ahmadiyya"],
+          ["Shahid Khalil", "Presidente nazionale Majlis Ansarullah", "I preziosi consigli del Messia Promesso (as) per raggiungere la salvezza"],
+          ["Ataul Wasih Tariq", "Missionario in Italia", "L’idea di pace e unità mondiale secondo l’Ahmadiyya (in italiano)"],
+          ["Quattro sessioni di domande e risposte", "", "Pan-African, Arab Desk, Bangla Desk e ospiti italiani"]
+        ]},
+        {"day": "Domenica 23 giugno", "items": [
+          ["Abdul Majeed Amir", "Rappresentante speciale", "Presidenza della sessione conclusiva e discorso conclusivo sulla tabligh"]
+        ]},
+        {"day": "Sessione Lajna Ima’illah (sabato)", "items": [
+          ["Maira Iqbal", "", "I consigli del Messia Promesso (as) sui rapporti reciproci"],
+          ["Aniqa Saba", "", "L’importanza della preghiera"],
+          ["Saadat Jabeen", "Presidente nazionale Lajna Ima’illah", "«Gareggiate nelle opere buone»: l’obiettivo della donna Ahmadi"]
+        ]}
+      ],
+      "guests": ["Claudio Pezzoli, sindaco di San Pietro in Casale", "Prof. Francesco Zannini, docente di studi arabi e islamici", "Prof. Vasco Fronzoni, Università di Napoli «L’Orientale»", "Prof.ssa Maria D’Arienzo, docente di diritto canonico, Università di Napoli", "Dott. Semso Osmanovic, presidente della comunità bosniaca di Trieste, in rappresentanza del Gran Mufti di Bosnia"],
+      "messages": ["Messaggio di Hazrat Khalifatul Masih V (aba), scritto il 19 giugno 2019", "Messaggio della direttrice di un centro di ricerca sulla libertà di religione (LIREC)", "Messaggio del presidente di Religions for Peace Italia", "Messaggio del coordinatore del forum interreligioso di Parma"],
+      "links": [["Comunicato stampa del 10 giugno 2019", ""]],
+      "sources": ["Rapporto del tredicesimo Jalsa Salana Italia 2019 (urdu), a cura di Misbah-ud-Din e Kashif Kamal; comunicato stampa del 10.06.2019"]
+    },
+    {
+      "year": 2022, "n": "14ª", "dates": "9–11 settembre 2022", "venue": "Baitut Tauhid, San Pietro in Casale (BO)",
+      "intro": "Edizione autunnale, con sermone di Hudhur in diretta il venerdì, quattro sessioni e una sessione delle donne il sabato. Nella stessa giornata si sono tenuti anche incontri del Pan-African Ahmadiyya Muslim Association, dell’Arabic Desk e del Bangla Desk, e una sessione di domande e risposte per gli ospiti.",
+      "program": [
+        {"day": "Venerdì 9 settembre", "items": [
+          ["Ataul Wasih Tariq", "Vice Presidente nazionale", "Discorso inaugurale e Dua"]
+        ]},
+        {"day": "Sabato 10 settembre", "items": [
+          ["Abdul Rahman Nimely", "Presidente Pan-African Ahmadiyya Muslim Association (PAAMA)", "È Dio che nomina il Khalifa"],
+          ["Muhammad Hussain", "Presidente Arabic Desk Italia", "Il segno di Dio alla luce dell’ascolto delle supplicazioni"],
+          ["Shahid Khalil", "Presidente nazionale Majlis Ansarullah Italia", "La sincerità dei devoti dell’Islam"],
+          ["Syed Aqeel Shah", "Presidente nazionale Majlis Khuddamul Ahmadiyya Italia", "«Ed Egli ha posto amore e tenerezza tra di voi»: la bellezza degli insegnamenti islamici per l’armonia nelle famiglie"]
+        ]},
+        {"day": "Domenica 11 settembre", "items": [
+          ["Abdul Fatir Malik", "Presidente nazionale", "Discorso conclusivo e Dua"]
+        ]},
+        {"day": "Sessione delle donne (sabato)", "items": [
+          ["Siham Sammoudi", "Vice Presidente, Arab Lajna", "Le responsabilità delle madri Ahmadi nel creare nei figli un legame con il Khilafat"],
+          ["Amina Yakub", "Vice Presidente, African Lajna", "Il ruolo delle donne musulmane nella creazione di una società pacifica per il domani"],
+          ["Saadat Jabeen", "Presidente Lajna Ima’illah Italia", "Lo scopo della fondazione di Lajna Ima’illah alla luce della biografia di Hazrat Amma Jaan (ra)"]
+        ]}
+      ],
+      "sources": ["Programma Jalsa Salana Italia 2022 (PDF), 09–11 settembre 2022"]
+    },
+    {
+      "year": 2023, "n": "15ª", "dates": "16–18 giugno 2023", "venue": "San Pietro in Casale (BO)",
+      "rep": ["Tahir Nadeem (inviato speciale del Califfo da Londra, discorso conclusivo di domenica)"],
+      "intro": "Il programma prevedeva l’alzabandiera il venerdì alle 17:30, la sessione dedicata agli ospiti italiani il sabato dalle 17:00 alle 20:00 e il discorso conclusivo domenica. La Comunità italiana contava allora oltre 14 nazionalità.",
+      "program": [],
+      "sources": ["Comunicato stampa per la Jalsa Salana 2023; programma in urdu (PDF)"]
+    },
+    {
+      "year": 2024, "n": "16ª", "dates": "21–23 giugno 2024", "venue": "Bait at-Tauhid, San Pietro in Casale (BO)",
+      "rep": ["Maulana Muhammad bin Salih (Amir della Comunità del Ghana)", "Tahir Nadeem (responsabile dell’Arab Desk)"],
+      "officer": "Taimur Ahmad (Segretario nazionale Affari generali, afsar Jalsa Salana)",
+      "attendance": {"total": 466, "men": 263, "women_children": 183, "italian_guests": 20},
+      "online": "Diretta su YouTube con 3.800 collegamenti.",
+      "intro": "Per la prima volta le donne hanno avuto una sala per la Jalsa nell’area di Baitut Tauhid, preparata con il lavoro volontario della Lajna. I rappresentanti speciali hanno ispezionato i preparativi il 20 giugno. Il sabato si sono tenute sessioni distinte per l’African Desk e l’Arab Desk. I ricavi del bazar della Lajna sono stati destinati al fondo per la moschea di Roma.",
+      "program": [
+        {"day": "Venerdì 21 giugno", "items": [
+          ["Muhammad bin Salih", "Rappresentante speciale", "Alzabandiera, presidenza della prima sessione"],
+          ["Ataul Wasih Tariq", "Missionario Incharge", "Lettura del messaggio di Hazrat Khalifatul Masih V (aba)"],
+          ["Abdul Fatir Malik", "Presidente nazionale", "Discorso inaugurale (italiano e urdu)"]
+        ]},
+        {"day": "Sabato 22 giugno", "items": [
+          ["Abdul Rahman Nimely", "", "Un modo perfetto di obbedire completamente a Dio"],
+          ["Taimur Ahmad", "Segretario nazionale Affari generali", "L’esempio di Hazrat Umar (ra): giustizia e compassione secondo il Corano"],
+          ["Ataul Wasih Tariq", "Missionario Incharge", "L’impatto dei social media sulla società: l’importanza dei legami per la pace nel mondo"],
+          ["Syed Aqeel Shah", "Missionario e Presidente nazionale Majlis Khuddamul Ahmadiyya", "Il Santo Profeta (pace su di lui), modello di umiltà"],
+          ["Shahid Khalil", "", "I sacrifici dei Compagni agli inizi dell’Islam"],
+          ["Tahir Nadeem", "Rappresentante speciale", "L’amore incomparabile dei Compagni per il Messia Promesso (as)"]
+        ]},
+        {"day": "Domenica 23 giugno", "items": [
+          ["Muhammad bin Salih", "Rappresentante speciale", "Presidenza e discorso conclusivo"]
+        ]},
+        {"day": "Sessione Lajna Ima’illah (sabato)", "items": [
+          ["Maira Iqbal", "", "Le mie responsabilità come donna Ahmadi"],
+          ["Nadia Qoui", "", "L’importanza della donna nell’Islam"],
+          ["Jannat Amri", "", "Il ruolo della Comunità Ahmadiyya a livello internazionale (in italiano)"],
+          ["Samira Tariq", "Presidente nazionale Lajna Ima’illah Italia", "Come proteggersi dal fuoco dell’inferno"]
+        ]}
+      ],
+      "sources": ["Rapporto del sedicesimo Jalsa Salana Italia 2024 (urdu)"]
+    },
+    {
+      "year": 2025, "n": "17ª", "dates": "20–22 giugno 2025", "venue": "Bait at-Tauhid, San Pietro in Casale (BO)",
+      "theme": "Versetto del banner: Corano 13:12 («Allah non cambia la condizione di un popolo finché esso non cambia ciò che è in sé»). Sessione ospiti: «Oltre gli algoritmi»",
+      "officer": "Taimur Ahmad (afsar Jalsa Salana)",
+      "attendance": {"total": 412, "men": 136, "women": 127, "children": 23, "italian_guests": 26, "nota": "I quattro dati parziali sommano 312, non 412: da verificare."},
+      "online": "YouTube: 1.300 visualizzazioni; Instagram: 17.300 visualizzazioni.",
+      "intro": "Il messaggio di Hazrat Khalifatul Masih V (aba) è datato Islamabad (Regno Unito), 16 giugno 2025. Per la prima volta è stato usato il sistema AMJS con stampa e scansione dei pass. Alla sessione dedicata agli ospiti italiani, presieduta dal Presidente nazionale, è intervenuto il Missionary Incharge sul tema della solitudine digitale e dei valori religiosi come strada per riscoprire i legami umani.",
+      "program": [
+        {"day": "Venerdì 20 giugno", "items": [
+          ["Abdul Fatir Malik e Ataul Wasih Tariq", "Presidente nazionale e Missionary Incharge", "Alzabandiera"],
+          ["Ataul Wasih Tariq", "Missionary Incharge", "La Jalsa Salana, mezzo importante di riforma di sé (discorso inaugurale)"]
+        ]},
+        {"day": "Sabato 21 giugno", "items": [
+          ["Abdul Rahman Nimely", "", "Il valore della conoscenza: l’invito del Corano alla conoscenza religiosa e mondana"],
+          ["Muhammad Afzal", "Presidente nazionale Majlis Ansarullah", "La grande impresa del Santo Profeta di unire la Umma: fondamento di unità, amore e fratellanza"],
+          ["Ataul Wasih Tariq", "Missionary Incharge", "Solitudine digitale e riscoperta dei legami umani attraverso i valori religiosi (sessione ospiti)"],
+          ["Shahid Khalil", "Segretario nazionale Tarbiyyat", "Lo studio dei libri e la grandezza del Kalam del Messia Promesso (as)"],
+          ["Syed Aqeel Shah", "Missionario e Presidente nazionale Majlis Khuddamul Ahmadiyya", "Sotto la guida del Khilafat: coltivare nei figli l’amore per la preghiera e la spiritualità"]
+        ]},
+        {"day": "Domenica 22 giugno", "items": [
+          ["Abdul Fatir Malik", "Presidente nazionale", "Discorso conclusivo e Dua"]
+        ]},
+        {"day": "Sessione Lajna Ima’illah (sabato)", "items": [
+          ["Hibatul Basir", "Segretaria nazionale Tarbiyyat", "Il ruolo dei genitori e i metodi pratici dell’educazione islamica"],
+          ["Aniqa Saba", "Segretaria generale nazionale", "Il viaggio spirituale delle donne"],
+          ["Samira Tariq", "Presidente nazionale Lajna Ima’illah Italia", "Il dhikr (ricordo di Dio)"]
+        ]}
+      ],
+      "guests": ["Il sindaco di San Pietro in Casale e collaboratori", "Prof. Massimo Introvigne", "Prof. Francesco Zannini", "Don Andrea Bergamini, in rappresentanza del cardinale Matteo Zuppi (grafia del nome da verificare)"],
+      "links": [["Programma su Religions for Peace Italia", "https://www.rfpitalia.org/dettagli-e-registrazioni/jalsa-salana-italia-2025"], ["Resoconto della Chiesa di Bologna", "https://ecumenismo.chiesadibologna.it/oltre-gli-algoritmi-fede-fraternita-e-legami-umani-al-jalsa-salana-2025/"]],
+      "sources": ["Rapporto del diciassettesimo Jalsa Salana Italia 2025 (urdu, per Al Fazl); comunicato stampa 2025"]
+    },
+    {
+      "year": 2026, "n": "18ª", "dates": "19–21 giugno 2026", "venue": "Bait at-Tauhid, San Pietro in Casale (BO)",
+      "intro": "Il programma si è aperto venerdì con il sermone di Hudhur, l’alzabandiera e il messaggio di Hazrat Khalifatul Masih V (aba), ed è terminato domenica con il discorso del Presidente nazionale e la foto di gruppo. Il sabato pomeriggio era dedicato agli ospiti, con saluti istituzionali e incontri per African Desk, Arab Desk e Bangla Desk. Una mostra di 24 pannelli era dedicata al Sacro Corano.",
+      "program": [
+        {"day": "Venerdì 19 giugno", "items": [
+          ["Ataul Wasih Tariq", "Missionary Incharge", "Discorso inaugurale: La misericordia di Dio e l’importanza dell’istighfar nei tempi di incertezza"]
+        ]},
+        {"day": "Sabato 20 giugno", "items": [
+          ["Abdul Rehman Nimely", "Presidente PAAMA Italia", "Il ruolo dei giovani: fede, identità e responsabilità nel mondo contemporaneo"],
+          ["Shahid Khalil", "Segretario nazionale Tarbiyyat", "Il Khilafat Ahmadiyya: fonte di unità, obbedienza e progresso spirituale"],
+          ["Ataul Wasih Tariq", "Missionary Incharge", "Dio nella modernità: tra progresso, sofferenza e i legami che ci rendono umani (sessione ospiti)"],
+          ["Syed Aqeel Shah", "Presidente nazionale Majlis Khuddamul Ahmadiyya Italia", "Una società pacifica ed esemplare alla luce degli insegnamenti e dell’esempio del Santo Profeta Muhammad (sa)"],
+          ["Ashraf Zia", "Missionary Incharge Austria", "La riforma del sé e la taqwa: il cammino verso il vero successo"],
+          ["Munir Munawar", "Missionary Incharge Svizzera", "Un rapporto vivo con Dio: il vero spirito della fede"]
+        ]},
+        {"day": "Domenica 21 giugno", "items": [
+          ["Abdul Fatir Malik", "Presidente nazionale", "Discorso conclusivo: Dal sacrificio al servizio, le responsabilità pratiche di un Ahmadi nella società contemporanea"]
+        ]},
+        {"day": "Sessione Lajna Ima’illah (sabato)", "items": [
+          ["Aniqa Saba", "Segretaria generale Lajna Ima’illah Italia", "Decoro morale e abbigliamento dignitoso: identità spirituale e nobiltà sociale della donna credente"],
+          ["Hibatul-Basir", "Segretaria nazionale Tarbiyyat Lajna Ima’illah Italia", "Costruire un futuro luminoso: il benessere fisico, mentale e spirituale della donna credente"],
+          ["Sumera Sarah Tariq", "Presidente nazionale Lajna Ima’illah Italia", "La ricerca del sapere: il ruolo della donna credente nella costruzione del futuro"]
+        ]}
+      ],
+      "guests": ["Messaggio della Prof.ssa Raffaella Di Marzio, direttrice del Centro Studi sulla Libertà di Religione, Credo e Coscienza (LIREC)", "Videomessaggio dell’On. Prof.ssa Emanuela Del Re, già Vice Ministro degli Affari Esteri, Rappresentante Speciale dell’Unione Europea per il Sahel"],
+      "links": [["Prima giornata su YouTube", "https://www.youtube.com/watch?v=3x2TXDMsLFk"], ["Seconda giornata, pomeriggio, su YouTube", "https://www.youtube.com/watch?v=1e0fsrsijmM"]],
+      "sources": ["Programma Jalsa Salana Italia 2026 (xlsx/PDF); bozza dell’intervento di presentazione degli ospiti"]
+    }
+  ]
+}

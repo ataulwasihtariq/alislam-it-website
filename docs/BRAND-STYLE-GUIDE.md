@@ -39,7 +39,7 @@ Ogni dipartimento segue lo stesso stile del sito (stessi caratteri, spazi, filet
 - Per aggiungere un logo: copiare il file in `assets/img/dept/`, aggiungere `"logo": "img/dept/<nome>.webp"` al dipartimento e ricostruire con `python3 src/build.py --sources ..`.
 
 ## Jalsa Salana
-Ha un proprio logo (oro su trasparente, `assets/img/dept/jalsa-salana.webp`, dal file «Jalsa Logo.png» del repository jalsa-salana-italia: reca la scritta «2026», da sostituire con una versione senza anno per le edizioni future). La pagina riassume prossima edizione, edizione 2026, archivio e video.
+Ha un proprio logo (oro su trasparente, `assets/img/dept/jalsa-salana.webp`, dal file «Jalsa Logo.png» del repository jalsa-salana-italia: ora senza la scritta dell’anno: solo l’emblema; l’icona quadrata del menu è `jalsa-salana-icon.webp`). La pagina riassume prossima edizione, edizione 2026, archivio e video.
 
 ## Da decidere
 1. Loghi ufficiali degli altri sette dipartimenti.

@@ -36,7 +36,7 @@ NAV = [
     ("Dipartimenti", "dipartimenti/", None),  # None: il sottomenu si compila dai dipartimenti
 ]
 # Voce speciale: ha un proprio logo.
-JALSA = {"label": "Jalsa Salana", "href": "jalsa-salana/", "logo": "img/dept/jalsa-salana.webp"}
+JALSA = {"label": "Jalsa Salana", "href": "jalsa-salana/", "logo": "img/dept/jalsa-salana-icon.webp"}
 DEPARTMENTS = [
     {"slug": "waqf-e-nau", "name": "Waqf-e-Nau", "ur": "وقفِ نو", "color": "#1f4a3a", "initial": "W", "status": "attivo", "logo": "img/dept/waqf-e-nau.webp",
      "summary": "I bambini dedicati al servizio della fede: programma 2026, Nisab per età, Jaiza, quiz per i genitori.",
