@@ -313,7 +313,7 @@
   }
 
 
-  /* ---------- Baitut Tauhid: orari della moschea, scelti in base alla data di oggi ---------- */
+  /* ---------- Baitut Tauhid: orari della sede nazionale, scelti in base alla data di oggi ---------- */
   var btBoxes = $$('[data-bt]');
   if (btBoxes.length) {
     fetch(btBoxes[0].getAttribute('data-src'), { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (B) {

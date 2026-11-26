@@ -7,7 +7,7 @@ $voci = [
     ['Conoscere l’Islam', 'islam/', []],
     ['Chi siamo', 'chi-siamo/', [['Chi siamo', 'chi-siamo/'], ['Il Messia Promesso', 'chi-siamo/messia-promesso/'], ['La Khilafat e i cinque Califfi', 'chi-siamo/khulafa/'], ['La Comunità in Italia', 'chi-siamo/storia-in-italia/'], ['Dicono di noi', 'dicono-di-noi/']]],
     ['Domande', 'domande/', [['Tutte le domande', 'domande/'], ['Le accuse più comuni', 'domande/accuse/'], ['Gesù: vivo o morto?', 'domande/gesu/']]],
-    ['Orari di preghiera', 'orari-preghiera/', [['Orari delle Jama’at in Italia', 'orari-preghiera/'], ['Moschea Baitut Tauhid', 'baitut-tauhid/'], ['Ramadan 2027', 'ramadan/']]],
+    ['Orari di preghiera', 'orari-preghiera/', [['Orari delle Jama’at in Italia', 'orari-preghiera/'], ['Sede nazionale Baitut Tauhid', 'baitut-tauhid/'], ['Ramadan 2027', 'ramadan/']]],
     ['Sermoni', 'sermoni/', []], ['Libri', 'libri/', []], ['Eventi', 'eventi/', []],
 ];
 $req = trim(wp_parse_url(add_query_arg([]), PHP_URL_PATH), '/');
