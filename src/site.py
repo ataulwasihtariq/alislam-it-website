@@ -252,6 +252,7 @@ LINKS = [
         ("Why Ahmadi", "www.whyahmadi.org", "Perché gli ahmadi credono ciò che credono, e le affermazioni del Messia Promesso (as).")]},
     {"label": "Organizzazioni ausiliarie", "intro": "Le organizzazioni della Comunità per donne, uomini e ragazzi: il sito della Lajna in Italia e quelli delle sedi estere.", "items": [
         ("Lajna Imaillah Italia", "lajnaitaly.com", "Articoli, sermoni del Venerdì, rivista e materiali da scaricare, in italiano."),
+        ("Khuddam-ul-Ahmadiyya Italia", "www.instagram.com/khuddam.it/", "Gli uomini dai 15 ai 40 anni: la pagina Instagram in italiano."),
         ("Lajna Imaillah, Regno Unito", "www.lajna.org.uk", "Le donne dai 15 anni in su."),
         ("Lajna Imaillah, Germania", "www.lajna.de", "Le donne dai 15 anni in su."),
         ("Khuddam-ul-Ahmadiyya, Regno Unito", "www.khuddam.org.uk", "Gli uomini dai 15 ai 40 anni."),
