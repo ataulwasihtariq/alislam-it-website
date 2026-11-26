@@ -71,8 +71,10 @@ body.amj{margin:0;background:var(--amj-cream);font-family:var(--amj-sans);font-s
 .amj-link{display:inline-flex;align-items:center;gap:var(--s-75);font-weight:600;text-decoration:none;color:var(--amj-green)}
 .amj-link:hover{text-decoration:underline}
 .amj-pill{display:inline-flex;align-items:center;gap:var(--s-75);padding:var(--s-50) var(--s-100);border-radius:9999px;border:1px solid var(--amj-line);background:var(--amj-white);font-size:12px;line-height:16px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--amj-gold-d)}
-.amj-pat{background:var(--amj-sand)}
-.amj-patdark{background:var(--amj-green-d)}
+.amj-pat{background:var(--amj-sand) url(../img/pattern-emblema.svg) 0 0/168px 168px}
+.amj-patdark{background:var(--amj-green-d) url(../img/pattern-emblema-chiaro.svg) 0 0/168px 168px}
+@media(max-width:760px){.amj-pat,.amj-patdark{background-size:132px 132px}}
+.amj-pill img{display:block;width:var(--s-200);height:var(--s-200);border-radius:9999px}
 .amj-band{height:var(--s-300);border-top:1px solid var(--amj-line);border-bottom:1px solid var(--amj-line)}
 
 /* barra contatti */
@@ -86,8 +88,8 @@ body.amj{margin:0;background:var(--amj-cream);font-family:var(--amj-sans);font-s
 .amj-brand{display:flex;text-decoration:none;color:var(--amj-green-d)!important;flex:none}
 .amj-logo-full{display:block;height:40px;width:auto}
 .amj-brandline{display:none}
-.amj-nav{display:flex;align-items:center;gap:var(--s-50) var(--s-200);font-size:14px;line-height:20px;font-weight:500}
-.amj-nav>a,.amj-dd>a{text-decoration:none;color:var(--amj-green-d);padding:var(--s-75) var(--s-50);border-radius:var(--r-lg);transition:color .3s var(--ease)}
+.amj-nav{display:flex;align-items:center;gap:var(--s-25) var(--s-75);font-size:14px;line-height:20px;font-weight:500}
+.amj-nav>a,.amj-dd>a{text-decoration:none;color:var(--amj-green-d);padding:var(--s-75) 6px;white-space:nowrap;border-radius:var(--r-lg);transition:color .3s var(--ease)}
 .amj-nav>a:hover,.amj-dd>a:hover{color:var(--amj-gold-d)}
 .amj-nav>a[aria-current],.amj-dd>a[aria-current]{color:var(--amj-gold-d);font-weight:700}
 .amj-dd{position:relative}
@@ -106,7 +108,7 @@ body.amj{margin:0;background:var(--amj-cream);font-family:var(--amj-sans);font-s
 .amj-burger[aria-expanded=true] span:nth-child(1){transform:translateY(5px) rotate(45deg)}
 .amj-burger[aria-expanded=true] span:nth-child(2){opacity:0}
 .amj-burger[aria-expanded=true] span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
-@media(max-width:1279px){
+@media(max-width:1439px){
   .amj-bar{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(250,248,244,.97)}
   .amj-burger{display:block}
   .amj-nav{position:fixed;inset:0;z-index:65;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;padding:var(--s-900) var(--s-400) var(--s-400);background:rgba(250,248,244,.96);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);overflow:auto;opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility .5s var(--ease);font-size:18px;line-height:28px}
