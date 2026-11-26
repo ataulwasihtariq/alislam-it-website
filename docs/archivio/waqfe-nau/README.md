@@ -1,0 +1,18 @@
+<!-- Copia di riferimento del README di waqfe-nau, commit 6dd219dc6e, 2026-11-26. L'originale è nel repository. -->
+# Waqf-e-Nau Italia 2026
+Sito pubblico (italiano · English · اردو): programma 2026, Nisab per età con elenco da spuntare, Jaiza, quiz per i genitori, routine per gli insegnanti.
+
+- `index.html` – pagina completa (GitHub Pages)
+- `assets/branding/` – logo Waqf-e-Nau Italia e banner web
+- `wordpress/waqfe-nau-embed.html` – lo stesso contenuto come blocco per WordPress (vedi `WORDPRESS.md`)
+
+**Privacy:** questo repository non deve contenere nomi, telefoni o elenchi di bambini, né moduli compilati. Il progresso spuntato resta solo nel browser del genitore.
+
+Da completare: moduli Jaiza per età (PDF in bianco), libretto dell'insegnante, quiz e domande/risposte definitivi, orari dell'Ijtema.
+
+## Jaiza digitale (nuovo)
+- `jaiza/` – strumento per gli insegnanti (telefono): voci per età, punteggio 70/25/5, domande con risposta, invio al foglio privato.
+- `famiglia/` – pagina per i genitori: codice + PIN, vedono cosa il figlio sa e cosa deve imparare.
+- `apps-script/Code.gs` – collega le pagine al foglio Google privato. Guida: `SETUP-JAIZA.md`.
+- `assets/theme-jamaat.css` – tema comune (verde/oro/crema) uguale al mockup di alislam.it.
+- Nessun nome o dato dei bambini in questo repository: stanno solo nel foglio Google.
