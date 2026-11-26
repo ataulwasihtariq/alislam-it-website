@@ -14,7 +14,7 @@ SITE = {
     "public_calendar_id": "6eac6d82f39ca2f50434bf232cc5be0e8ac6aaf4bf429a7330d6a2405e9dd5ea@group.calendar.google.com",
     "toll_free": "800 598 005",
     "email": "contatti@alislam.it",
-    "address": "Bait-ul-Tauhid (sede nazionale), Via Morgobbo 1035/A, Gavaseto, 40018 San Pietro in Casale (BO)",
+    "address": "Baitut Tauhid (sede nazionale), Via Morgobbo 1035/A, Gavaseto, 40018 San Pietro in Casale (BO)",
     # Dopo la verifica con l’amministratore: mettere True per togliere "noindex" e la fascia "bozza".
     "published": False,
 }
@@ -124,7 +124,7 @@ PRESS = [
     {"kind": "comunita", "outlet": "Al Hakam", "date": "29 novembre 2025", "author": "Ataul Wasih Tariq",
      "title": "Recent tabligh activities of Jamaat-e-Ahmadiyya Italy",
      "url": "https://www.alhakam.org/recent-tabligh-activities-jamaat-e-ahmadiyya-italy",
-     "summary": "Cronaca di ottobre e novembre 2025: l’incontro interreligioso in Vaticano per i 60 anni di Nostra Aetate, la presentazione del messaggio di pace dell’Islam al Senato della Repubblica e il ricevimento con il cardinale Matteo Zuppi a Bait-ul-Tauhid, a San Pietro in Casale."},
+     "summary": "Cronaca di ottobre e novembre 2025: l’incontro interreligioso in Vaticano per i 60 anni di Nostra Aetate, la presentazione del messaggio di pace dell’Islam al Senato della Repubblica e il ricevimento con il cardinale Matteo Zuppi a Baitut Tauhid, a San Pietro in Casale."},
     {"kind": "comunita", "outlet": "Al Hakam", "date": "26 maggio 2025", "author": "Ataul Wasih Tariq",
      "title": "Ahmadiyya missionary attends Vatican inauguration events and conveys message on Gaza crisis",
      "url": "https://www.alhakam.org/ahmadiyya-missionary-vatican-inauguration-gaza",
