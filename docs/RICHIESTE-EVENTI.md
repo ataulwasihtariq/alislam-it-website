@@ -7,7 +7,7 @@
 4. L'Imam (o chi approva) decide. Se approvato, l'evento va nel calendario **pubblico** e compare sul sito.
 
 ## Calendario: regola
-- Il calendario «Calendario Annuale» è **interno** (note, Shura in attesa, riunioni di Amla, fine settimana riservati). Non si incorpora e non si rende pubblico.
+- Decisione dell'Imam (26 nov 2026): il «Calendario Annuale» contiene solo eventi nazionali e viene incorporato nel sito. Deve essere condiviso come pubblico con «tutti i dettagli dell'evento»; ogni evento inserito lì diventa visibile. Le note interne vanno quindi tenute fuori da questo calendario.
 - Per il sito serve un secondo calendario Google, «Eventi pubblici». Solo gli eventi approvati e pubblicabili vi vengono copiati.
 - Quando esiste: impostarlo come pubblico, copiare il suo ID in `public_calendar_id` (src/site.py). La pagina Eventi mostra allora il calendario Google dal vivo.
 - Per avere anche l'elenco interattivo e il file .ics: indirizzo iCal pubblico in `tools/sync_eventi.py`.
