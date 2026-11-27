@@ -97,22 +97,19 @@ def daily_html():
 def quote():
     Q = json.load(open(HERE / 'quotes.json', encoding='utf-8')); ym = START.strftime('%Y-%m')
     return next((x for x in Q if x['month'] == ym), Q[(START.month - 1) % len(Q)])
-def page3():
+def pensiero():
     q = quote(); blocks = ''
-    for i, it in enumerate(q['items']):
-        blocks += (f'<div class="q{" k" if i else ""}"><div class="kind"><span class="it">{H.escape(it["kind_it"])}</span><span class="ur">{H.escape(it["kind_ur"])}</span></div>'
+    for it in q['items']:
+        blocks += (f'<div class="q"><div class="kind"><span class="it">{H.escape(it["kind_it"])}</span><span class="ur">{H.escape(it["kind_ur"])}</span></div>'
                    f'<div class="ur big">{H.escape(it["ur"])}</div><div class="itx">«{H.escape(it["it"])}»</div>'
-                   f'<div class="ref">{H.escape(it["ref_it"])}</div><div class="ur refu">{H.escape(it["ref_ur"])}</div></div>')
-    return ('<section class="page p3"><div class="hd" style="padding:6mm 12mm 5mm"><div class="ar">بِسۡمِ اللّٰہِ الرَّحۡمٰنِ الرَّحِیۡمِ</div>'
-            '<div class="place" style="margin:0">Baitut Tauhid · San Pietro in Casale</div>'
-            f'<div style="font-size:21pt">{H.escape(q["title_it"])}</div><div class="ur">{H.escape(q["title_ur"])}</div></div>'
-            + blocks + '<div class="endnote">Ogni mese un nuovo hadith e un nuovo riferimento · Baitut Tauhid</div></section>')
+                   f'<div class="ref">{H.escape(it.get("ref_short_it", it["ref_it"]))}</div></div>')
+    return (f'<div class="pens"><div class="ph"><span class="it">Il pensiero del mese · {H.escape(q["title_it"])}</span><span class="ur">{H.escape(q["title_ur"])}</span></div>' + blocks + '</div>')
 
 pub = D(C['published_on'])
 T = (HERE / 'template.html').read_text(encoding='utf-8')
 subs = {'FONTS': 'file://' + str(Path(A.fonts).resolve()), 'PERIOD_SHORT': f'{short(START)}–{short(END)} {END.year}', 'PERIOD_IT': period('it'), 'PERIOD_UR': period('ur'),
         'FAJR_ROWS': fajr_rows(), 'FRIDAYS': fridays(), 'ZUHR_ASR': ZUHR_ASR, 'JUMUAH': JUMUAH, 'MAGHRIB_CARD': maghrib_card(),
-        'TODAY_IT': f'{pub.day} {IT_ML[pub.month - 1]} {pub.year}', 'DAILY': daily_html(), 'PAGE3': page3()}
+        'TODAY_IT': f'{pub.day} {IT_ML[pub.month - 1]} {pub.year}', 'DAILY': daily_html(), 'PENSIERO': pensiero()}
 for k, v in subs.items(): T = T.replace('{{' + k + '}}', v)
 if OVR:
     T = T.replace('Venerdì evidenziato.', 'Venerdì evidenziato. * ' + '; '.join(f'{short(D(k))}: {o.get("label_it", "orario speciale")}' for k, o in OVR.items()) + '.')
@@ -121,7 +118,6 @@ html_path = OUT / (stem + '.html'); html_path.write_text(T, encoding='utf-8')
 pdf = OUT / (stem + '.pdf')
 subprocess.run(['google-chrome', '--headless=new', '--no-sandbox', '--disable-gpu', '--no-pdf-header-footer', f'--print-to-pdf={pdf}', f'file://{html_path}'], check=True, capture_output=True, timeout=180)
 subprocess.run(['pdftoppm', '-r', '150', '-png', '-f', '1', '-l', '1', '-singlefile', str(pdf), str(OUT / 'whatsapp-orari')], check=True)
-subprocess.run(['pdftoppm', '-r', '150', '-png', '-f', '3', '-l', '3', '-singlefile', str(pdf), str(OUT / 'whatsapp-pensiero')], check=True)
 print('PDF:', pdf)
 
 if A.web:
@@ -134,5 +130,5 @@ if A.web:
     for p in periods: p.pop('_v')
     web = {'place': 'Baitut Tauhid · San Pietro in Casale', 'updated': C['published_on'], 'start': WEB_START.isoformat(), 'end': END.isoformat(),
            'periods': periods, 'overrides': C.get('overrides', []),
-           'pdf': 'orari/orari-baitut-tauhid.pdf', 'image': 'orari/orari-baitut-tauhid.png', 'quote_image': 'orari/pensiero-del-mese.png', 'quote': quote()}
+           'pdf': 'orari/orari-baitut-tauhid.pdf', 'image': 'orari/orari-baitut-tauhid.png', 'quote': quote()}
     Path(A.web).write_text(json.dumps(web, ensure_ascii=False, indent=1), encoding='utf-8'); print('JSON:', A.web)

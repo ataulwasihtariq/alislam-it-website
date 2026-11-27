@@ -6,7 +6,7 @@ Genera ogni mese, con un solo comando, il PDF (italiano e urdu), le immagini per
 1. Aggiorna `config.json`: periodo (`start`, `end`), blocchi del Fajr (`fajr_blocks`), orari fissi e giorni speciali (`overrides`).
 2. Scarica i font da Drive (Private Signature › Fonts) in `fonts/`: Garamond Premier Pro, Al_Mushaf, Jameel Noori Nastaleeq. I font non sono nel repository.
 3. `python3 tools/orari-baitut-tauhid/build.py --out /tmp/orari --web assets/data/baitut-tauhid.json`
-4. Copia `…pdf` in `assets/orari/orari-baitut-tauhid.pdf`, `whatsapp-orari.png` in `assets/orari/orari-baitut-tauhid.png` e `whatsapp-pensiero.png` in `assets/orari/pensiero-del-mese.png`, poi `python3 src/build.py`.
+4. Copia `…pdf` in `assets/orari/orari-baitut-tauhid.pdf`, `whatsapp-orari.png` in `assets/orari/orari-baitut-tauhid.png`, poi `python3 src/build.py`.
    Attenzione: `src/build.py` senza i repository fratelli `waqfe-nau` e `rishta-nata` svuota le due pagine dipartimento; ripristinale con `git checkout` prima del commit.
 
 Il sito (`assets/js/amj.js`) legge `assets/data/baitut-tauhid.json` e mostra da solo gli orari della data di oggi; i giorni speciali compaiono nell'elenco e valgono solo per il giorno indicato.
